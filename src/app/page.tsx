@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Image from "next/image";
 import { FaBars } from "react-icons/fa6";
-import { getAge } from "@/utils/helper";
+import { getCount } from "@/utils/helper";
 
 const navigation = [
   { name: "Home", href: "#" },
@@ -137,7 +137,7 @@ export default function Example() {
             <h1 className="text-4xl font-bold">Know More Me</h1>
             <div className="m-auto w-20 h-0.5 bg-gray-500"></div>
           </div>
-          <div className="grid grid-cols-2 gap-4">
+          <div className="grid grid-cols-2 gap-4 mb-10">
             <div>
               <h1 className="text-2xl mb-2">
                 I'm <b className="color-primary">Shivharakh Yadav</b>, a
@@ -174,7 +174,7 @@ export default function Example() {
                 <label aria-label="Age" className="font-bold w-16">
                   Age:
                 </label>
-                <p>{getAge()}</p>
+                <p>{getCount(18, 6, 2000)}</p>
               </div>
               <div className="flex gap-4">
                 <label aria-label="From" className="font-bold w-16">
@@ -187,9 +187,30 @@ export default function Example() {
               </button>
             </div>
           </div>
+          <div className="flex gap-4 justify-between">
+            <Count title="Year Experience" total={getCount(1, 2, 2022, true)} />
+            <Count title="Happy Clients" total={1} />
+            <Count title="Projects Done" total={1} />
+          </div>
         </section>
       </main>
       <footer></footer>
     </div>
   );
 }
+
+const Count: React.FC<{
+  total: number | string;
+  title: string;
+  showPlus?: boolean;
+}> = ({ total, title, showPlus = true }) => {
+  return (
+    <div className="text-center w-60">
+      <h4 className="text-3xl">
+        {total}
+        {showPlus && "+"}
+      </h4>
+      <p className="text-2xl font-bold">{title}</p>
+    </div>
+  );
+};
