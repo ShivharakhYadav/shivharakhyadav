@@ -1,113 +1,195 @@
+"use client";
+
+import { useState } from "react";
 import Image from "next/image";
+import { FaBars } from "react-icons/fa6";
+import { getAge } from "@/utils/helper";
 
-export default function Home() {
+const navigation = [
+  { name: "Home", href: "#" },
+  { name: "What I Do", href: "#" },
+  { name: "Projects", href: "#" },
+  { name: "Resume", href: "#" },
+  { name: "About", href: "#" },
+  { name: "Contact me", href: "#" },
+  // { name: "Download CV", href: "#" },
+];
+
+export default function Example() {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <div className="z-10 w-full max-w-5xl items-center justify-between font-mono text-sm lg:flex">
-        <p className="fixed left-0 top-0 flex w-full justify-center border-b border-gray-300 bg-gradient-to-b from-zinc-200 pb-6 pt-8 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:static lg:w-auto  lg:rounded-xl lg:border lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30">
-          Get started by editing&nbsp;
-          <code className="font-mono font-bold">src/app/page.tsx</code>
-        </p>
-        <div className="fixed bottom-0 left-0 flex h-48 w-full items-end justify-center bg-gradient-to-t from-white via-white dark:from-black dark:via-black lg:static lg:size-auto lg:bg-none">
-          <a
-            className="pointer-events-none flex place-items-center gap-2 p-8 lg:pointer-events-auto lg:p-0"
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className="dark:invert"
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
-      </div>
-
-      <div className="relative z-[-1] flex place-items-center before:absolute before:h-[300px] before:w-full before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-full after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700 before:dark:opacity-10 after:dark:from-sky-900 after:dark:via-[#0141ff] after:dark:opacity-40 sm:before:w-[480px] sm:after:w-[240px] before:lg:h-[360px]">
-        <Image
-          className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
-      </div>
-
-      <div className="mb-32 grid text-center lg:mb-0 lg:w-full lg:max-w-5xl lg:grid-cols-4 lg:text-left">
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
+    <div className="container mx-auto px-4">
+      <header>
+        <nav
+          aria-label="Global"
+          className="flex items-center justify-between p-6 lg:px-8"
         >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Docs{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Find in-depth information about Next.js features and API.
-          </p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Learn{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Learn about Next.js in an interactive course with&nbsp;quizzes!
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Templates{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-sm opacity-50">
-            Explore starter templates for Next.js.
-          </p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className="group rounded-lg border border-transparent px-5 py-4 transition-colors hover:border-gray-300 hover:bg-gray-100 hover:dark:border-neutral-700 hover:dark:bg-neutral-800/30"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2 className="mb-3 text-2xl font-semibold">
-            Deploy{" "}
-            <span className="inline-block transition-transform group-hover:translate-x-1 motion-reduce:transform-none">
-              -&gt;
-            </span>
-          </h2>
-          <p className="m-0 max-w-[30ch] text-balance text-sm opacity-50">
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
-      </div>
-    </main>
+          <div className="flex lg:flex-1">
+            <a href="#" className="-m-1.5 p-1.5">
+              <span className="sr-only">Your Company</span>
+              <img
+                alt=""
+                src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
+                className="h-8 w-auto"
+              />
+            </a>
+          </div>
+          <div className="flex lg:hidden">
+            <button
+              type="button"
+              onClick={() => setMobileMenuOpen(true)}
+              className="-m-2.5 inline-flex items-center justify-center rounded-md p-2.5 text-white"
+            >
+              <span className="sr-only">Open main menu</span>
+              <FaBars aria-hidden="true" className="h-6 w-6" />
+            </button>
+          </div>
+          <div className="hidden lg:flex lg:gap-x-12">
+            {navigation.map((item) => (
+              <a
+                key={item.name}
+                href={item.href}
+                className="text-sm font-semibold leading-6"
+              >
+                {item.name}
+              </a>
+            ))}
+          </div>
+          <div className="hidden lg:flex lg:flex-1 lg:justify-end">
+            <a href="#" className="text-sm font-semibold leading-6">
+              Download CV <span aria-hidden="true">&rarr;</span>
+            </a>
+          </div>
+        </nav>
+        {/* <Dialog open={mobileMenuOpen} onClose={setMobileMenuOpen} className="lg:hidden">
+          <div className="fixed inset-0 z-50" />
+          <DialogPanel className="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white px-6 py-6 sm:max-w-sm sm:ring-1 sm:ring-gray-900/10">
+            <div className="flex items-center justify-between">
+              <a href="#" className="-m-1.5 p-1.5">
+                <span className="sr-only">Your Company</span>
+                <img
+                  alt=""
+                  src="https://tailwindui.com/img/logos/mark.svg?color=indigo&shade=600"
+                  className="h-8 w-auto"
+                />
+              </a>
+              <button
+                type="button"
+                onClick={() => setMobileMenuOpen(false)}
+                className="-m-2.5 rounded-md p-2.5 text-gray-700"
+              >
+                <span className="sr-only">Close menu</span>
+                <XMarkIcon aria-hidden="true" className="h-6 w-6" />
+              </button>
+            </div>
+            <div className="mt-6 flow-root">
+              <div className="-my-6 divide-y divide-gray-500/10">
+                <div className="space-y-2 py-6">
+                  {navigation.map((item) => (
+                    <a
+                      key={item.name}
+                      href={item.href}
+                      className="-mx-3 block rounded-lg px-3 py-2 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                    >
+                      {item.name}
+                    </a>
+                  ))}
+                </div>
+                <div className="py-6">
+                  <a
+                    href="#"
+                    className="-mx-3 block rounded-lg px-3 py-2.5 text-base font-semibold leading-7 text-gray-900 hover:bg-gray-50"
+                  >
+                    Log in
+                  </a>
+                </div>
+              </div>
+            </div>
+          </DialogPanel>
+        </Dialog> */}
+      </header>
+      <main className="p-6 lg:px-8">
+        <section aria-label="home" id="home">
+          <div className="flex justify-between items-center">
+            <div>
+              <h1 className="text-5xl font-semibold mb-4">
+                {/* Hello, I'm  */}
+                Shivharakh Yadav
+              </h1>
+              <h6 className="text-lg font-semibold mb-4 pl-2">
+                - MERN Stack Developer
+              </h6>
+            </div>
+            <div className="h-44 w-44 border-4 border-lightgreen rounded-full overflow-hidden inline-block">
+              <Image
+                alt="profile"
+                src="/profile1.jpg"
+                width={300}
+                height={300}
+                className="object-cover h-full w-full"
+              />
+            </div>
+          </div>
+        </section>
+        <section aria-label="What I Do" id="What I Do">
+          <div className="text-center p-5 mb-10">
+            <h1 className="text-4xl font-bold">Know More Me</h1>
+            <div className="m-auto w-20 h-0.5 bg-gray-500"></div>
+          </div>
+          <div className="grid grid-cols-2 gap-4">
+            <div>
+              <h1 className="text-2xl mb-2">
+                I'm <b className="color-primary">Shivharakh Yadav</b>, a
+                Software Developer
+              </h1>
+              <p>
+                I help you build brand for your business at an affordable price.
+                Thousands of clients have procured exceptional results while
+                working with our dedicated team. when an unknown printer took a
+                galley of type and scrambled it to make a type specimen book
+              </p>
+              . Delivering work within time and budget which meets client's
+              requirements is our moto. Lorem Ipsum has been the industry's
+              standard dummy text ever when an unknown printer took a galley.
+            </div>
+            <div className="flex flex-col gap-4">
+              <div className="flex gap-4">
+                <label aria-label="Name" className="font-bold w-16">
+                  Name:
+                </label>
+                <p>Shivharakh Yadav</p>
+              </div>
+              <div className="flex gap-4">
+                <label aria-label="Email" className="font-bold w-16">
+                  Email:
+                </label>
+                <p className="color-165ca8">
+                  <a href="mailto:yadavshivharakhyadav@gmail.com">
+                    yadavshivharakhyadav@gmail.com
+                  </a>
+                </p>
+              </div>
+              <div className="flex gap-4">
+                <label aria-label="Age" className="font-bold w-16">
+                  Age:
+                </label>
+                <p>{getAge()}</p>
+              </div>
+              <div className="flex gap-4">
+                <label aria-label="From" className="font-bold w-16">
+                  From:
+                </label>
+                <p>Ahmedabad, Gujarat</p>
+              </div>
+              <button className="bg-color-165ca8 w-40 h-12 px-2 rounded-3xl mt-4 transform transition-transform duration-300 hover:-translate-y-2">
+                Download CV <span aria-hidden="true">&rarr;</span>
+              </button>
+            </div>
+          </div>
+        </section>
+      </main>
+      <footer></footer>
+    </div>
   );
 }
