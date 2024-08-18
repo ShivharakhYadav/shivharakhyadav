@@ -7,10 +7,11 @@ import { getCount } from "@/utils/helper";
 
 const navigation = [
   { name: "Home", href: "#" },
+  { name: "About", href: "#" },
   { name: "What I Do", href: "#" },
   { name: "Projects", href: "#" },
   { name: "Resume", href: "#" },
-  { name: "About", href: "#" },
+
   { name: "Contact me", href: "#" },
   // { name: "Download CV", href: "#" },
 ];
@@ -109,19 +110,10 @@ export default function Example() {
           </DialogPanel>
         </Dialog> */}
       </header>
-      <main className="p-6 lg:px-8">
+      <main className="p-6 lg:px-8 max-[480px]:p-3">
         <section aria-label="home" id="home">
-          <div className="flex justify-between items-center">
-            <div>
-              <h1 className="text-5xl font-semibold mb-4">
-                {/* Hello, I'm  */}
-                Shivharakh Yadav
-              </h1>
-              <h6 className="text-lg font-semibold mb-4 pl-2">
-                - MERN Stack Developer
-              </h6>
-            </div>
-            <div className="h-44 w-44 border-4 border-lightgreen rounded-full overflow-hidden inline-block">
+          <div className="flex items-center flex-col gap-4 min-[480px]:flex-row min-[480px]:justify-between">
+            <div className="h-72 w-72 border-4 border-lightgreen rounded-full overflow-hidden inline-block min-[480px]:order-1">
               <Image
                 alt="profile"
                 src="/profile1.jpg"
@@ -130,15 +122,23 @@ export default function Example() {
                 className="object-cover h-full w-full"
               />
             </div>
+            <div>
+              <h1 className="text-3xl font-semibold mb-4 xl:text-5xl">
+                Shivharakh Yadav
+              </h1>
+              <h6 className="text-lg font-semibold mb-4 pl-2 xl:text-xl">
+                - MERN Stack Developer
+              </h6>
+            </div>
           </div>
         </section>
-        <section aria-label="What I Do" id="What I Do">
+        <section aria-label="About" id="About" className="py-16">
           <div className="text-center p-5 mb-10">
             <h1 className="text-4xl font-bold">Know More Me</h1>
             <div className="m-auto w-20 h-0.5 bg-gray-500"></div>
           </div>
-          <div className="grid grid-cols-2 gap-4 mb-10">
-            <div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-10 mb-10">
+            <div className="max-[480px]:text-center">
               <h1 className="text-2xl mb-2">
                 I'm <b className="color-primary">Shivharakh Yadav</b>, a
                 Software Developer
@@ -147,9 +147,9 @@ export default function Example() {
                 I help you build brand for your business at an affordable price.
                 Thousands of clients have procured exceptional results while
                 working with our dedicated team. when an unknown printer took a
-                galley of type and scrambled it to make a type specimen book
+                galley of type and scrambled it to make a type specimen book.
               </p>
-              . Delivering work within time and budget which meets client's
+              Delivering work within time and budget which meets client's
               requirements is our moto. Lorem Ipsum has been the industry's
               standard dummy text ever when an unknown printer took a galley.
             </div>
@@ -182,7 +182,7 @@ export default function Example() {
                 </label>
                 <p>Ahmedabad, Gujarat</p>
               </div>
-              <button className="bg-color-165ca8 w-40 h-12 px-2 rounded-3xl mt-4 transform transition-transform duration-300 hover:-translate-y-2">
+              <button className="bg-color-165ca8 w-40 h-12 px-2 rounded-3xl  mt-4 transform transition-transform duration-300 max-[480px]:m-auto hover:-translate-y-2">
                 Download CV <span aria-hidden="true">&rarr;</span>
               </button>
             </div>
@@ -193,6 +193,7 @@ export default function Example() {
             <Count title="Projects Done" total={1} />
           </div>
         </section>
+        <section aria-label="What I Do" id="What I Do"></section>
       </main>
       <footer></footer>
     </div>
