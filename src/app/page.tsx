@@ -1,8 +1,8 @@
 "use client";
 
-import { useState } from "react";
+import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Image from "next/image";
-import { FaBars } from "react-icons/fa6";
+import { FaBars, FaDesktop, FaPaintbrush, FaPalette } from "react-icons/fa6";
 import { getCount } from "@/utils/helper";
 
 const navigation = [
@@ -18,13 +18,30 @@ const navigation = [
 
 export default function Example() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const navRef = useRef<HTMLDivElement>(null);
+
+  const handleScroll = useCallback((e: any) => {
+    if (navRef?.current && window?.scrollY > 20) {
+      console.log("called2");
+      navRef?.current?.classList?.add("bg-0d1b2a");
+    } else {
+      console.log("called");
+      navRef?.current?.classList?.remove("bg-0d1b2a");
+    }
+  }, []);
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => window.addEventListener("scroll", handleScroll);
+  }, []);
 
   return (
-    <div className="container mx-auto px-4">
-      <header>
+    <div className="container mx-auto px-4 sm:px-2">
+      <header className="sticky top-0">
         <nav
           aria-label="Global"
-          className="flex items-center justify-between p-6 lg:px-8"
+          className="flex items-center justify-between p-6 lg:px-8 transition-colors duration-1000"
+          ref={navRef}
         >
           <div className="flex lg:flex-1">
             <a href="#" className="-m-1.5 p-1.5">
@@ -187,13 +204,58 @@ export default function Example() {
               </button>
             </div>
           </div>
-          <div className="flex gap-4 justify-between">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
             <Count title="Year Experience" total={getCount(1, 2, 2022, true)} />
             <Count title="Happy Clients" total={1} />
             <Count title="Projects Done" total={1} />
+            <Count title="Get Awards" total={1} showPlus={false} />
           </div>
         </section>
-        <section aria-label="What I Do" id="What I Do"></section>
+        <section aria-label="What I Do" id="What I Do">
+          <div className="text-center p-5 mb-10">
+            <h1 className="text-4xl font-bold">What I Do</h1>
+            <div className="m-auto w-20 h-0.5 bg-gray-500"></div>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-3 md:grid-cols-2 xl:grid-cols-3 gap-10 md:gap-5">
+            <div className="flex gap-5">
+              <FaDesktop className="text-7xl" />
+              <div>
+                <h3 className="text-xl">Web Development</h3>
+                <p>
+                  Lisque persius interesset his et, in quot quidam persequeris
+                  vim, ad mea essent possim iriure.
+                </p>
+              </div>
+            </div>
+            <div className="flex gap-5">
+              <FaPaintbrush className="text-7xl" />
+              <div>
+                <h3 className="text-xl">App Design & Develop</h3>
+                <p>
+                  Lisque persius interesset his et, in quot quidam persequeris
+                  vim, ad mea essent possim iriure.
+                </p>
+              </div>
+            </div>
+            <div className="flex gap-5">
+              <FaPalette className="text-7xl" />
+              <div>
+                <h3 className="text-xl">Logo Design</h3>
+                <p>
+                  Lisque persius interesset his et, in quot quidam persequeris
+                  vim, ad mea essent possim iriure.
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section aria-label="Resume" id="Resume">
+          <div className="text-center p-5 mb-10">
+            <h1 className="text-4xl font-bold">Resume</h1>
+            <div className="m-auto w-20 h-0.5 bg-gray-500" />
+          </div>
+        </section>
       </main>
       <footer></footer>
     </div>
@@ -206,12 +268,12 @@ const Count: React.FC<{
   showPlus?: boolean;
 }> = ({ total, title, showPlus = true }) => {
   return (
-    <div className="text-center w-60">
-      <h4 className="text-3xl">
+    <div className="text-center">
+      <h4 className="text-2xl">
         {total}
         {showPlus && "+"}
       </h4>
-      <p className="text-2xl font-bold">{title}</p>
+      <p className="text-sm">{title}</p>
     </div>
   );
 };

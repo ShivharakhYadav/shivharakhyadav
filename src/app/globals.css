@@ -40,10 +40,30 @@ body {
   }
 }
 
-.bg-color-165ca8 {
-  background-color: #165ca8;
+.bg-0d1b2a {
+  background-color: #0d1b2a;
+}
+
+.bg-color-293c51 {
+  background-color: #293c51;
 }
 
 .color-165ca8 {
   color: #165ca8;
+}
+
+.bg-color-red {
+  background-color: red;
+}
+
+.test {
+  animation: identifier 0.7;
+}
+
+@keyframes identifier {
+  0% {
+    opacity: 0;
+    -webkit-transform: translateY(-100%);
+    transform: translateY(-100%);
+  }
 }
