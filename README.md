@@ -66,10 +66,11 @@ Diving into the **AI/LLM ecosystem** — AI agents, agentic workflows, and AI de
 
 ---
 
-### 📊 GitHub Stats
+### 📊 Most Used Languages
 
-![Shivharakh's GitHub stats](https://github-readme-stats.vercel.app/api?username=ShivharakhYadav&show_icons=true&include_all_commits=true&count_private=true&theme=tokyonight)
 ![Top Languages](https://github-readme-stats.vercel.app/api/top-langs/?username=ShivharakhYadav&layout=compact&theme=tokyonight)
+
+> 📈 My full contribution activity (1,200+ contributions/year) is visible on the graph above on my profile.
 
 ---
 
