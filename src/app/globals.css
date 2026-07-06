@@ -3,67 +3,153 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
-  --bg-color-333333: #333333;
-  --bg-color-2D2D2D: #2d2d2d;
-  --bg-color-0d1b2a: #0d1b2a;
-  --bg-color-173B45: #173b45;
-  --bg-color-1A3636: #1a3636;
+  /* Core palette — refined dark navy base + single cyan accent */
+  --bg: #0b1120;
+  --bg-elevated: #0f172a;
+  --surface: #131c2e;
+  --surface-hover: #1a2438;
+  --border: #223049;
+  --text: #e7ecf3;
+  --muted: #93a1b5;
+  --accent: #22d3ee;
+  --accent-soft: rgba(34, 211, 238, 0.12);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 255, 255, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+* {
+  border-color: var(--border);
+}
+
+html {
+  scroll-behavior: smooth;
+  /* offset so anchored sections aren't hidden under the sticky nav */
+  scroll-padding-top: 6rem;
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  /* background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb)); */
-  background-color: var(--bg-color-333333);
-  background-color: var(--bg-color-2D2D2D);
-  background-color: var(--bg-color-0d1b2a);
+  color: var(--text);
+  background-color: var(--bg);
+  /* subtle accent glows anchored to the top of the page */
+  background-image: radial-gradient(
+      55rem 40rem at 100% -10%,
+      rgba(34, 211, 238, 0.08),
+      transparent 60%
+    ),
+    radial-gradient(
+      45rem 35rem at -10% 5%,
+      rgba(99, 102, 241, 0.08),
+      transparent 55%
+    );
+  background-attachment: fixed;
+  -webkit-font-smoothing: antialiased;
 }
 
 @layer utilities {
   .text-balance {
     text-wrap: balance;
   }
-}
 
-.bg-0d1b2a {
-  background-color: #0d1b2a;
-}
-
-.bg-color-293c51 {
-  background-color: #293c51;
-}
-
-.color-165ca8 {
-  color: #165ca8;
-}
-
-.bg-color-red {
-  background-color: red;
-}
-
-.test {
-  animation: identifier 0.7;
-}
-
-@keyframes identifier {
-  0% {
-    opacity: 0;
-    -webkit-transform: translateY(-100%);
-    transform: translateY(-100%);
+  /* Glassmorphic surface used by the nav and cards */
+  .glass {
+    background-color: rgba(15, 23, 42, 0.6);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
   }
+
+  /* Accent gradient text for headings/name */
+  .text-gradient {
+    background: linear-gradient(120deg, var(--text) 30%, var(--accent));
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+}
+
+/* Scroll-reveal: hidden until the Reveal wrapper adds .is-visible */
+.reveal {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.6s ease, transform 0.6s ease;
+  will-change: opacity, transform;
+}
+
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+}
+
+/* ---- Markdown / blog article code blocks (rehype-highlight) ---- */
+.prose pre {
+  background-color: var(--bg-elevated);
+  border: 1px solid var(--border);
+  border-radius: 0.75rem;
+  overflow-x: auto;
+}
+.prose :not(pre) > code {
+  background-color: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 0.375rem;
+  padding: 0.15rem 0.4rem;
+  font-size: 0.85em;
+}
+.prose :not(pre) > code::before,
+.prose :not(pre) > code::after {
+  content: "";
+}
+
+/* Minimal self-contained highlight.js token theme (dark) */
+.hljs {
+  color: var(--text);
+  background: transparent;
+}
+.hljs-comment,
+.hljs-quote {
+  color: #6b7a90;
+  font-style: italic;
+}
+.hljs-keyword,
+.hljs-selector-tag,
+.hljs-built_in,
+.hljs-name,
+.hljs-tag {
+  color: #7dd3fc;
+}
+.hljs-string,
+.hljs-title,
+.hljs-section,
+.hljs-attribute,
+.hljs-literal,
+.hljs-template-tag,
+.hljs-template-variable,
+.hljs-type,
+.hljs-addition {
+  color: #86efac;
+}
+.hljs-number,
+.hljs-symbol,
+.hljs-bullet,
+.hljs-attr,
+.hljs-variable,
+.hljs-meta {
+  color: #fcd34d;
+}
+.hljs-function,
+.hljs-class .hljs-title {
+  color: #c4b5fd;
+}
+.hljs-emphasis {
+  font-style: italic;
+}
+.hljs-strong {
+  font-weight: 700;
 }
