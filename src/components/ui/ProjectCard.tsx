@@ -7,7 +7,7 @@ export default function ProjectCard({ project }: { project: Project }) {
   return (
     <Link
       href={`/projects/${project.slug}`}
-      className="group flex h-full flex-col rounded-2xl border border-border bg-surface p-6 transition-all duration-300 hover:-translate-y-1 hover:border-accent/60 hover:bg-surface-hover"
+      className="card group flex h-full flex-col p-6"
     >
       <div className="mb-4 flex items-center justify-between">
         <span className="text-3xl" aria-hidden="true">

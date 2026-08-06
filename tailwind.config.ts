@@ -28,6 +28,7 @@ const config: Config = {
         text: "var(--text)",
         muted: "var(--muted)",
         accent: "var(--accent)",
+        "accent-2": "var(--accent-2)",
         "accent-soft": "var(--accent-soft)",
       },
       fontFamily: {

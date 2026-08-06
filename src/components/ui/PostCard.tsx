@@ -8,7 +8,7 @@ export default function PostCard({ post }: { post: PostMeta }) {
   return (
     <Link
       href={`/blog/${post.slug}`}
-      className="group flex h-full flex-col rounded-2xl border border-border bg-surface p-6 transition-all duration-300 hover:-translate-y-1 hover:border-accent/60 hover:bg-surface-hover"
+      className="card group flex h-full flex-col p-6"
     >
       <div className="mb-3 flex items-center gap-3 text-xs text-muted">
         <time dateTime={post.date}>{formatDate(post.date)}</time>

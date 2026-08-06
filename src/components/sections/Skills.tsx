@@ -15,7 +15,7 @@ export default function Skills() {
         <div className="grid grid-cols-1 gap-6 sm:grid-cols-2">
           {skillGroups.map((group, i) => (
             <Reveal key={group.category} delay={i * 80}>
-              <div className="h-full rounded-2xl border border-border bg-surface p-6 transition-colors hover:border-accent/60">
+              <div className="card h-full p-6">
                 <h3 className="mb-4 font-display text-lg font-semibold text-accent">
                   {group.category}
                 </h3>

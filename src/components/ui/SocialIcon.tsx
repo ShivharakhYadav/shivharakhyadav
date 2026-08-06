@@ -21,7 +21,7 @@ export default function SocialIcon({
       target={social.icon === "email" ? undefined : "_blank"}
       rel={social.icon === "email" ? undefined : "noopener noreferrer"}
       aria-label={social.label}
-      className={`inline-flex h-11 w-11 items-center justify-center rounded-full border border-border bg-surface text-muted transition-all hover:-translate-y-0.5 hover:border-accent hover:text-accent ${className}`}
+      className={`inline-flex h-11 w-11 items-center justify-center rounded-full border border-border bg-surface text-muted transition-all duration-300 hover:-translate-y-1 hover:border-accent/60 hover:text-accent hover:shadow-[0_8px_24px_-8px_rgba(34,211,238,0.4)] ${className}`}
     >
       <Icon className="h-5 w-5" />
     </a>

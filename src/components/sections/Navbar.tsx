@@ -68,83 +68,91 @@ export default function Navbar() {
     return activeSection === item.href.replace("/#", "");
   };
 
+  // The bar floats as a detached glass pill once the page is scrolled.
+  const pillStyle =
+    scrolled || mobileOpen
+      ? "glass border-border shadow-[0_8px_30px_-12px_rgba(0,0,0,0.6)]"
+      : "border-transparent";
+
   return (
-    <header
-      className={`sticky top-0 z-50 transition-all duration-300 ${
-        scrolled ? "glass border-b border-border" : "border-b border-transparent"
-      }`}
-    >
+    <header className="sticky top-0 z-50 pt-3">
       <Container>
-        <nav
-          aria-label="Global"
-          className="flex items-center justify-between py-4"
+        <div
+          className={`rounded-2xl border transition-all duration-300 ${pillStyle}`}
         >
-          <Link
-            href="/"
-            className="font-display text-lg font-bold tracking-tight"
+          <nav
+            aria-label="Global"
+            className="flex items-center justify-between px-4 py-3 sm:px-5"
           >
-            SY<span className="text-accent">.</span>
-          </Link>
-
-          {/* Desktop links */}
-          <div className="hidden items-center gap-8 lg:flex">
-            {navigation.map((item) => (
-              <Link
-                key={item.name}
-                href={item.href}
-                className={`text-sm font-medium transition-colors hover:text-accent ${
-                  isActive(item) ? "text-accent" : "text-muted"
-                }`}
-              >
-                {item.name}
-              </Link>
-            ))}
             <Link
-              href="/#contact"
-              className="rounded-full bg-accent px-4 py-2 text-sm font-semibold text-bg transition-transform hover:-translate-y-0.5"
+              href="/"
+              className="font-display text-lg font-bold tracking-tight"
             >
-              Let&apos;s talk
+              SY<span className="text-accent">.</span>
             </Link>
-          </div>
 
-          {/* Mobile toggle */}
-          <button
-            type="button"
-            onClick={() => setMobileOpen((v) => !v)}
-            className="inline-flex items-center justify-center rounded-md p-2 text-text lg:hidden"
-            aria-label={mobileOpen ? "Close menu" : "Open menu"}
-            aria-expanded={mobileOpen}
-          >
-            {mobileOpen ? (
-              <FaXmark className="h-6 w-6" />
-            ) : (
-              <FaBars className="h-6 w-6" />
-            )}
-          </button>
-        </nav>
-      </Container>
-
-      {/* Mobile menu */}
-      {mobileOpen && (
-        <div className="glass border-t border-border lg:hidden">
-          <Container>
-            <div className="flex flex-col gap-1 py-4">
+            {/* Desktop links */}
+            <div className="hidden items-center gap-1 lg:flex">
               {navigation.map((item) => (
                 <Link
                   key={item.name}
                   href={item.href}
-                  onClick={() => setMobileOpen(false)}
-                  className={`rounded-lg px-3 py-2.5 text-base font-medium transition-colors hover:bg-surface hover:text-accent ${
-                    isActive(item) ? "text-accent" : "text-muted"
+                  className={`rounded-full px-4 py-2 text-sm font-medium transition-colors hover:text-accent ${
+                    isActive(item)
+                      ? "bg-accent-soft text-accent"
+                      : "text-muted"
                   }`}
                 >
                   {item.name}
                 </Link>
               ))}
+              <Link
+                href="/#contact"
+                className="btn-primary ml-3 !px-5 !py-2"
+              >
+                Let&apos;s talk
+              </Link>
             </div>
-          </Container>
+
+            {/* Mobile toggle */}
+            <button
+              type="button"
+              onClick={() => setMobileOpen((v) => !v)}
+              className="inline-flex items-center justify-center rounded-md p-2 text-text lg:hidden"
+              aria-label={mobileOpen ? "Close menu" : "Open menu"}
+              aria-expanded={mobileOpen}
+            >
+              {mobileOpen ? (
+                <FaXmark className="h-6 w-6" />
+              ) : (
+                <FaBars className="h-6 w-6" />
+              )}
+            </button>
+          </nav>
+
+          {/* Mobile menu */}
+          {mobileOpen && (
+            <div className="border-t border-border lg:hidden">
+              <div className="flex flex-col gap-1 p-3">
+                {navigation.map((item) => (
+                  <Link
+                    key={item.name}
+                    href={item.href}
+                    onClick={() => setMobileOpen(false)}
+                    className={`rounded-xl px-3 py-2.5 text-base font-medium transition-colors hover:bg-surface hover:text-accent ${
+                      isActive(item)
+                        ? "bg-accent-soft text-accent"
+                        : "text-muted"
+                    }`}
+                  >
+                    {item.name}
+                  </Link>
+                ))}
+              </div>
+            </div>
+          )}
         </div>
-      )}
+      </Container>
     </header>
   );
 }
