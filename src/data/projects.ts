@@ -1,11 +1,18 @@
 export interface Project {
   slug: string;
   title: string;
-  /** short one-liner for list rows */
+  /** small label above the title, e.g. "SaaS · E-learning" */
+  eyebrow: string;
+  /** one line for cards */
+  tagline: string;
+  /** longer intro for the case-study page */
   summary: string;
-  /** decorative emoji (currently unused by the minimal theme) */
-  emoji: string;
+  /** the single result a card leads with */
+  headline: { value: string; label: string };
+  /** screenshot in /public (e.g. "/projects/moto-venice.png"); a framed placeholder shows while empty */
+  image?: string;
   tags: string[];
+  /** key facts shown beside the headline on the case-study page (don't repeat the headline) */
   metrics: { label: string; value: string }[];
   /** Case-study fields */
   problem: string;
@@ -18,14 +25,17 @@ export interface Project {
 export const projects: Project[] = [
   {
     slug: "moto-venice",
-    title: "Moto Venice — Motorcycle Rental & Sales Storefront",
+    title: "Moto Venice",
+    eyebrow: "Commerce · Rentals",
+    tagline:
+      "A premium rental storefront where customers only see bikes available for their dates.",
+    headline: { value: "Solo", label: "frontend owner, from zero to production" },
     summary:
       "The complete customer-facing storefront for a Venice Beach luxury/exotic motorcycle rental business — browse the fleet, filter by rental dates and availability, view detailed bike pages, get instant delivery quotes, and book. Owned the frontend end to end.",
-    emoji: "🏍️",
     tags: ["Next.js 15", "TypeScript", "Chakra UI v3", "React Query", "Auth0"],
     metrics: [
       { label: "Framework", value: "Next.js 15" },
-      { label: "Ownership", value: "Solo Frontend" },
+      { label: "Auth", value: "Auth0" },
       { label: "Deployment", value: "Render CI/CD" },
     ],
     problem:
@@ -69,14 +79,17 @@ export const projects: Project[] = [
   {
     slug: "e-learning-saas",
     title: "Multi-tenant E-Learning SaaS",
+    eyebrow: "SaaS · E-learning",
+    tagline:
+      "Ten organizations, one codebase: tenant-isolated data, per-org branding and granular roles.",
+    headline: { value: "944+", label: "active learners across 10 organizations" },
     summary:
       "A multi-tenant e-learning platform serving 944+ users across 10 organizations, with per-tenant branding and role-based access.",
-    emoji: "⚡",
     tags: ["Next.js", "TypeScript", "NestJS", "PostgreSQL", "RBAC"],
     metrics: [
-      { label: "Users", value: "944+" },
-      { label: "Organizations", value: "10" },
       { label: "Model", value: "Multi-tenant" },
+      { label: "Rendering", value: "Next.js SSR" },
+      { label: "CI/CD", value: "GitHub Actions" },
     ],
     problem:
       "Ten distinct organizations needed their own branded learning experience on a shared platform without data leaking across tenant boundaries, each with different roles and permissions.",
@@ -106,9 +119,12 @@ export const projects: Project[] = [
   {
     slug: "health-coaching-platform",
     title: "Health & Coaching Platform",
+    eyebrow: "Health · Real-time",
+    tagline:
+      "Live coach–client messaging and a questionnaire engine configured by data, not code.",
+    headline: { value: "Live", label: "coach–client chat over Socket.IO" },
     summary:
       "A health and coaching platform with real-time chat and a full-stack, dynamic questionnaire module.",
-    emoji: "🏥",
     tags: ["React", "Node.js", "Socket.IO", "MongoDB"],
     metrics: [
       { label: "Realtime", value: "Socket.IO" },
@@ -134,9 +150,12 @@ export const projects: Project[] = [
   {
     slug: "energy-management-portal",
     title: "Energy-Management Portal",
+    eyebrow: "Energy · Micro-frontends",
+    tagline:
+      "Feature teams ship independently, thanks to a micro-frontend architecture on Piral.",
+    headline: { value: "Modular", label: "independently deployed micro-frontends" },
     summary:
       "An energy-management portal built on a micro-frontend architecture for independent, scalable feature teams.",
-    emoji: "🔋",
     tags: ["Micro-frontend", "Piral", "React", "TypeScript"],
     metrics: [
       { label: "Architecture", value: "Micro-frontend" },
@@ -160,6 +179,11 @@ export const projects: Project[] = [
       "A modular energy-management portal where features are developed and deployed independently, reducing coupling and enabling faster iteration.",
   },
 ];
+
+/** Featured projects, strongest first. */
+export const featuredProjects: Project[] = ["e-learning-saas", "moto-venice", "health-coaching-platform"]
+  .map((slug) => projects.find((p) => p.slug === slug))
+  .filter((p): p is Project => Boolean(p));
 
 export const getProjectBySlug = (slug: string): Project | undefined =>
   projects.find((p) => p.slug === slug);

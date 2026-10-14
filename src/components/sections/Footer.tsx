@@ -3,11 +3,12 @@ import { profile } from "@/data/profile";
 
 export default function Footer() {
   return (
-    <footer className="py-10">
-      <Container>
-        <p className="border-t border-border pt-6 text-xs text-muted">
+    <footer>
+      <Container className="flex flex-wrap justify-between gap-2 py-10 text-[13px] text-muted">
+        <span>
           © {new Date().getFullYear()} {profile.name}
-        </p>
+        </span>
+        <span>Designed &amp; built with care in Ahmedabad</span>
       </Container>
     </footer>
   );

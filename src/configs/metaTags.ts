@@ -30,12 +30,12 @@ export const siteMetadata: Metadata = {
     url,
     siteName: "Shivharakh Yadav",
     type: "website",
-    images: [{ url: "/profile1.jpg", width: 300, height: 300, alt: "Shivharakh Yadav" }],
+    images: [{ url: "/profile.png", width: 1122, height: 1402, alt: "Shivharakh Yadav" }],
   },
   twitter: {
     card: "summary",
     title,
     description,
-    images: ["/profile1.jpg"],
+    images: ["/profile.png"],
   },
 };

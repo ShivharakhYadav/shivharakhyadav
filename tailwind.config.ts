@@ -7,32 +7,35 @@ const config: Config = {
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
-    container: {
-      center: true,
-      padding: {
-        DEFAULT: "1.25rem",
-        sm: "1.5rem",
-      },
-      screens: {
-        // single narrow reading column across all breakpoints
-        sm: "672px",
-      },
-    },
     extend: {
       colors: {
         bg: "var(--bg)",
-        "bg-elevated": "var(--bg-elevated)",
-        surface: "var(--surface)",
-        "surface-hover": "var(--surface-hover)",
-        border: "var(--border)",
-        text: "var(--text)",
+        card: "var(--card)",
+        line: "var(--line)",
+        ink: "var(--ink)",
         muted: "var(--muted)",
-        accent: "var(--accent)",
-        "accent-soft": "var(--accent-soft)",
+        teal: {
+          DEFAULT: "var(--teal)",
+          hover: "var(--teal-hover)",
+        },
+        coral: {
+          DEFAULT: "var(--coral)",
+          ink: "var(--coral-ink)",
+        },
+        seaglass: "var(--seaglass)",
+        linen: {
+          DEFAULT: "var(--linen)",
+          hover: "var(--linen-hover)",
+        },
       },
       fontFamily: {
-        sans: ["var(--font-inter)", "system-ui", "sans-serif"],
-        display: ["var(--font-inter)", "system-ui", "sans-serif"],
+        sans: ["var(--font-dm-sans)", "system-ui", "sans-serif"],
+        display: ["var(--font-outfit)", "system-ui", "sans-serif"],
+      },
+      boxShadow: {
+        lift: "0 20px 40px -12px rgba(20, 48, 58, 0.15)",
+        soft: "0 10px 30px -18px rgba(20, 48, 58, 0.35)",
+        portrait: "0 24px 48px -16px rgba(20, 48, 58, 0.35)",
       },
     },
   },
