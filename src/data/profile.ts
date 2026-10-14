@@ -1,7 +1,7 @@
 export interface SocialLink {
   label: string;
   href: string;
-  /** react-icons component name (rendered in Contact/Footer) */
+  /** link kind — used to tell email apart from external profiles */
   icon: "linkedin" | "github" | "email";
 }
 

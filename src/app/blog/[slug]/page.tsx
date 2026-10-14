@@ -4,9 +4,7 @@ import { notFound } from "next/navigation";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import rehypeHighlight from "rehype-highlight";
-import { FaArrowLeft } from "react-icons/fa6";
 import Container from "@/components/ui/Container";
-import Tag from "@/components/ui/Tag";
 import Navbar from "@/components/sections/Navbar";
 import Footer from "@/components/sections/Footer";
 import JsonLd from "@/components/JsonLd";
@@ -64,31 +62,27 @@ export default function BlogPostPage({
     <>
       <Navbar />
       <main className="py-16 sm:py-24">
-        <Container className="max-w-3xl">
+        <Container>
           <Link
             href="/blog"
-            className="inline-flex items-center gap-2 text-sm font-medium text-muted transition-colors hover:text-accent"
+            className="text-sm text-muted transition-colors hover:text-text"
           >
-            <FaArrowLeft className="h-3.5 w-3.5" /> Back to blog
+            ← Blog
           </Link>
 
-          <header className="mt-8">
-            <div className="mb-4 flex items-center gap-3 text-sm text-muted">
-              <time dateTime={post.date}>{formatDate(post.date)}</time>
-              <span aria-hidden="true">·</span>
-              <span>{post.readingTime}</span>
-            </div>
-            <h1 className="font-display text-3xl font-bold leading-tight sm:text-4xl">
+          <header className="mt-10">
+            <h1 className="text-3xl font-semibold leading-tight tracking-tight text-balance sm:text-4xl">
               {post.title}
             </h1>
-            <div className="mt-5 flex flex-wrap gap-2">
-              {post.tags.map((tag) => (
-                <Tag key={tag}>{tag}</Tag>
-              ))}
-            </div>
+            <p className="mt-4 text-sm text-muted">
+              <time dateTime={post.date}>{formatDate(post.date)}</time>
+              {" · "}
+              {post.readingTime}
+              {post.tags.length > 0 && <> · {post.tags.join(", ")}</>}
+            </p>
           </header>
 
-          <article className="prose prose-invert mt-10 max-w-none prose-headings:font-display prose-a:text-accent prose-a:no-underline hover:prose-a:underline prose-strong:text-text">
+          <article className="prose mt-12 max-w-none prose-headings:font-semibold prose-headings:tracking-tight prose-a:underline-offset-4">
             <ReactMarkdown
               remarkPlugins={[remarkGfm]}
               rehypePlugins={[rehypeHighlight]}
@@ -97,14 +91,13 @@ export default function BlogPostPage({
             </ReactMarkdown>
           </article>
 
-          <div className="mt-16 border-t border-border pt-8">
-            <Link
-              href="/#contact"
-              className="inline-flex items-center gap-2 rounded-full bg-accent px-6 py-3 text-sm font-semibold text-bg transition-transform hover:-translate-y-0.5"
-            >
-              Enjoyed this? Let&apos;s connect
+          <p className="mt-16 border-t border-border pt-8 text-sm text-muted">
+            Enjoyed this?{" "}
+            <Link href="/#contact" className="link">
+              Let&apos;s connect
             </Link>
-          </div>
+            .
+          </p>
         </Container>
       </main>
       <Footer />

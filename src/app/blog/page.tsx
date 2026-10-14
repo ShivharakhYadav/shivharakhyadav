@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Container from "@/components/ui/Container";
-import SectionHeading from "@/components/ui/SectionHeading";
-import PostCard from "@/components/ui/PostCard";
+import PostRow from "@/components/ui/PostRow";
 import Navbar from "@/components/sections/Navbar";
 import Footer from "@/components/sections/Footer";
 import JsonLd from "@/components/JsonLd";
@@ -43,13 +42,17 @@ export default function BlogIndexPage() {
       <Navbar />
       <main className="py-16 sm:py-24">
         <Container>
-          <SectionHeading eyebrow="Writing" title="Blog" align="left" />
+          <h1 className="text-3xl font-semibold tracking-tight">Blog</h1>
+          <p className="mt-3 text-muted">
+            Notes on full-stack engineering — multi-tenant SaaS, real-time
+            systems and micro-frontends.
+          </p>
           {posts.length === 0 ? (
-            <p className="text-muted">No posts yet — check back soon.</p>
+            <p className="mt-12 text-muted">No posts yet — check back soon.</p>
           ) : (
-            <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
+            <div className="mt-12 border-b border-border">
               {posts.map((post) => (
-                <PostCard key={post.slug} post={post} />
+                <PostRow key={post.slug} post={post} showExcerpt />
               ))}
             </div>
           )}

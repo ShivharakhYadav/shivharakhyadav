@@ -1,33 +1,26 @@
 import Link from "next/link";
-import { FaArrowRight } from "react-icons/fa6";
 import Container from "@/components/ui/Container";
 import SectionHeading from "@/components/ui/SectionHeading";
-import PostCard from "@/components/ui/PostCard";
+import PostRow from "@/components/ui/PostRow";
 import Reveal from "@/components/Reveal";
 import { getAllPosts } from "@/lib/blog";
 
 export default function LatestPosts() {
-  const posts = getAllPosts().slice(0, 2);
+  const posts = getAllPosts().slice(0, 3);
   if (posts.length === 0) return null;
 
   return (
-    <section id="writing" aria-label="Latest writing" className="scroll-mt-24 py-24">
+    <section id="writing" aria-label="Latest writing" className="py-16 sm:py-20">
       <Container>
         <Reveal>
-          <SectionHeading eyebrow="From the blog" title="Latest Writing" />
-        </Reveal>
-
-        <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-          {posts.map((post, i) => (
-            <Reveal key={post.slug} delay={i * 100}>
-              <PostCard post={post} />
-            </Reveal>
-          ))}
-        </div>
-
-        <Reveal className="mt-10 flex justify-center">
-          <Link href="/blog" className="btn-ghost">
-            Read all articles <FaArrowRight className="h-3.5 w-3.5" />
+          <SectionHeading title="Writing" />
+          <div className="border-b border-border">
+            {posts.map((post) => (
+              <PostRow key={post.slug} post={post} />
+            ))}
+          </div>
+          <Link href="/blog" className="link mt-6 inline-block text-sm">
+            All posts
           </Link>
         </Reveal>
       </Container>
