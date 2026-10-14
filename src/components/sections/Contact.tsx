@@ -1,28 +1,54 @@
 import Container from "@/components/ui/Container";
-import SectionHeading from "@/components/ui/SectionHeading";
-import TextLinks from "@/components/ui/TextLinks";
-import Reveal from "@/components/Reveal";
 import { profile } from "@/data/profile";
 
-export default function Contact() {
+/** Closing call to action; ends the home page and every inner page. */
+export default function Contact({ id = "contact" }: { id?: string }) {
   return (
-    <section id="contact" aria-label="Contact" className="py-16 sm:py-20">
-      <Container>
-        <Reveal>
-          <SectionHeading title="Contact" />
-          <p className="max-w-xl text-lg leading-relaxed">
-            I&apos;m open to full-stack and frontend engineer roles. The best
-            way to reach me is by email — I usually reply within a day.
-          </p>
-          <a
-            href={`mailto:${profile.email}`}
-            className="link mt-6 inline-block text-lg font-medium"
-          >
-            {profile.email}
-          </a>
-          <TextLinks className="mt-6" />
-        </Reveal>
-      </Container>
-    </section>
+    <Container>
+      <section
+        id={id}
+        aria-labelledby={`${id}-title`}
+        className="flex flex-col items-center gap-6 rounded-[40px] bg-seaglass px-6 py-16 text-center sm:px-16 sm:py-20"
+      >
+        <h2
+          id={`${id}-title`}
+          className="max-w-[820px] font-display text-[36px] font-semibold leading-[1.15] tracking-[-0.05em] sm:text-[56px]"
+        >
+          Let’s build something people{" "}
+          <span className="coral-underline whitespace-nowrap">love to use</span>.
+        </h2>
+        <p className="text-lg text-muted">
+          Open to full-time roles and selective freelance work. I reply within a day.
+        </p>
+        <a
+          href={`mailto:${profile.email}`}
+          className="max-w-full break-all rounded-full bg-teal px-8 py-4 text-[17px] font-medium text-white transition hover:bg-teal-hover"
+        >
+          {profile.email}
+        </a>
+        <p className="inline-flex items-center gap-2 text-[15px] text-muted">
+          <span className="h-2 w-2 rounded-full bg-coral" aria-hidden="true" />
+          Based in Ahmedabad, India
+        </p>
+        <ul className="flex gap-7 font-medium">
+          {profile.socials
+            .filter((s) => s.icon !== "email")
+            .map((s) => (
+              <li key={s.label}>
+                <a href={s.href} target="_blank" rel="noopener noreferrer" className="transition hover:text-teal">
+                  {s.label}
+                </a>
+              </li>
+            ))}
+          {profile.resumeUrl && (
+            <li>
+              <a href={profile.resumeUrl} className="transition hover:text-teal">
+                Résumé
+              </a>
+            </li>
+          )}
+        </ul>
+      </section>
+    </Container>
   );
 }

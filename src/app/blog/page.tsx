@@ -1,8 +1,8 @@
 import type { Metadata } from "next";
 import Container from "@/components/ui/Container";
-import PostRow from "@/components/ui/PostRow";
-import Navbar from "@/components/sections/Navbar";
-import Footer from "@/components/sections/Footer";
+import PageHeader from "@/components/ui/PageHeader";
+import PostCard from "@/components/ui/PostCard";
+import Contact from "@/components/sections/Contact";
 import JsonLd from "@/components/JsonLd";
 import { getAllPosts } from "@/lib/blog";
 import { siteUrl } from "@/configs/metaTags";
@@ -38,28 +38,31 @@ export default function BlogIndexPage() {
   };
 
   return (
-    <>
-      <Navbar />
-      <main className="py-16 sm:py-24">
-        <Container>
-          <h1 className="text-3xl font-semibold tracking-tight">Blog</h1>
-          <p className="mt-3 text-muted">
-            Notes on full-stack engineering — multi-tenant SaaS, real-time
-            systems and micro-frontends.
-          </p>
-          {posts.length === 0 ? (
-            <p className="mt-12 text-muted">No posts yet — check back soon.</p>
-          ) : (
-            <div className="mt-12 border-b border-border">
-              {posts.map((post) => (
-                <PostRow key={post.slug} post={post} showExcerpt />
-              ))}
-            </div>
-          )}
-        </Container>
-      </main>
-      <Footer />
+    <main>
+      <Container>
+        <PageHeader
+          eyebrow="Writing"
+          title={
+            <>
+              Notes &amp; <span className="coral-underline">writing</span>.
+            </>
+          }
+        >
+          Lessons from building production apps: multi-tenant SaaS, real-time
+          systems and micro-frontends.
+        </PageHeader>
+        {posts.length === 0 ? (
+          <p className="pb-24 text-muted">No posts yet. Check back soon.</p>
+        ) : (
+          <div className="grid gap-6 pb-24 md:grid-cols-2">
+            {posts.map((post) => (
+              <PostCard key={post.slug} post={post} showExcerpt />
+            ))}
+          </div>
+        )}
+      </Container>
+      <Contact />
       <JsonLd data={jsonLd} />
-    </>
+    </main>
   );
 }

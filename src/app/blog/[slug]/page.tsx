@@ -5,8 +5,7 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import rehypeHighlight from "rehype-highlight";
 import Container from "@/components/ui/Container";
-import Navbar from "@/components/sections/Navbar";
-import Footer from "@/components/sections/Footer";
+import Contact from "@/components/sections/Contact";
 import JsonLd from "@/components/JsonLd";
 import { getAllPostSlugs, getPostBySlug, formatDate } from "@/lib/blog";
 import { siteUrl } from "@/configs/metaTags";
@@ -59,49 +58,44 @@ export default function BlogPostPage({
   };
 
   return (
-    <>
-      <Navbar />
-      <main className="py-16 sm:py-24">
-        <Container>
-          <Link
-            href="/blog"
-            className="text-sm text-muted transition-colors hover:text-text"
-          >
-            ← Blog
-          </Link>
-
-          <header className="mt-10">
-            <h1 className="text-3xl font-semibold leading-tight tracking-tight text-balance sm:text-4xl">
+    <main>
+      <Container className="max-w-[760px]">
+        <article className="pb-20">
+          <header className="space-y-5 pt-12 sm:pt-20">
+            <Link href="/blog" className="text-link text-sm">
+              ← All posts
+            </Link>
+            <h1 className="font-display text-[36px] font-semibold leading-[1.1] tracking-[-0.04em] sm:text-[52px]">
               {post.title}
             </h1>
-            <p className="mt-4 text-sm text-muted">
+            <p className="text-sm text-muted">
               <time dateTime={post.date}>{formatDate(post.date)}</time>
               {" · "}
               {post.readingTime}
-              {post.tags.length > 0 && <> · {post.tags.join(", ")}</>}
             </p>
+            {post.tags.length > 0 && (
+              <ul className="flex flex-wrap gap-2">
+                {post.tags.map((t) => (
+                  <li key={t} className="chip">
+                    {t}
+                  </li>
+                ))}
+              </ul>
+            )}
           </header>
 
-          <article className="prose mt-12 max-w-none prose-headings:font-semibold prose-headings:tracking-tight prose-a:underline-offset-4">
+          <div className="prose prose-lg mt-12 max-w-none prose-headings:font-semibold prose-a:underline-offset-4">
             <ReactMarkdown
               remarkPlugins={[remarkGfm]}
               rehypePlugins={[rehypeHighlight]}
             >
               {post.content}
             </ReactMarkdown>
-          </article>
-
-          <p className="mt-16 border-t border-border pt-8 text-sm text-muted">
-            Enjoyed this?{" "}
-            <Link href="/#contact" className="link">
-              Let&apos;s connect
-            </Link>
-            .
-          </p>
-        </Container>
-      </main>
-      <Footer />
+          </div>
+        </article>
+      </Container>
+      <Contact />
       <JsonLd data={jsonLd} />
-    </>
+    </main>
   );
 }
