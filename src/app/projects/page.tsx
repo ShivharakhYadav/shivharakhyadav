@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import Container from "@/components/ui/Container";
-import SectionHeading from "@/components/ui/SectionHeading";
-import ProjectCard from "@/components/ui/ProjectCard";
+import ProjectRow from "@/components/ui/ProjectRow";
 import Navbar from "@/components/sections/Navbar";
 import Footer from "@/components/sections/Footer";
 import { projects } from "@/data/projects";
@@ -27,10 +26,14 @@ export default function ProjectsIndexPage() {
       <Navbar />
       <main className="py-16 sm:py-24">
         <Container>
-          <SectionHeading eyebrow="Selected work" title="Projects" align="left" />
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
+          <h1 className="text-3xl font-semibold tracking-tight">Projects</h1>
+          <p className="mt-3 text-muted">
+            Production apps I&apos;ve built and shipped, with notes on the
+            problem, my role and the outcome.
+          </p>
+          <div className="mt-12 border-b border-border">
             {projects.map((project) => (
-              <ProjectCard key={project.slug} project={project} />
+              <ProjectRow key={project.slug} project={project} />
             ))}
           </div>
         </Container>

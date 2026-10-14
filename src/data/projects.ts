@@ -1,9 +1,9 @@
 export interface Project {
   slug: string;
   title: string;
-  /** short one-liner for the card */
+  /** short one-liner for list rows */
   summary: string;
-  /** emoji shown on the card + case-study hero */
+  /** decorative emoji (currently unused by the minimal theme) */
   emoji: string;
   tags: string[];
   metrics: { label: string; value: string }[];
