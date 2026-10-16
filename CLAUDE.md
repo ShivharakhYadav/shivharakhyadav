@@ -18,20 +18,32 @@ There is no test setup and no ESLint config (`next lint` would prompt); use `npx
 
 ## Architecture
 
-- **Routes** (`src/app/`): `/` (single-page home), `/projects`, `/projects/[slug]` (case studies), `/blog`, `/blog/[slug]`, plus `sitemap.ts` / `robots.ts`. All statically generated.
+- **Routes** (`src/app/`):
+  - `/`: single-page overview
+  - `/projects` and `/projects/[slug]` (case studies)
+  - `/about`, `/experience`, `/contact`
+  - `/blog` and `/blog/[slug]`
+  - `sitemap.ts`, `robots.ts`, and `opengraph-image.tsx` / `twitter-image.tsx` (the generated 1200×630 share image)
+
+  All are statically generated. The navbar links to the pages, not to home-page anchors.
+- **SEO:** each page sets its own `title` (the root layout adds " — Shivharakh Yadav" via a title template), `description`, `alternates.canonical` and JSON-LD (`src/components/JsonLd.tsx`). A page that sets its own `openGraph` must include `images: ogImages` (from `src/configs/metaTags.ts`); otherwise the share image is lost.
+- **Contact form** (`src/components/ContactForm.tsx`) posts to Formspree using `NEXT_PUBLIC_FORMSPREE_ID` (see `.env.example`; set it in `.env.local` and in Vercel). Without it, the page shows an "Email me directly" fallback.
 - **Content lives in data files, not JSX:**
-  - `src/data/profile.ts`: bio, socials, hero words, stats, `resumeUrl` and `testimonial`. Résumé links and the testimonial card stay hidden while those are empty or `null`.
+  - `src/data/profile.ts`: bio, socials, hero words, stats, `resumeUrl`, `testimonial` and `showAvailability` (the availability pill in the hero and on /contact). Résumé links and the testimonial card stay hidden while those are empty or `null`.
   - `src/data/projects.ts`: case studies. Each has an `eyebrow`, one-line `tagline`, lead `headline` result, optional screenshot `image` (a framed placeholder shows without one) and `metrics` (key facts that shouldn't repeat the headline). `featuredProjects` sets the three shown on the home page, strongest first.
-  - `src/data/experience.ts`: the jobs timeline (optional `logo`; initials are shown otherwise).
+  - `src/data/experience.ts`: the jobs timeline. Optional fields are `logo` (initials are shown otherwise), `location`, `highlights` and `projects` (project slugs). It also holds `careerHighlights`.
+  - `src/data/skills.ts`: grouped skills for /about and schema.org `knowsAbout`.
   - `src/data/techLogos.ts`: Simple Icons SVG paths (CC0) for the logo carousel.
-  - Blog posts are Markdown with front-matter in `content/blog/`, read by `src/lib/blog.ts`.
+  - Blog posts are Markdown with front-matter in `content/blog/`, read by `src/lib/blog.ts`. Articles published elsewhere (e.g. Medium) go in `src/data/externalPosts.ts`. `getPostFeed()` merges both for the listings, and those cards link out. External articles have no `/blog/[slug]` page and aren't in the sitemap.
+  - Awards: role awards go in that job's `awards` in `experience.ts`; hackathons and other non-job awards go in `otherAwards` there.
 - **Components:**
-  - `src/components/home/` holds the homepage sections in page order: Hero (with the circular portrait from `public/profile.png`), TechMarquee, Highlights, Work, Experience, Writing.
+  - `src/components/home/` holds the homepage sections in page order: Hero (with the circular portrait from `public/profile.png`), TechMarquee, Highlights, Experience, Work, Writing.
   - `src/components/sections/` holds the shared chrome: Navbar (client component with scroll-spy and a mobile menu), Contact (the closing band on every page) and Footer. Navbar and Footer are rendered once in `src/app/layout.tsx`.
   - `src/components/ui/` holds primitives: `Container` (1200px max width), `PageHeader`, `ProjectCard` / `ProjectRowCard`, `PostCard`, `Screenshot`, `Headline`.
   - `Reveal` is a subtle IntersectionObserver fade-in.
 - Site metadata and the canonical `siteUrl` live in `src/configs/metaTags.ts`.
 - **Path alias:** `@/*` → `src/*`.
+- **Content rule:** never invent facts (clients, numbers, dates, rates). Use what's in the data files or the GitHub profile README. Unknown values stay as visible `[bracketed]` placeholders; `isPlaceholder()` in `experience.ts` keeps them out of structured data.
 
 ## Styling conventions
 

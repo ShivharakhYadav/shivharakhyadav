@@ -9,7 +9,7 @@ export default function Work() {
 
   return (
     <Container>
-      <section id="work" className="pt-24">
+      <section id="work" className="py-24">
         <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
           <div>
             <h2 className="font-display text-[38px] font-semibold tracking-[-0.05em] sm:text-[52px]">

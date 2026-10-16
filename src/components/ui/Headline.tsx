@@ -15,7 +15,7 @@ export default function Headline({
       }`}
     >
       <span
-        className={`font-display font-semibold tracking-[-0.04em] text-teal ${
+        className={`whitespace-nowrap font-display font-semibold tracking-[-0.04em] text-teal ${
           compact ? "text-[32px]" : "text-[44px]"
         }`}
       >

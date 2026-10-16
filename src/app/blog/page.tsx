@@ -4,11 +4,11 @@ import PageHeader from "@/components/ui/PageHeader";
 import PostCard from "@/components/ui/PostCard";
 import Contact from "@/components/sections/Contact";
 import JsonLd from "@/components/JsonLd";
-import { getAllPosts } from "@/lib/blog";
-import { siteUrl } from "@/configs/metaTags";
+import { getPostFeed } from "@/lib/blog";
+import { siteUrl, ogImages } from "@/configs/metaTags";
 
 export const metadata: Metadata = {
-  title: "Blog — Shivharakh Yadav",
+  title: "Blog",
   description:
     "Articles on full-stack engineering — multi-tenant SaaS, real-time systems, micro-frontends, and building production web apps with React, Next.js and Node.js.",
   alternates: { canonical: "/blog" },
@@ -18,11 +18,12 @@ export const metadata: Metadata = {
       "Articles on full-stack engineering — multi-tenant SaaS, real-time systems, and micro-frontends.",
     url: `${siteUrl}/blog`,
     type: "website",
+    images: ogImages,
   },
 };
 
 export default function BlogIndexPage() {
-  const posts = getAllPosts();
+  const posts = getPostFeed();
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -33,7 +34,7 @@ export default function BlogIndexPage() {
       "@type": "BlogPosting",
       headline: p.title,
       datePublished: p.date,
-      url: `${siteUrl}/blog/${p.slug}`,
+      url: p.url ?? `${siteUrl}/blog/${p.slug}`,
     })),
   };
 

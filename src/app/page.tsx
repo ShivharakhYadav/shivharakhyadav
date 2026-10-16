@@ -1,8 +1,8 @@
 import Hero from "@/components/home/Hero";
 import TechMarquee from "@/components/home/TechMarquee";
 import Highlights from "@/components/home/Highlights";
-import Work from "@/components/home/Work";
 import Experience from "@/components/home/Experience";
+import Work from "@/components/home/Work";
 import Writing from "@/components/home/Writing";
 import Contact from "@/components/sections/Contact";
 import JsonLd from "@/components/JsonLd";
@@ -38,8 +38,8 @@ export default function Home() {
       <Hero />
       <TechMarquee />
       <Highlights />
-      <Work />
       <Experience />
+      <Work />
       <Writing />
       <Contact />
       <JsonLd data={jsonLd} />

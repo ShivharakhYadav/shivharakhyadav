@@ -1,6 +1,7 @@
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
+import { externalPosts } from "@/data/externalPosts";
 
 const POSTS_DIR = path.join(process.cwd(), "content", "blog");
 
@@ -11,6 +12,10 @@ export interface PostMeta {
   excerpt: string;
   tags: string[];
   readingTime: string;
+  /** Set for articles published elsewhere: the card links here instead of /blog/[slug]. */
+  url?: string;
+  /** Where an external article lives, e.g. "Medium". */
+  source?: string;
 }
 
 export interface Post extends PostMeta {
@@ -59,6 +64,11 @@ export function getAllPosts(): PostMeta[] {
     .filter((p): p is Post => Boolean(p))
     .sort((a, b) => (a.date < b.date ? 1 : -1))
     .map(({ content, ...meta }) => meta);
+}
+
+/** Local posts plus articles published elsewhere, newest first (for listings). */
+export function getPostFeed(): PostMeta[] {
+  return [...getAllPosts(), ...externalPosts].sort((a, b) => (a.date < b.date ? 1 : -1));
 }
 
 export function getAllPostSlugs(): string[] {

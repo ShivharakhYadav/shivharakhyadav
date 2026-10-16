@@ -1,7 +1,7 @@
-import Image from "next/image";
 import Link from "next/link";
 import Container from "@/components/ui/Container";
 import RotatingWords from "@/components/home/RotatingWords";
+import Portrait from "@/components/ui/Portrait";
 import { profile, stats } from "@/data/profile";
 
 export default function Hero() {
@@ -9,10 +9,12 @@ export default function Hero() {
     <Container>
       <section className="grid items-center gap-12 pb-16 pt-12 lg:grid-cols-[1fr_auto] lg:pt-20">
         <div className="max-w-[640px] space-y-7">
-          <span className="inline-flex items-center gap-2 rounded-full border border-line bg-card px-4 py-2 text-sm font-medium">
-            <span className="h-2 w-2 rounded-full bg-coral" aria-hidden="true" />
-            {profile.availability}
-          </span>
+          {profile.showAvailability && (
+            <span className="inline-flex items-center gap-2 rounded-full border border-line bg-card px-4 py-2 text-sm font-medium">
+              <span className="h-2 w-2 rounded-full bg-coral" aria-hidden="true" />
+              {profile.availability}
+            </span>
+          )}
 
           <h1 className="font-display text-[40px] font-semibold leading-[1.1] tracking-[-0.04em] sm:text-[68px]">
             I turn ideas into
@@ -55,31 +57,8 @@ export default function Hero() {
           </dl>
         </div>
 
-        <Portrait />
+        <Portrait priority />
       </section>
     </Container>
-  );
-}
-
-/** Concentric frame: dashed coral ring → sea-glass halo → photo. */
-function Portrait() {
-  return (
-    <div className="group relative mx-auto h-[320px] w-[320px] sm:h-[460px] sm:w-[460px]">
-      <div
-        className="absolute inset-0 rounded-full border-[1.5px] border-dashed border-coral/60"
-        aria-hidden="true"
-      />
-      <div className="absolute inset-[4%] rounded-full bg-seaglass" aria-hidden="true" />
-      <div className="absolute inset-[8%] overflow-hidden rounded-full border-[6px] border-card bg-seaglass shadow-portrait">
-        <Image
-          src="/profile.png"
-          alt={`${profile.name}, ${profile.role}`}
-          width={460}
-          height={460}
-          priority
-          className="h-full w-full origin-[50%_20%] scale-[1.12] object-cover object-[50%_10%] transition duration-700 group-hover:scale-[1.16]"
-        />
-      </div>
-    </div>
   );
 }

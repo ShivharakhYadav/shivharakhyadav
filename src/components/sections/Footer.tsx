@@ -8,7 +8,7 @@ export default function Footer() {
         <span>
           © {new Date().getFullYear()} {profile.name}
         </span>
-        <span>Designed &amp; built with care in Ahmedabad</span>
+        <span>Designed &amp; built with care in Pune</span>
       </Container>
     </footer>
   );

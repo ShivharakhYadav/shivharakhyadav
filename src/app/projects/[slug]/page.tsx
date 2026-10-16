@@ -8,7 +8,7 @@ import { ProjectRowCard } from "@/components/ui/ProjectCard";
 import Contact from "@/components/sections/Contact";
 import JsonLd from "@/components/JsonLd";
 import { projects, getProjectBySlug } from "@/data/projects";
-import { siteUrl } from "@/configs/metaTags";
+import { siteUrl, ogImages } from "@/configs/metaTags";
 
 export function generateStaticParams() {
   return projects.map((project) => ({ slug: project.slug }));
@@ -22,7 +22,7 @@ export function generateMetadata({
   const project = getProjectBySlug(params.slug);
   if (!project) return { title: "Project not found" };
   return {
-    title: `${project.title} — Shivharakh Yadav`,
+    title: project.title,
     description: project.tagline,
     alternates: { canonical: `/projects/${project.slug}` },
     openGraph: {
@@ -30,7 +30,7 @@ export function generateMetadata({
       description: project.tagline,
       url: `${siteUrl}/projects/${project.slug}`,
       type: "article",
-      ...(project.image && { images: [{ url: project.image }] }),
+      images: project.image ? [{ url: project.image }] : ogImages,
     },
   };
 }
