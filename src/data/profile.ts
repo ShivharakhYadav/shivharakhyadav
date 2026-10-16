@@ -35,7 +35,8 @@ export const profile = {
     "I’m a full-stack engineer with 4+ years of experience designing and shipping production SaaS platforms with React, Next.js, Node.js and MongoDB/PostgreSQL, across fintech, sports, transport and healthcare.",
     "I’m most at home with the hard parts of a product: multi-tenant data isolation, booking and allocation logic that stays correct under concurrent requests, caching and query performance, and real-time systems on Socket.IO. The platforms I’ve worked on serve 1,200+ users combined, including a multi-tenant SaaS used by 944+ people across 10 organizations.",
     "I like taking ambiguous requirements and turning them into scalable, production-ready architecture, then owning the work end to end: requirement calls, design, development, CI/CD and releases, in direct contact with clients in Australia and the US. Along the way I’ve mentored junior engineers on code quality and best practices.",
-  ],  currentlyExploring: "Exploring AI agents & building AI-integrated apps",
+  ],
+  currentlyExploring: "Exploring AI agents & building AI-integrated apps",
   currentlyExploringLong:
     "I’m diving into the AI/LLM ecosystem: AI agents, agentic workflows and AI developer tools, and building AI-integrated applications.",
   timezone: "IST (UTC+5:30)",

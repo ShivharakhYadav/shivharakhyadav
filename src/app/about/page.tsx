@@ -5,13 +5,14 @@ import Container from "@/components/ui/Container";
 import Portrait from "@/components/ui/Portrait";
 import Contact from "@/components/sections/Contact";
 import JsonLd from "@/components/JsonLd";
+import { person, websiteId } from "@/configs/schema";
 import { profile, stats, workingStyle, education } from "@/data/profile";
-import { skillGroups, allSkills } from "@/data/skills";
-import { allAwards, experience } from "@/data/experience";
+import { skillGroups } from "@/data/skills";
+import { experience } from "@/data/experience";
 import { siteUrl, ogImages } from "@/configs/metaTags";
 
 const description =
-  "About Shivharakh Yadav: a full-stack developer in Pune, India with 4+ years building multi-tenant SaaS, commerce, health and real-time products for teams in Australia & the US.";
+  "Shivharakh Yadav: full-stack developer in Pune, India with 4+ years building multi-tenant SaaS, commerce and real-time products for teams in Australia & the US.";
 
 export const metadata: Metadata = {
   title: "About",
@@ -30,25 +31,9 @@ const jsonLd = {
   "@context": "https://schema.org",
   "@type": "ProfilePage",
   url: `${siteUrl}/about`,
-  mainEntity: {
-    "@type": "Person",
-    name: profile.name,
-    jobTitle: profile.role,
-    description: profile.intro,
-    image: `${siteUrl}/profile.png`,
-    url: siteUrl,
-    email: `mailto:${profile.email}`,
-    address: {
-      "@type": "PostalAddress",
-      addressLocality: "Pune",
-      addressRegion: "Maharashtra",
-      addressCountry: "IN",
-    },
-    knowsAbout: allSkills,
-    alumniOf: [...new Set(education.map((e) => e.school))].map((name) => ({ "@type": "CollegeOrUniversity", name })),
-    ...(allAwards.length > 0 && { award: allAwards }),
-    sameAs: profile.socials.filter((s) => s.icon !== "email").map((s) => s.href),
-  },
+  dateModified: new Date().toISOString().slice(0, 10),
+  isPartOf: { "@id": websiteId },
+  mainEntity: person,
 };
 
 // the role marked "Present" in experience.ts, if any

@@ -10,7 +10,7 @@ import { siteUrl, ogImages } from "@/configs/metaTags";
 export const metadata: Metadata = {
   title: "Projects",
   description:
-    "Case studies of production web applications I've built — a multi-tenant simulation SaaS, a motorcycle rental marketplace, a real-time health & coaching platform, a sports data platform and more.",
+    "Case studies of production apps I built: a multi-tenant simulation SaaS (944+ users), a motorcycle rental marketplace, a health & coaching platform and more.",
   alternates: { canonical: "/projects" },
   openGraph: {
     title: "Projects — Shivharakh Yadav",

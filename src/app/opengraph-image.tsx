@@ -1,6 +1,7 @@
 import { readFile } from "fs/promises";
 import path from "path";
 import { ImageResponse } from "next/og";
+import { ogFonts } from "@/lib/ogFonts";
 
 // Shared by every page's link preview (LinkedIn, WhatsApp, X, Slack…)
 export const alt = "Shivharakh Yadav — Full-Stack Developer in Pune, India";
@@ -8,8 +9,8 @@ export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
 export default async function OpengraphImage() {
-  const photo = await readFile(path.join(process.cwd(), "public", "profile.png"));
-  const photoSrc = `data:image/png;base64,${photo.toString("base64")}`;
+  const photo = await readFile(path.join(process.cwd(), "public", "profile-1200.jpg"));
+  const photoSrc = `data:image/jpeg;base64,${photo.toString("base64")}`;
 
   return new ImageResponse(
     (
@@ -23,6 +24,7 @@ export default async function OpengraphImage() {
           padding: "0 80px",
           background: "#FBF6EE",
           color: "#14303A",
+          fontFamily: "Outfit",
         }}
       >
         <div style={{ display: "flex", flexDirection: "column", maxWidth: 640 }}>
@@ -30,7 +32,7 @@ export default async function OpengraphImage() {
             <div style={{ width: 14, height: 14, borderRadius: 7, background: "#EE8B6A", marginRight: 12 }} />
             Pune, India · Australia & US clients
           </div>
-          <div style={{ display: "flex", marginTop: 28, fontSize: 76, fontWeight: 700, letterSpacing: -3, lineHeight: 1.05 }}>
+          <div style={{ display: "flex", marginTop: 28, fontSize: 76, fontWeight: 600, letterSpacing: -3, lineHeight: 1.05 }}>
             Shivharakh Yadav
           </div>
           <div style={{ display: "flex", width: 300, height: 8, borderRadius: 4, background: "#EE8B6A", marginTop: 14 }} />
@@ -82,6 +84,6 @@ export default async function OpengraphImage() {
         </div>
       </div>
     ),
-    size
+    { ...size, fonts: await ogFonts() }
   );
 }

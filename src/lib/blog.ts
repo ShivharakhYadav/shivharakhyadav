@@ -9,6 +9,8 @@ export interface PostMeta {
   slug: string;
   title: string;
   date: string; // ISO string, e.g. "2026-05-12"
+  /** Last meaningful edit (front-matter `updated`), ISO date; falls back to `date`. */
+  updated?: string;
   excerpt: string;
   tags: string[];
   readingTime: string;
@@ -51,6 +53,7 @@ export function getPostBySlug(slug: string): Post | undefined {
     slug,
     title: data.title ?? slug,
     date: data.date ? new Date(data.date).toISOString().slice(0, 10) : "",
+    ...(data.updated && { updated: new Date(data.updated).toISOString().slice(0, 10) }),
     excerpt: data.excerpt ?? "",
     tags: Array.isArray(data.tags) ? data.tags : [],
     readingTime: readingTime(content),
