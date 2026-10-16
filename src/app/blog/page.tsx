@@ -1,15 +1,14 @@
 import type { Metadata } from "next";
 import Container from "@/components/ui/Container";
-import SectionHeading from "@/components/ui/SectionHeading";
+import PageHeader from "@/components/ui/PageHeader";
 import PostCard from "@/components/ui/PostCard";
-import Navbar from "@/components/sections/Navbar";
-import Footer from "@/components/sections/Footer";
+import Contact from "@/components/sections/Contact";
 import JsonLd from "@/components/JsonLd";
-import { getAllPosts } from "@/lib/blog";
-import { siteUrl } from "@/configs/metaTags";
+import { getPostFeed } from "@/lib/blog";
+import { siteUrl, ogImages } from "@/configs/metaTags";
 
 export const metadata: Metadata = {
-  title: "Blog — Shivharakh Yadav",
+  title: "Blog",
   description:
     "Articles on full-stack engineering — multi-tenant SaaS, real-time systems, micro-frontends, and building production web apps with React, Next.js and Node.js.",
   alternates: { canonical: "/blog" },
@@ -19,11 +18,12 @@ export const metadata: Metadata = {
       "Articles on full-stack engineering — multi-tenant SaaS, real-time systems, and micro-frontends.",
     url: `${siteUrl}/blog`,
     type: "website",
+    images: ogImages,
   },
 };
 
 export default function BlogIndexPage() {
-  const posts = getAllPosts();
+  const posts = getPostFeed();
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -34,29 +34,36 @@ export default function BlogIndexPage() {
       "@type": "BlogPosting",
       headline: p.title,
       datePublished: p.date,
-      url: `${siteUrl}/blog/${p.slug}`,
+      url: p.url ?? `${siteUrl}/blog/${p.slug}`,
     })),
   };
 
   return (
-    <>
-      <Navbar />
-      <main className="py-16 sm:py-24">
-        <Container>
-          <SectionHeading eyebrow="Writing" title="Blog" align="left" />
-          {posts.length === 0 ? (
-            <p className="text-muted">No posts yet — check back soon.</p>
-          ) : (
-            <div className="grid grid-cols-1 gap-6 md:grid-cols-2">
-              {posts.map((post) => (
-                <PostCard key={post.slug} post={post} />
-              ))}
-            </div>
-          )}
-        </Container>
-      </main>
-      <Footer />
+    <main>
+      <Container>
+        <PageHeader
+          eyebrow="Writing"
+          title={
+            <>
+              Notes &amp; <span className="coral-underline">writing</span>.
+            </>
+          }
+        >
+          Lessons from building production apps: multi-tenant SaaS, real-time
+          systems and micro-frontends.
+        </PageHeader>
+        {posts.length === 0 ? (
+          <p className="pb-24 text-muted">No posts yet. Check back soon.</p>
+        ) : (
+          <div className="grid gap-6 pb-24 md:grid-cols-2">
+            {posts.map((post) => (
+              <PostCard key={post.slug} post={post} showExcerpt />
+            ))}
+          </div>
+        )}
+      </Container>
+      <Contact />
       <JsonLd data={jsonLd} />
-    </>
+    </main>
   );
 }

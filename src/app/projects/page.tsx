@@ -1,41 +1,55 @@
 import type { Metadata } from "next";
 import Container from "@/components/ui/Container";
-import SectionHeading from "@/components/ui/SectionHeading";
-import ProjectCard from "@/components/ui/ProjectCard";
-import Navbar from "@/components/sections/Navbar";
-import Footer from "@/components/sections/Footer";
-import { projects } from "@/data/projects";
-import { siteUrl } from "@/configs/metaTags";
+import PageHeader from "@/components/ui/PageHeader";
+import Reveal from "@/components/Reveal";
+import { ProjectCard } from "@/components/ui/ProjectCard";
+import Contact from "@/components/sections/Contact";
+import { projects, featuredProjects } from "@/data/projects";
+import { siteUrl, ogImages } from "@/configs/metaTags";
 
 export const metadata: Metadata = {
-  title: "Projects — Shivharakh Yadav",
+  title: "Projects",
   description:
-    "Case studies of production web applications I've built — multi-tenant e-learning SaaS, a real-time health & coaching platform, and a micro-frontend energy portal.",
+    "Case studies of production web applications I've built — a multi-tenant simulation SaaS, a motorcycle rental marketplace, a real-time health & coaching platform, a sports data platform and more.",
   alternates: { canonical: "/projects" },
   openGraph: {
     title: "Projects — Shivharakh Yadav",
     description:
-      "Case studies of production web applications — multi-tenant SaaS, real-time systems, and micro-frontends.",
+      "Case studies of production web applications — multi-tenant SaaS, commerce, real-time systems and micro-frontends.",
     url: `${siteUrl}/projects`,
     type: "website",
+    images: ogImages,
   },
 };
 
+// featured projects first, in their featured order, then the rest
+const ordered = [...featuredProjects, ...projects.filter((p) => !featuredProjects.includes(p))];
+
 export default function ProjectsIndexPage() {
   return (
-    <>
-      <Navbar />
-      <main className="py-16 sm:py-24">
-        <Container>
-          <SectionHeading eyebrow="Selected work" title="Projects" align="left" />
-          <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
-            {projects.map((project) => (
-              <ProjectCard key={project.slug} project={project} />
-            ))}
-          </div>
-        </Container>
-      </main>
-      <Footer />
-    </>
+    <main>
+      <Container>
+        <PageHeader
+          eyebrow="Work"
+          title={
+            <>
+              Products I’ve <span className="coral-underline">shipped</span>.
+            </>
+          }
+        >
+          Production apps I built and owned, each with the problem, my role and
+          the outcome.
+        </PageHeader>
+
+        <div className="space-y-7 pb-24">
+          {ordered.map((p, i) => (
+            <Reveal key={p.slug}>
+              <ProjectCard project={p} flip={i % 2 === 1} />
+            </Reveal>
+          ))}
+        </div>
+      </Container>
+      <Contact />
+    </main>
   );
 }
