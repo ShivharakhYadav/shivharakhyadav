@@ -6,7 +6,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 Personal portfolio + blog for Shivharakh Yadav, built with Next.js 14 (App Router), TypeScript, and Tailwind CSS. The design ("Sand & Tide") is **warm, light-only and calm**: sand background, ink text, one teal accent, coral used only for decoration (dots, underlines, rings), rounded cards, a floating pill navbar, Outfit for headings and DM Sans for body text. Motion is kept to two places (the rotating hero words and the "Working with" logo carousel), and both respect `prefers-reduced-motion`.
 
-**Current status, open items and owner decisions are in `docs/STATUS.md`. Read it first and keep it updated.**
+**Current status, open items and owner decisions are in `docs/STATUS.md`, and working preferences are in `docs/CLAUDE_MEMORY.md`. Read both first and keep them updated.**
 
 ## Commands
 
