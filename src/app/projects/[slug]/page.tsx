@@ -136,7 +136,7 @@ export default function ProjectPage({
 
         {next && next.slug !== project.slug && (
           <nav aria-label="Next project" className="space-y-4 pb-20">
-            <p className="eyebrow text-muted">Next project</p>
+            <h2 className="eyebrow text-muted">Next project</h2>
             <ProjectRowCard project={next} />
           </nav>
         )}

@@ -41,13 +41,15 @@ export default function ProjectsIndexPage() {
           the outcome.
         </PageHeader>
 
-        <div className="space-y-7 pb-24">
+        <ul className="space-y-7 pb-24">
           {ordered.map((p, i) => (
-            <Reveal key={p.slug}>
-              <ProjectCard project={p} flip={i % 2 === 1} />
-            </Reveal>
+            <li key={p.slug}>
+              <Reveal>
+                <ProjectCard project={p} flip={i % 2 === 1} as="h2" />
+              </Reveal>
+            </li>
           ))}
-        </div>
+        </ul>
       </Container>
       <Contact />
     </main>

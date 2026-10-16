@@ -55,11 +55,13 @@ export default function BlogIndexPage() {
         {posts.length === 0 ? (
           <p className="pb-24 text-muted">No posts yet. Check back soon.</p>
         ) : (
-          <div className="grid gap-6 pb-24 md:grid-cols-2">
+          <ul className="grid gap-6 pb-24 md:grid-cols-2">
             {posts.map((post) => (
-              <PostCard key={post.slug} post={post} showExcerpt />
+              <li key={post.slug}>
+                <PostCard post={post} showExcerpt as="h2" />
+              </li>
             ))}
-          </div>
+          </ul>
         )}
       </Container>
       <Contact />

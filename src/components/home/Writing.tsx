@@ -18,11 +18,13 @@ export default function Writing() {
             All posts →
           </Link>
         </div>
-        <div className="grid gap-6 md:grid-cols-2">
+        <ul className="grid gap-6 md:grid-cols-2">
           {posts.map((post) => (
-            <PostCard key={post.slug} post={post} />
+            <li key={post.slug}>
+              <PostCard post={post} />
+            </li>
           ))}
-        </div>
+        </ul>
       </section>
     </Container>
   );
