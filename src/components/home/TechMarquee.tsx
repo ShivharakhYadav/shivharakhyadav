@@ -24,15 +24,18 @@ export default function TechMarquee() {
 
   return (
     <Container>
-      <div className="flex flex-col gap-4 border-y border-line py-7 sm:flex-row sm:items-center sm:gap-10">
-        <h2 className="eyebrow shrink-0 text-muted">Working with</h2>
+      <section
+        aria-labelledby="working-with"
+        className="flex flex-col gap-4 border-y border-line py-7 sm:flex-row sm:items-center sm:gap-10"
+      >
+        <h2 id="working-with" className="eyebrow shrink-0 text-muted">Working with</h2>
         <div className="marquee-wrap relative min-w-0 flex-1 overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]">
           <div className="marquee flex w-max">
             {row(false)}
             {row(true)}
           </div>
         </div>
-      </div>
+      </section>
     </Container>
   );
 }

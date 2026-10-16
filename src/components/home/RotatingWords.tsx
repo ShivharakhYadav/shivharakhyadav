@@ -23,7 +23,7 @@ export default function RotatingWords({ words }: { words: string[] }) {
 
   return (
     <span className="block">
-      <span className="sr-only">{words.join(", ")}</span>
+      <span className="sr-only"> {words.join(", ")} </span>
       {/* raw HTML so the CSS isn't escaped during server rendering */}
       <style dangerouslySetInnerHTML={{ __html: css }} />
       <span className="inline-grid py-1 text-teal" aria-hidden="true">
