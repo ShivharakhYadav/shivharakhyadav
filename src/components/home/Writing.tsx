@@ -1,10 +1,10 @@
 import Link from "next/link";
 import Container from "@/components/ui/Container";
 import PostCard from "@/components/ui/PostCard";
-import { getAllPosts } from "@/lib/blog";
+import { getPostFeed } from "@/lib/blog";
 
 export default function Writing() {
-  const posts = getAllPosts().slice(0, 2);
+  const posts = getPostFeed().slice(0, 2);
   if (posts.length === 0) return null;
 
   return (

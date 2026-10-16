@@ -5,12 +5,12 @@ import Reveal from "@/components/Reveal";
 import { ProjectCard } from "@/components/ui/ProjectCard";
 import Contact from "@/components/sections/Contact";
 import { projects, featuredProjects } from "@/data/projects";
-import { siteUrl } from "@/configs/metaTags";
+import { siteUrl, ogImages } from "@/configs/metaTags";
 
 export const metadata: Metadata = {
-  title: "Projects — Shivharakh Yadav",
+  title: "Projects",
   description:
-    "Case studies of production web applications I've built — a multi-tenant e-learning SaaS, a motorcycle rental storefront, a real-time health & coaching platform and a micro-frontend energy portal.",
+    "Case studies of production web applications I've built — a multi-tenant simulation SaaS, a motorcycle rental marketplace, a real-time health & coaching platform, a sports data platform and more.",
   alternates: { canonical: "/projects" },
   openGraph: {
     title: "Projects — Shivharakh Yadav",
@@ -18,6 +18,7 @@ export const metadata: Metadata = {
       "Case studies of production web applications — multi-tenant SaaS, commerce, real-time systems and micro-frontends.",
     url: `${siteUrl}/projects`,
     type: "website",
+    images: ogImages,
   },
 };
 

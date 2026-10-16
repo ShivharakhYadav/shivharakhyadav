@@ -1,3 +1,4 @@
+import Link from "next/link";
 import Container from "@/components/ui/Container";
 import { profile } from "@/data/profile";
 
@@ -20,15 +21,20 @@ export default function Contact({ id = "contact" }: { id?: string }) {
         <p className="text-lg text-muted">
           Open to full-time roles and selective freelance work. I reply within a day.
         </p>
-        <a
-          href={`mailto:${profile.email}`}
-          className="max-w-full break-all rounded-full bg-teal px-8 py-4 text-[17px] font-medium text-white transition hover:bg-teal-hover"
-        >
-          {profile.email}
-        </a>
+        <div className="flex max-w-full flex-wrap justify-center gap-3.5">
+          <a
+            href={`mailto:${profile.email}`}
+            className="max-w-full break-all rounded-full bg-teal px-8 py-4 text-[17px] font-medium text-white transition hover:bg-teal-hover"
+          >
+            {profile.email}
+          </a>
+          <Link href="/contact" className="btn-secondary text-[17px]">
+            Send a message →
+          </Link>
+        </div>
         <p className="inline-flex items-center gap-2 text-[15px] text-muted">
           <span className="h-2 w-2 rounded-full bg-coral" aria-hidden="true" />
-          Based in Ahmedabad, India
+          Based in Pune, India
         </p>
         <ul className="flex gap-7 font-medium">
           {profile.socials

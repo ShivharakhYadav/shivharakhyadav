@@ -5,55 +5,27 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 const links = [
-  { id: "work", name: "Work", href: "/#work", route: "/projects" },
-  { id: "experience", name: "Experience", href: "/#experience" },
-  { id: "writing", name: "Writing", href: "/#writing", route: "/blog" },
-  { id: "contact", name: "Contact", href: "/#contact" },
+  { name: "Work", href: "/projects" },
+  { name: "About", href: "/about" },
+  { name: "Experience", href: "/experience" },
+  { name: "Writing", href: "/blog" },
+  { name: "Contact", href: "/contact" },
 ];
-
-/** Which home-page section is in view (scroll-spy). */
-function useActiveSection(enabled: boolean) {
-  const [active, setActive] = useState<string | null>(null);
-
-  useEffect(() => {
-    if (!enabled) return setActive(null);
-    const sections = links
-      .map((l) => document.getElementById(l.id))
-      .filter((el): el is HTMLElement => Boolean(el));
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) setActive(entry.target.id);
-        });
-      },
-      // a section counts as active while it crosses the upper-middle of the screen
-      { rootMargin: "-35% 0px -55% 0px" }
-    );
-    sections.forEach((s) => observer.observe(s));
-    return () => observer.disconnect();
-  }, [enabled]);
-
-  return active;
-}
 
 export default function Navbar() {
   const pathname = usePathname();
-  const isHome = pathname === "/";
-  const section = useActiveSection(isHome);
   const [open, setOpen] = useState(false);
 
   // close the mobile menu after navigating
   useEffect(() => setOpen(false), [pathname]);
 
-  const isActive = (l: (typeof links)[number]) =>
-    isHome ? section === l.id : Boolean(l.route && pathname.startsWith(l.route));
+  const isActive = (l: (typeof links)[number]) => pathname.startsWith(l.href);
 
   return (
     <header className="sticky top-4 z-50 flex justify-center px-5 pt-6">
       <nav
         aria-label="Main"
-        className="relative flex items-center gap-1 rounded-full border border-line bg-card/90 p-1.5 pl-2 shadow-soft backdrop-blur sm:gap-7 sm:pl-2.5"
+        className="relative flex items-center gap-1 rounded-full border border-line bg-card/90 p-1.5 pl-2 shadow-soft backdrop-blur sm:gap-6 sm:pl-2.5"
       >
         <Link
           href="/"
@@ -63,11 +35,11 @@ export default function Navbar() {
           SY
         </Link>
 
-        <ul className="hidden items-center gap-7 text-[15px] font-medium text-muted sm:flex">
+        <ul className="hidden items-center gap-6 text-[15px] font-medium text-muted sm:flex">
           {links.map((l) => {
             const active = isActive(l);
             return (
-              <li key={l.id}>
+              <li key={l.href}>
                 <Link
                   href={l.href}
                   aria-current={active ? "page" : undefined}
@@ -93,7 +65,7 @@ export default function Navbar() {
         </button>
 
         <Link
-          href="/#contact"
+          href="/contact"
           className="ml-1 rounded-full bg-ink px-5 py-2.5 text-[15px] font-medium text-bg transition hover:bg-teal sm:ml-2"
         >
           Let’s talk
@@ -105,7 +77,7 @@ export default function Navbar() {
             className="absolute left-0 right-0 top-[calc(100%+8px)] rounded-3xl border border-line bg-card p-2 shadow-soft sm:hidden"
           >
             {links.map((l) => (
-              <li key={l.id}>
+              <li key={l.href}>
                 <Link
                   href={l.href}
                   onClick={() => setOpen(false)}

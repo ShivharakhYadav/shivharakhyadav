@@ -8,7 +8,7 @@ import Container from "@/components/ui/Container";
 import Contact from "@/components/sections/Contact";
 import JsonLd from "@/components/JsonLd";
 import { getAllPostSlugs, getPostBySlug, formatDate } from "@/lib/blog";
-import { siteUrl } from "@/configs/metaTags";
+import { siteUrl, ogImages } from "@/configs/metaTags";
 
 export function generateStaticParams() {
   return getAllPostSlugs().map((slug) => ({ slug }));
@@ -22,7 +22,7 @@ export function generateMetadata({
   const post = getPostBySlug(params.slug);
   if (!post) return { title: "Post not found" };
   return {
-    title: `${post.title} — Shivharakh Yadav`,
+    title: post.title,
     description: post.excerpt,
     alternates: { canonical: `/blog/${post.slug}` },
     openGraph: {
@@ -30,6 +30,7 @@ export function generateMetadata({
       description: post.excerpt,
       url: `${siteUrl}/blog/${post.slug}`,
       type: "article",
+      images: ogImages,
       publishedTime: post.date,
       tags: post.tags,
     },
