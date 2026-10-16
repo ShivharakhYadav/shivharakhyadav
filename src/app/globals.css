@@ -16,7 +16,7 @@
   --teal: #0f5c63;
   --teal-hover: #0b4a50;
   --coral: #ee8b6a;
-  --coral-ink: #b4573a;
+  --coral-ink: #a34d2f; /* ≥4.7:1 on sand, linen and seaglass */
   --seaglass: #e1eeec;
   --linen: #f1e8da;
   --linen-hover: #e9ddca;

@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Outfit, DM_Sans } from "next/font/google";
 import "./globals.css";
 import { siteMetadata } from "@/configs/metaTags";
@@ -18,6 +18,9 @@ const dmSans = DM_Sans({
 });
 
 export const metadata: Metadata = siteMetadata;
+
+// sand, so mobile browser chrome blends with the page
+export const viewport: Viewport = { themeColor: "#FBF6EE" };
 
 export default function RootLayout({
   children,

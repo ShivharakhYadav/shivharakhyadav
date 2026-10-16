@@ -6,14 +6,14 @@ import JobCard from "@/components/ui/JobCard";
 import { ProjectRowCard } from "@/components/ui/ProjectCard";
 import Contact from "@/components/sections/Contact";
 import JsonLd from "@/components/JsonLd";
-import { experience, careerHighlights, isPlaceholder, allAwards, awards } from "@/data/experience";
+import { person, websiteId } from "@/configs/schema";
+import { experience, careerHighlights, awards } from "@/data/experience";
 import { projects, featuredProjects, getProjectBySlug } from "@/data/projects";
 import { profile } from "@/data/profile";
-import { allSkills } from "@/data/skills";
 import { siteUrl, ogImages } from "@/configs/metaTags";
 
 const description =
-  "Experience of Shivharakh Yadav, Senior Software Engineer (Full Stack): 4+ years at iProgrammer, ViitorCloud and iFour building multi-tenant SaaS, commerce, health and real-time platforms with React, Next.js, Node.js and NestJS for clients in Australia & the US.";
+  "Senior Software Engineer, 4+ years at iProgrammer, ViitorCloud and iFour building multi-tenant SaaS, commerce and real-time platforms with React and Node.js.";
 
 export const metadata: Metadata = {
   title: "Experience",
@@ -28,22 +28,12 @@ export const metadata: Metadata = {
   },
 };
 
-// Current employer for structured data; never a [placeholder].
-const current = experience.find((j) => /present/i.test(j.period) && !isPlaceholder(j.company));
-
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "ProfilePage",
   url: `${siteUrl}/experience`,
-  mainEntity: {
-    "@type": "Person",
-    name: profile.name,
-    jobTitle: profile.role,
-    url: siteUrl,
-    knowsAbout: allSkills,
-    ...(allAwards.length > 0 && { award: allAwards }),
-    ...(current && { worksFor: { "@type": "Organization", name: current.company } }),
-  },
+  isPartOf: { "@id": websiteId },
+  mainEntity: person,
 };
 
 // featured projects first, then the rest

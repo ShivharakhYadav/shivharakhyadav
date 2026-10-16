@@ -6,6 +6,8 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 Personal portfolio + blog for Shivharakh Yadav, built with Next.js 14 (App Router), TypeScript, and Tailwind CSS. The design ("Sand & Tide") is **warm, light-only and calm**: sand background, ink text, one teal accent, coral used only for decoration (dots, underlines, rings), rounded cards, a floating pill navbar, Outfit for headings and DM Sans for body text. Motion is kept to two places (the rotating hero words and the "Working with" logo carousel), and both respect `prefers-reduced-motion`.
 
+**Current status, open items and owner decisions are in `docs/STATUS.md`. Read it first and keep it updated.**
+
 ## Commands
 
 ```bash
@@ -14,7 +16,7 @@ npm run build   # production build (also the de-facto typecheck)
 npm run start   # serve the production build
 ```
 
-There is no test setup and no ESLint config (`next lint` would prompt); use `npx tsc --noEmit` / `npm run build` to verify.
+There is no test setup and no ESLint config (`next lint` would prompt); use `npx tsc --noEmit` / `npm run build` to verify. A running `next dev` shares `.next` with `next build`, so don't build while it's running (or build a copy elsewhere).
 
 ## Architecture
 
@@ -26,7 +28,11 @@ There is no test setup and no ESLint config (`next lint` would prompt); use `npx
   - `sitemap.ts`, `robots.ts`, and `opengraph-image.tsx` / `twitter-image.tsx` (the generated 1200×630 share image)
 
   All are statically generated. The navbar links to the pages, not to home-page anchors.
-- **SEO:** each page sets its own `title` (the root layout adds " — Shivharakh Yadav" via a title template), `description`, `alternates.canonical` and JSON-LD (`src/components/JsonLd.tsx`). A page that sets its own `openGraph` must include `images: ogImages` (from `src/configs/metaTags.ts`); otherwise the share image is lost.
+- **SEO:**
+  - Each page sets its own `title` (the root layout adds " — Shivharakh Yadav" via a title template), a `description` of 160 characters or fewer, and `alternates.canonical`.
+  - A page that sets its own `openGraph` must include `images: ogImages` (from `src/configs/metaTags.ts`); otherwise the share image is lost. Posts and case studies are the exception: they have their own `opengraph-image.tsx`, built with `ogCard()` in `src/lib/ogCard.tsx`, which uses the bundled Outfit font from `src/assets/fonts`.
+  - **JSON-LD:** the full Person and WebSite entities are defined once in `src/configs/schema.ts`. Pages reuse `person`, `author`, `websiteId` and `breadcrumbs()` from there, rendered by `src/components/JsonLd.tsx`, instead of writing their own Person objects.
+  - Also present: an RSS feed at `/blog/rss.xml`, a manifest, generated icons (`icon.tsx` / `apple-icon.tsx`) and a `not-found.tsx` (noindex).
 - **Contact form** (`src/components/ContactForm.tsx`) posts to Formspree using `NEXT_PUBLIC_FORMSPREE_ID` (see `.env.example`; set it in `.env.local` and in Vercel). Without it, the page shows an "Email me directly" fallback.
 - **Content lives in data files, not JSX:**
   - `src/data/profile.ts`: bio, socials, hero words, stats, `resumeUrl`, `testimonial` and `showAvailability` (the availability pill in the hero and on /contact). Résumé links and the testimonial card stay hidden while those are empty or `null`.

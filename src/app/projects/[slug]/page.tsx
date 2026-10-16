@@ -8,7 +8,8 @@ import { ProjectRowCard } from "@/components/ui/ProjectCard";
 import Contact from "@/components/sections/Contact";
 import JsonLd from "@/components/JsonLd";
 import { projects, getProjectBySlug } from "@/data/projects";
-import { siteUrl, ogImages } from "@/configs/metaTags";
+import { siteUrl } from "@/configs/metaTags";
+import { author, breadcrumbs, websiteId } from "@/configs/schema";
 
 export function generateStaticParams() {
   return projects.map((project) => ({ slug: project.slug }));
@@ -30,7 +31,6 @@ export function generateMetadata({
       description: project.tagline,
       url: `${siteUrl}/projects/${project.slug}`,
       type: "article",
-      images: project.image ? [{ url: project.image }] : ogImages,
     },
   };
 }
@@ -46,14 +46,29 @@ export default function ProjectPage({
   const index = projects.indexOf(project);
   const next = projects[(index + 1) % projects.length];
 
+  const url = `${siteUrl}/projects/${project.slug}`;
   const jsonLd = {
     "@context": "https://schema.org",
-    "@type": "CreativeWork",
-    name: project.title,
-    description: project.summary,
-    keywords: project.tags.join(", "),
-    author: { "@type": "Person", name: "Shivharakh Yadav", url: siteUrl },
-    url: `${siteUrl}/projects/${project.slug}`,
+    "@graph": [
+      {
+        "@type": "CreativeWork",
+        name: project.title,
+        headline: project.tagline,
+        description: project.summary,
+        image: project.image ? `${siteUrl}${project.image}` : `${url}/opengraph-image`,
+        keywords: project.tags.join(", "),
+        author,
+        inLanguage: "en",
+        url,
+        mainEntityOfPage: url,
+        isPartOf: { "@id": websiteId },
+      },
+      breadcrumbs([
+        ["Home", "/"],
+        ["Work", "/projects"],
+        [project.title, `/projects/${project.slug}`],
+      ]),
+    ],
   };
 
   return (

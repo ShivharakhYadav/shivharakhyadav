@@ -4,14 +4,15 @@ import PageHeader from "@/components/ui/PageHeader";
 import PostCard from "@/components/ui/PostCard";
 import Contact from "@/components/sections/Contact";
 import JsonLd from "@/components/JsonLd";
+import { author, websiteId } from "@/configs/schema";
 import { getPostFeed } from "@/lib/blog";
-import { siteUrl, ogImages } from "@/configs/metaTags";
+import { siteUrl, ogImages, rssFeed } from "@/configs/metaTags";
 
 export const metadata: Metadata = {
   title: "Blog",
   description:
     "Articles on full-stack engineering — multi-tenant SaaS, real-time systems, micro-frontends, and building production web apps with React, Next.js and Node.js.",
-  alternates: { canonical: "/blog" },
+  alternates: { canonical: "/blog", types: { "application/rss+xml": rssFeed } },
   openGraph: {
     title: "Blog — Shivharakh Yadav",
     description:
@@ -30,11 +31,14 @@ export default function BlogIndexPage() {
     "@type": "Blog",
     name: "Shivharakh Yadav — Blog",
     url: `${siteUrl}/blog`,
+    isPartOf: { "@id": websiteId },
+    author,
     blogPost: posts.map((p) => ({
       "@type": "BlogPosting",
       headline: p.title,
       datePublished: p.date,
       url: p.url ?? `${siteUrl}/blog/${p.slug}`,
+      author,
     })),
   };
 

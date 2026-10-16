@@ -2,11 +2,12 @@ import type { Metadata } from "next";
 import Container from "@/components/ui/Container";
 import ContactForm from "@/components/ContactForm";
 import JsonLd from "@/components/JsonLd";
+import { person, websiteId } from "@/configs/schema";
 import { profile } from "@/data/profile";
 import { siteUrl, ogImages } from "@/configs/metaTags";
 
 const description =
-  "Hire Shivharakh Yadav, a full-stack developer in Pune, India (React, Next.js, Node.js). Open to full-time roles and freelance projects, with experience working directly with clients in Australia & the US.";
+  "Contact Shivharakh Yadav, a full-stack developer in Pune, India (React, Next.js, Node.js) who has worked directly with clients in Australia & the US.";
 
 export const metadata: Metadata = {
   title: "Contact",
@@ -56,13 +57,8 @@ const jsonLd = {
       "@type": "ContactPage",
       url: `${siteUrl}/contact`,
       name: "Contact Shivharakh Yadav",
-      mainEntity: {
-        "@type": "Person",
-        name: profile.name,
-        jobTitle: profile.role,
-        email: `mailto:${profile.email}`,
-        url: siteUrl,
-      },
+      isPartOf: { "@id": websiteId },
+      mainEntity: person,
     },
     {
       "@type": "FAQPage",
