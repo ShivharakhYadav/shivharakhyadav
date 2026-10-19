@@ -1,5 +1,8 @@
 import type { Config } from "tailwindcss";
 
+const themeColor = (name: string) =>
+  `color-mix(in srgb, var(--${name}) calc(<alpha-value> * 100%), transparent)`;
+
 const config: Config = {
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
@@ -7,42 +10,37 @@ const config: Config = {
     "./src/app/**/*.{js,ts,jsx,tsx,mdx}",
   ],
   theme: {
-    container: {
-      center: true,
-      padding: {
-        DEFAULT: "1.25rem",
-        sm: "1.5rem",
-        lg: "2rem",
-      },
-      screens: {
-        "2xl": "1152px",
-      },
-    },
     extend: {
+      // Theme colors are CSS variables (globals.css). color-mix lets Tailwind's
+      // opacity modifiers (bg-teal/50, border-coral/40, …) work with them.
       colors: {
-        bg: "var(--bg)",
-        "bg-elevated": "var(--bg-elevated)",
-        surface: "var(--surface)",
-        "surface-hover": "var(--surface-hover)",
-        border: "var(--border)",
-        text: "var(--text)",
-        muted: "var(--muted)",
-        accent: "var(--accent)",
-        "accent-2": "var(--accent-2)",
-        "accent-soft": "var(--accent-soft)",
-      },
-      fontFamily: {
-        sans: ["var(--font-inter)", "system-ui", "sans-serif"],
-        display: ["var(--font-space-grotesk)", "var(--font-inter)", "sans-serif"],
-      },
-      keyframes: {
-        "fade-up": {
-          "0%": { opacity: "0", transform: "translateY(24px)" },
-          "100%": { opacity: "1", transform: "translateY(0)" },
+        bg: themeColor("bg"),
+        card: themeColor("card"),
+        line: themeColor("line"),
+        ink: themeColor("ink"),
+        muted: themeColor("muted"),
+        teal: {
+          DEFAULT: themeColor("teal"),
+          hover: themeColor("teal-hover"),
+        },
+        coral: {
+          DEFAULT: themeColor("coral"),
+          ink: themeColor("coral-ink"),
+        },
+        seaglass: themeColor("seaglass"),
+        linen: {
+          DEFAULT: themeColor("linen"),
+          hover: themeColor("linen-hover"),
         },
       },
-      animation: {
-        "fade-up": "fade-up 0.6s ease forwards",
+      fontFamily: {
+        sans: ["var(--font-dm-sans)", "system-ui", "sans-serif"],
+        display: ["var(--font-outfit)", "system-ui", "sans-serif"],
+      },
+      boxShadow: {
+        lift: "0 20px 40px -12px rgba(20, 48, 58, 0.15)",
+        soft: "0 10px 30px -18px rgba(20, 48, 58, 0.35)",
+        portrait: "0 24px 48px -16px rgba(20, 48, 58, 0.35)",
       },
     },
   },

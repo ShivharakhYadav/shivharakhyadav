@@ -34,3 +34,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# unused original photos, kept locally only (public/ is served as-is)
+/public/profile1.jpg
+/public/profile.JPG

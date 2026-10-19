@@ -4,14 +4,12 @@ import { notFound } from "next/navigation";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 import rehypeHighlight from "rehype-highlight";
-import { FaArrowLeft } from "react-icons/fa6";
 import Container from "@/components/ui/Container";
-import Tag from "@/components/ui/Tag";
-import Navbar from "@/components/sections/Navbar";
-import Footer from "@/components/sections/Footer";
+import Contact from "@/components/sections/Contact";
 import JsonLd from "@/components/JsonLd";
 import { getAllPostSlugs, getPostBySlug, formatDate } from "@/lib/blog";
-import { siteUrl } from "@/configs/metaTags";
+import { siteUrl, rssFeed } from "@/configs/metaTags";
+import { author, breadcrumbs, personRef, websiteId } from "@/configs/schema";
 
 export function generateStaticParams() {
   return getAllPostSlugs().map((slug) => ({ slug }));
@@ -25,15 +23,18 @@ export function generateMetadata({
   const post = getPostBySlug(params.slug);
   if (!post) return { title: "Post not found" };
   return {
-    title: `${post.title} — Shivharakh Yadav`,
+    // long titles drop the " — Shivharakh Yadav" suffix so results don't truncate them
+    title: post.title.length > 45 ? { absolute: post.title } : post.title,
     description: post.excerpt,
-    alternates: { canonical: `/blog/${post.slug}` },
+    alternates: { canonical: `/blog/${post.slug}`, types: { "application/rss+xml": rssFeed } },
     openGraph: {
       title: post.title,
       description: post.excerpt,
       url: `${siteUrl}/blog/${post.slug}`,
       type: "article",
       publishedTime: post.date,
+      modifiedTime: post.updated ?? post.date,
+      authors: [`${siteUrl}/about`],
       tags: post.tags,
     },
   };
@@ -47,68 +48,72 @@ export default function BlogPostPage({
   const post = getPostBySlug(params.slug);
   if (!post) notFound();
 
+  const url = `${siteUrl}/blog/${post.slug}`;
   const jsonLd = {
     "@context": "https://schema.org",
-    "@type": "BlogPosting",
-    headline: post.title,
-    description: post.excerpt,
-    datePublished: post.date,
-    dateModified: post.date,
-    author: { "@type": "Person", name: "Shivharakh Yadav", url: siteUrl },
-    keywords: post.tags.join(", "),
-    url: `${siteUrl}/blog/${post.slug}`,
-    mainEntityOfPage: `${siteUrl}/blog/${post.slug}`,
+    "@graph": [
+      {
+        "@type": "BlogPosting",
+        headline: post.title,
+        description: post.excerpt,
+        image: `${url}/opengraph-image`,
+        datePublished: post.date,
+        dateModified: post.updated ?? post.date,
+        author,
+        publisher: personRef,
+        inLanguage: "en",
+        keywords: post.tags.join(", "),
+        url,
+        mainEntityOfPage: url,
+        isPartOf: { "@id": websiteId },
+      },
+      breadcrumbs([
+        ["Home", "/"],
+        ["Writing", "/blog"],
+        [post.title, `/blog/${post.slug}`],
+      ]),
+    ],
   };
 
   return (
-    <>
-      <Navbar />
-      <main className="py-16 sm:py-24">
-        <Container className="max-w-3xl">
-          <Link
-            href="/blog"
-            className="inline-flex items-center gap-2 text-sm font-medium text-muted transition-colors hover:text-accent"
-          >
-            <FaArrowLeft className="h-3.5 w-3.5" /> Back to blog
-          </Link>
-
-          <header className="mt-8">
-            <div className="mb-4 flex items-center gap-3 text-sm text-muted">
-              <time dateTime={post.date}>{formatDate(post.date)}</time>
-              <span aria-hidden="true">·</span>
-              <span>{post.readingTime}</span>
-            </div>
-            <h1 className="font-display text-3xl font-bold leading-tight sm:text-4xl">
+    <main>
+      <Container className="max-w-[760px]">
+        <article className="pb-20">
+          <header className="space-y-5 pt-12 sm:pt-20">
+            <Link href="/blog" className="text-link inline-block py-1 text-sm">
+              ← All posts
+            </Link>
+            <h1 className="font-display text-[clamp(1.875rem,1.3rem+2.6vw,3.25rem)] font-semibold leading-[1.1] tracking-[-0.04em]">
               {post.title}
             </h1>
-            <div className="mt-5 flex flex-wrap gap-2">
-              {post.tags.map((tag) => (
-                <Tag key={tag}>{tag}</Tag>
-              ))}
-            </div>
+            <p className="text-sm text-muted">
+              <time dateTime={post.date}>{formatDate(post.date)}</time>
+              {" · "}
+              {post.readingTime}
+            </p>
+            {post.tags.length > 0 && (
+              <ul className="flex flex-wrap gap-2">
+                {post.tags.map((t) => (
+                  <li key={t} className="chip">
+                    {t}
+                  </li>
+                ))}
+              </ul>
+            )}
           </header>
 
-          <article className="prose prose-invert mt-10 max-w-none prose-headings:font-display prose-a:text-accent prose-a:no-underline hover:prose-a:underline prose-strong:text-text">
+          <div className="prose prose-lg mt-12 max-w-none prose-headings:font-semibold prose-a:underline-offset-4">
             <ReactMarkdown
               remarkPlugins={[remarkGfm]}
               rehypePlugins={[rehypeHighlight]}
             >
               {post.content}
             </ReactMarkdown>
-          </article>
-
-          <div className="mt-16 border-t border-border pt-8">
-            <Link
-              href="/#contact"
-              className="inline-flex items-center gap-2 rounded-full bg-accent px-6 py-3 text-sm font-semibold text-bg transition-transform hover:-translate-y-0.5"
-            >
-              Enjoyed this? Let&apos;s connect
-            </Link>
           </div>
-        </Container>
-      </main>
-      <Footer />
+        </article>
+      </Container>
+      <Contact />
       <JsonLd data={jsonLd} />
-    </>
+    </main>
   );
 }

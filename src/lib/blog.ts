@@ -1,6 +1,7 @@
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
+import { externalPosts } from "@/data/externalPosts";
 
 const POSTS_DIR = path.join(process.cwd(), "content", "blog");
 
@@ -8,9 +9,15 @@ export interface PostMeta {
   slug: string;
   title: string;
   date: string; // ISO string, e.g. "2026-05-12"
+  /** Last meaningful edit (front-matter `updated`), ISO date; falls back to `date`. */
+  updated?: string;
   excerpt: string;
   tags: string[];
   readingTime: string;
+  /** Set for articles published elsewhere: the card links here instead of /blog/[slug]. */
+  url?: string;
+  /** Where an external article lives, e.g. "Medium". */
+  source?: string;
 }
 
 export interface Post extends PostMeta {
@@ -46,6 +53,7 @@ export function getPostBySlug(slug: string): Post | undefined {
     slug,
     title: data.title ?? slug,
     date: data.date ? new Date(data.date).toISOString().slice(0, 10) : "",
+    ...(data.updated && { updated: new Date(data.updated).toISOString().slice(0, 10) }),
     excerpt: data.excerpt ?? "",
     tags: Array.isArray(data.tags) ? data.tags : [],
     readingTime: readingTime(content),
@@ -59,6 +67,11 @@ export function getAllPosts(): PostMeta[] {
     .filter((p): p is Post => Boolean(p))
     .sort((a, b) => (a.date < b.date ? 1 : -1))
     .map(({ content, ...meta }) => meta);
+}
+
+/** Local posts plus articles published elsewhere, newest first (for listings). */
+export function getPostFeed(): PostMeta[] {
+  return [...getAllPosts(), ...externalPosts].sort((a, b) => (a.date < b.date ? 1 : -1));
 }
 
 export function getAllPostSlugs(): string[] {

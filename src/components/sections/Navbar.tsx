@@ -1,158 +1,108 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { FaBars, FaXmark } from "react-icons/fa6";
-import Container from "@/components/ui/Container";
 
-type NavItem = { name: string; href: string; type: "section" | "route" };
-
-const navigation: NavItem[] = [
-  { name: "About", href: "/#about", type: "section" },
-  { name: "What I Do", href: "/#skills", type: "section" },
-  { name: "Projects", href: "/projects", type: "route" },
-  { name: "Blog", href: "/blog", type: "route" },
-  { name: "Contact", href: "/#contact", type: "section" },
+const links = [
+  { name: "Work", href: "/projects" },
+  { name: "About", href: "/about" },
+  { name: "Experience", href: "/experience" },
+  { name: "Writing", href: "/blog" },
 ];
-
-const sectionIds = ["about", "skills", "projects", "writing", "contact"];
+// /contact is reached through the "Let's talk" button, not a separate link
 
 export default function Navbar() {
   const pathname = usePathname();
-  const isHome = pathname === "/";
+  const [open, setOpen] = useState(false);
 
-  const [scrolled, setScrolled] = useState(false);
-  const [mobileOpen, setMobileOpen] = useState(false);
-  const [activeSection, setActiveSection] = useState<string>("");
+  // close the mobile menu after navigating
+  useEffect(() => setOpen(false), [pathname]);
 
-  const handleScroll = useCallback(() => {
-    setScrolled(window.scrollY > 20);
-  }, []);
-
-  useEffect(() => {
-    window.addEventListener("scroll", handleScroll, { passive: true });
-    handleScroll();
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, [handleScroll]);
-
-  // Section highlighting only applies on the homepage where the sections exist.
-  useEffect(() => {
-    if (!isHome) return;
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) setActiveSection(entry.target.id);
-        });
-      },
-      { rootMargin: "-45% 0px -50% 0px" }
-    );
-    sectionIds.forEach((id) => {
-      const el = document.getElementById(id);
-      if (el) observer.observe(el);
-    });
-    return () => observer.disconnect();
-  }, [isHome]);
-
-  useEffect(() => {
-    document.body.style.overflow = mobileOpen ? "hidden" : "";
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [mobileOpen]);
-
-  const isActive = (item: NavItem) => {
-    if (item.type === "route") return pathname.startsWith(item.href);
-    // section link, e.g. "/#about"
-    if (!isHome) return false;
-    return activeSection === item.href.replace("/#", "");
-  };
-
-  // The bar floats as a detached glass pill once the page is scrolled.
-  const pillStyle =
-    scrolled || mobileOpen
-      ? "glass border-border shadow-[0_8px_30px_-12px_rgba(0,0,0,0.6)]"
-      : "border-transparent";
+  const isActive = (l: (typeof links)[number]) => pathname.startsWith(l.href);
+  const onContact = pathname.startsWith("/contact");
 
   return (
-    <header className="sticky top-0 z-50 pt-3">
-      <Container>
-        <div
-          className={`rounded-2xl border transition-all duration-300 ${pillStyle}`}
+    <header className="sticky top-4 z-50 flex justify-center px-5 pt-6">
+      <nav
+        aria-label="Main"
+        className="relative flex items-center gap-1 rounded-full border border-line bg-card/90 p-1.5 pl-2 shadow-soft backdrop-blur sm:gap-6 sm:pl-2.5"
+      >
+        <Link
+          href="/"
+          aria-label="Shivharakh Yadav — home"
+          title="Home"
+          className="grid h-9 w-9 place-items-center rounded-full bg-teal font-display text-[13px] font-semibold text-white ring-coral/50 ring-offset-2 ring-offset-card transition hover:ring-2"
         >
-          <nav
-            aria-label="Global"
-            className="flex items-center justify-between px-4 py-3 sm:px-5"
-          >
-            <Link
-              href="/"
-              className="font-display text-lg font-bold tracking-tight"
-            >
-              SY<span className="text-accent">.</span>
-            </Link>
+          SY
+        </Link>
 
-            {/* Desktop links */}
-            <div className="hidden items-center gap-1 lg:flex">
-              {navigation.map((item) => (
+        <ul className="hidden items-center gap-6 text-[15px] font-medium text-muted sm:flex">
+          {links.map((l) => {
+            const active = isActive(l);
+            return (
+              <li key={l.href}>
                 <Link
-                  key={item.name}
-                  href={item.href}
-                  className={`rounded-full px-4 py-2 text-sm font-medium transition-colors hover:text-accent ${
-                    isActive(item)
-                      ? "bg-accent-soft text-accent"
-                      : "text-muted"
+                  href={l.href}
+                  aria-current={active ? "page" : undefined}
+                  className={`relative transition hover:text-ink after:absolute after:-bottom-1.5 after:left-1/2 after:h-[3px] after:w-4 after:-translate-x-1/2 after:rounded after:bg-coral after:transition after:duration-300 ${
+                    active ? "text-ink after:opacity-100" : "after:opacity-0"
                   }`}
                 >
-                  {item.name}
+                  {l.name}
                 </Link>
-              ))}
-              <Link
-                href="/#contact"
-                className="btn-primary ml-3 !px-5 !py-2"
-              >
-                Let&apos;s talk
-              </Link>
-            </div>
+              </li>
+            );
+          })}
+        </ul>
 
-            {/* Mobile toggle */}
-            <button
-              type="button"
-              onClick={() => setMobileOpen((v) => !v)}
-              className="inline-flex items-center justify-center rounded-md p-2 text-text lg:hidden"
-              aria-label={mobileOpen ? "Close menu" : "Open menu"}
-              aria-expanded={mobileOpen}
-            >
-              {mobileOpen ? (
-                <FaXmark className="h-6 w-6" />
-              ) : (
-                <FaBars className="h-6 w-6" />
-              )}
-            </button>
-          </nav>
+        <button
+          type="button"
+          onClick={() => setOpen((o) => !o)}
+          aria-expanded={open}
+          aria-controls="mobile-menu"
+          className="ml-1 rounded-full px-4 py-2.5 text-[15px] font-medium text-ink transition hover:bg-linen sm:hidden"
+        >
+          {open ? "Close" : "Menu"}
+        </button>
 
-          {/* Mobile menu */}
-          {mobileOpen && (
-            <div className="border-t border-border lg:hidden">
-              <div className="flex flex-col gap-1 p-3">
-                {navigation.map((item) => (
+        <Link
+          href="/contact"
+          aria-current={onContact ? "page" : undefined}
+          className={`ml-1 rounded-full px-5 py-2.5 text-[15px] font-medium text-bg transition hover:bg-teal sm:ml-2 ${
+            onContact ? "bg-teal" : "bg-ink"
+          }`}
+        >
+          Let’s talk
+        </Link>
+
+        {open && (
+          <ul
+            id="mobile-menu"
+            className="absolute left-0 right-0 top-[calc(100%+8px)] rounded-3xl border border-line bg-card p-2 shadow-soft sm:hidden"
+          >
+            {/* phones only show the monogram, so the menu spells out Home */}
+            {[{ name: "Home", href: "/" }, ...links].map((l) => {
+              const active = l.href === "/" ? pathname === "/" : isActive(l);
+              return (
+                <li key={l.href}>
                   <Link
-                    key={item.name}
-                    href={item.href}
-                    onClick={() => setMobileOpen(false)}
-                    className={`rounded-xl px-3 py-2.5 text-base font-medium transition-colors hover:bg-surface hover:text-accent ${
-                      isActive(item)
-                        ? "bg-accent-soft text-accent"
-                        : "text-muted"
+                    href={l.href}
+                    onClick={() => setOpen(false)}
+                    aria-current={active ? "page" : undefined}
+                    className={`flex items-center justify-between rounded-2xl px-4 py-3 text-[15px] font-medium transition hover:bg-linen ${
+                      active ? "text-ink" : "text-muted"
                     }`}
                   >
-                    {item.name}
+                    {l.name}
+                    {active && <span className="h-2 w-2 rounded-full bg-coral" aria-hidden="true" />}
                   </Link>
-                ))}
-              </div>
-            </div>
-          )}
-        </div>
-      </Container>
+                </li>
+              );
+            })}
+          </ul>
+        )}
+      </nav>
     </header>
   );
 }

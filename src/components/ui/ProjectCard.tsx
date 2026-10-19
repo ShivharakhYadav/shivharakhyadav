@@ -1,31 +1,95 @@
 import Link from "next/link";
-import { FaArrowRight } from "react-icons/fa6";
+import Screenshot from "@/components/ui/Screenshot";
+import Headline from "@/components/ui/Headline";
 import type { Project } from "@/data/projects";
-import Tag from "./Tag";
 
-export default function ProjectCard({ project }: { project: Project }) {
+/** h2 on pages that list projects directly under the h1, h3 inside a titled section. */
+type Heading = "h2" | "h3";
+
+/** Large case-study card: screenshot beside eyebrow, title, one line and the lead result. */
+export function ProjectCard({
+  project,
+  flip = false,
+  as: H = "h3",
+}: {
+  project: Project;
+  flip?: boolean;
+  as?: Heading;
+}) {
   return (
-    <Link
-      href={`/projects/${project.slug}`}
-      className="card group flex h-full flex-col p-6"
-    >
-      <div className="mb-4 flex items-center justify-between">
-        <span className="text-3xl" aria-hidden="true">
-          {project.emoji}
+    <article className="h-full">
+      <Link
+        href={`/projects/${project.slug}`}
+        className="card lift grid h-full grid-cols-1 content-start items-center gap-8 p-5 sm:p-8 lg:grid-cols-2 lg:content-center lg:gap-14"
+      >
+        <Screenshot
+          src={project.image}
+          alt={`${project.title} screenshot`}
+          stack={project.tags}
+          tint={flip ? "linen" : "seaglass"}
+          className={`h-[240px] sm:h-[280px] lg:h-[380px] ${flip ? "lg:order-2" : ""}`}
+        />
+        <div className="space-y-4">
+          <p className="eyebrow text-coral-ink">{project.eyebrow}</p>
+          <H className="font-display text-[30px] font-semibold leading-[1.1] tracking-[-0.04em] sm:text-[36px]">
+            {project.title}
+          </H>
+          <p className="text-[17px] leading-relaxed text-muted">
+            {project.tagline}
+          </p>
+          <Headline {...project.headline} />
+          <span className="text-link inline-block">Read case study →</span>
+        </div>
+      </Link>
+    </article>
+  );
+}
+
+/**
+ * Compact one-row card for the third featured project and "next project" links.
+ * Stacked on phones; cover + text (result under the tagline) on tablets; the
+ * result gets its own column only from xl, where there's room for all three.
+ */
+export function ProjectRowCard({
+  project,
+  as: H = "h3",
+}: {
+  project: Project;
+  as?: Heading;
+}) {
+  return (
+    <article>
+      <Link
+        href={`/projects/${project.slug}`}
+        className="card lift flex flex-col gap-6 p-5 sm:flex-row sm:items-center sm:gap-8"
+      >
+        <Screenshot
+          src={project.image}
+          alt={`${project.title} screenshot`}
+          stack={project.tags}
+          compact
+          className="h-[136px] w-full shrink-0 sm:h-[160px] sm:w-[200px] xl:h-[136px] xl:w-[220px]"
+        />
+        <div className="min-w-0 flex-1 space-y-2">
+          <p className="eyebrow text-coral-ink">{project.eyebrow}</p>
+          <H className="font-display text-[26px] font-semibold tracking-[-0.03em]">
+            {project.title}
+          </H>
+          <p className="leading-relaxed text-muted">{project.tagline}</p>
+          <div className="pt-2 xl:hidden">
+            <Headline {...project.headline} compact />
+          </div>
+        </div>
+        <div className="hidden w-[220px] shrink-0 text-right xl:block">
+          <Headline {...project.headline} compact />
+        </div>
+        <span
+          className="hidden font-display text-[28px] text-teal sm:block"
+          aria-hidden="true"
+        >
+          →
         </span>
-        <FaArrowRight className="h-4 w-4 text-muted transition-all duration-300 group-hover:translate-x-1 group-hover:text-accent" />
-      </div>
-      <h3 className="font-display text-lg font-semibold text-text transition-colors group-hover:text-accent">
-        {project.title}
-      </h3>
-      <p className="mt-2 flex-1 text-sm leading-relaxed text-muted">
-        {project.summary}
-      </p>
-      <div className="mt-5 flex flex-wrap gap-2">
-        {project.tags.slice(0, 4).map((tag) => (
-          <Tag key={tag}>{tag}</Tag>
-        ))}
-      </div>
-    </Link>
+      </Link>
+    </article>
   );
 }

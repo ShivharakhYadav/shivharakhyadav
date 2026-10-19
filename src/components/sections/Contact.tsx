@@ -1,46 +1,63 @@
-import { FaArrowRight } from "react-icons/fa6";
+import Link from "next/link";
 import Container from "@/components/ui/Container";
-import SectionHeading from "@/components/ui/SectionHeading";
-import SocialIcon from "@/components/ui/SocialIcon";
-import Reveal from "@/components/Reveal";
 import { profile } from "@/data/profile";
+import EmailText from "@/components/ui/EmailText";
 
-export default function Contact() {
+/** Closing call to action; ends the home page and every inner page. */
+export default function Contact({ id = "contact" }: { id?: string }) {
   return (
-    <section id="contact" aria-label="Contact" className="scroll-mt-24 py-24">
-      <Container>
-        <Reveal>
-          <div className="relative mx-auto max-w-2xl overflow-hidden rounded-3xl border border-border bg-surface p-8 text-center sm:p-12">
-            {/* Ambient accent glows inside the panel */}
-            <div
-              aria-hidden="true"
-              className="pointer-events-none absolute -top-24 left-1/2 h-48 w-96 -translate-x-1/2 rounded-full bg-accent/10 blur-3xl"
-            />
-            <div
-              aria-hidden="true"
-              className="pointer-events-none absolute -bottom-24 -right-16 h-48 w-72 rounded-full bg-accent-2/10 blur-3xl"
-            />
-            <div className="relative">
-              <SectionHeading eyebrow="Get in touch" title="Let's Work Together" />
-              <p className="mx-auto -mt-6 max-w-lg leading-relaxed text-muted">
-                I&apos;m open to full-stack and frontend engineer roles, and I love
-                collaborating with cross-functional teams. Drop me a line — I&apos;ll
-                get back to you.
-              </p>
-
-              <a href={`mailto:${profile.email}`} className="btn-primary mt-8">
-                Say hello <FaArrowRight className="h-3.5 w-3.5" />
+    <Container>
+      <section
+        id={id}
+        aria-labelledby={`${id}-title`}
+        className="flex flex-col items-center gap-6 rounded-[40px] bg-seaglass px-6 py-16 text-center sm:px-16 sm:py-20"
+      >
+        <h2
+          id={`${id}-title`}
+          className="max-w-[820px] font-display fs-section font-semibold leading-[1.15] tracking-[-0.05em]"
+        >
+          Let’s build something people{" "}
+          <span className="coral-underline whitespace-nowrap">love to use</span>.
+        </h2>
+        <p className="text-lg text-muted">
+          {profile.showAvailability
+            ? "Open to full-time roles and selective freelance work. I reply within a day."
+            : "Have a product to build or an idea to talk through? I reply within a day."}
+        </p>
+        <div className="flex max-w-full flex-wrap justify-center gap-3.5">
+          <a
+            href={`mailto:${profile.email}`}
+            className="max-w-full rounded-full bg-teal px-6 py-4 text-[15px] font-medium text-white transition hover:bg-teal-hover sm:px-8 sm:text-[17px]"
+          >
+            <EmailText email={profile.email} />
+          </a>
+          <Link href="/contact" className="btn-secondary text-[17px]">
+            Send a message →
+          </Link>
+        </div>
+        <p className="inline-flex items-center gap-2 text-[15px] text-muted">
+          <span className="h-2 w-2 rounded-full bg-coral" aria-hidden="true" />
+          Based in Pune, India
+        </p>
+        <ul className="flex gap-7 font-medium">
+          {profile.socials
+            .filter((s) => s.icon !== "email")
+            .map((s) => (
+              <li key={s.label}>
+                <a href={s.href} target="_blank" rel="noopener noreferrer" className="inline-block py-1.5 transition hover:text-teal">
+                  {s.label}
+                </a>
+              </li>
+            ))}
+          {profile.resumeUrl && (
+            <li>
+              <a href={profile.resumeUrl} className="inline-block py-1.5 transition hover:text-teal">
+                Résumé
               </a>
-
-              <div className="mt-8 flex items-center justify-center gap-3">
-                {profile.socials.map((social) => (
-                  <SocialIcon key={social.label} social={social} />
-                ))}
-              </div>
-            </div>
-          </div>
-        </Reveal>
-      </Container>
-    </section>
+            </li>
+          )}
+        </ul>
+      </section>
+    </Container>
   );
 }

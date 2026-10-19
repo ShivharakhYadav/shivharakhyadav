@@ -1,26 +1,48 @@
+import Link from "next/link";
 import Container from "@/components/ui/Container";
-import SocialIcon from "@/components/ui/SocialIcon";
 import { profile } from "@/data/profile";
+
+const links = [
+  { name: "Home", href: "/" },
+  { name: "Work", href: "/projects" },
+  { name: "About", href: "/about" },
+  { name: "Experience", href: "/experience" },
+  { name: "Writing", href: "/blog" },
+  { name: "Contact", href: "/contact" },
+];
 
 export default function Footer() {
   return (
-    <footer className="relative border-t border-border/70 py-8">
-      {/* Accent hairline along the footer's top edge */}
-      <div
-        aria-hidden="true"
-        className="absolute inset-x-0 top-0 mx-auto h-px w-2/3 bg-gradient-to-r from-transparent via-accent/40 to-transparent"
-      />
-      <Container>
-        <div className="flex flex-col items-center justify-between gap-4 sm:flex-row">
-          <p className="text-sm text-muted">
-            © {profile.name}. Built with Next.js & Tailwind CSS.
-          </p>
-          <div className="flex items-center gap-3">
-            {profile.socials.map((social) => (
-              <SocialIcon key={social.label} social={social} />
+    <footer>
+      <Container className="flex flex-col gap-4 py-10 text-[13px] text-muted lg:flex-row lg:items-center lg:justify-between">
+        <span>
+          © {new Date().getFullYear()} {profile.name}
+        </span>
+        {/* links first on phones and tablets; one row with © and tagline from lg */}
+        <nav aria-label="Footer" className="order-first lg:order-none">
+          <ul className="flex flex-wrap gap-x-5">
+            {links.map((l) => (
+              <li key={l.href}>
+                <Link href={l.href} className="inline-block py-1.5 transition hover:text-ink">
+                  {l.name}
+                </Link>
+              </li>
             ))}
-          </div>
-        </div>
+            {profile.resumeUrl && (
+              <li>
+                <a href={profile.resumeUrl} className="inline-block py-1.5 transition hover:text-ink">
+                  Résumé
+                </a>
+              </li>
+            )}
+            <li>
+              <a href="/blog/rss.xml" className="inline-block py-1.5 transition hover:text-ink">
+                RSS
+              </a>
+            </li>
+          </ul>
+        </nav>
+        <span>Designed &amp; built with care in Pune</span>
       </Container>
     </footer>
   );
