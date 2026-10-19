@@ -3,6 +3,7 @@ import Container from "@/components/ui/Container";
 import { profile } from "@/data/profile";
 
 const links = [
+  { name: "Home", href: "/" },
   { name: "Work", href: "/projects" },
   { name: "About", href: "/about" },
   { name: "Experience", href: "/experience" },

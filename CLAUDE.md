@@ -36,7 +36,7 @@ There is no test setup and no ESLint config (`next lint` would prompt); use `npx
 - **Contact form** (`src/components/ContactForm.tsx`) posts to Formspree using `NEXT_PUBLIC_FORMSPREE_ID` (see `.env.example`; set it in `.env.local` and in Vercel). Without it, the page shows an "Email me directly" fallback.
 - **Content lives in data files, not JSX:**
   - `src/data/profile.ts`: bio, socials, hero words, stats, `resumeUrl`, `testimonial` and `showAvailability` (the availability pill in the hero and on /contact). Résumé links and the testimonial card stay hidden while those are empty or `null`.
-  - `src/data/projects.ts`: case studies. Each has an `eyebrow`, one-line `tagline`, lead `headline` result, optional screenshot `image` (a framed placeholder shows without one) and `metrics` (key facts that shouldn't repeat the headline). `featuredProjects` sets the three shown on the home page, strongest first.
+  - `src/data/projects.ts`: case studies. Each has an `eyebrow`, one-line `tagline`, lead `headline` result, optional screenshot `image` (cards show a "Built with" cover from `tags` without one, and the case-study page shows no frame) and `metrics` (key facts that shouldn't repeat the headline). `featuredProjects` sets the three shown on the home page, strongest first.
   - `src/data/experience.ts`: the jobs timeline. Optional fields are `logo` (initials are shown otherwise), `location`, `highlights` and `projects` (project slugs). It also holds `careerHighlights`.
   - `src/data/skills.ts`: grouped skills for /about and schema.org `knowsAbout`.
   - `src/data/techLogos.ts`: Simple Icons SVG paths (CC0) for the logo carousel.

@@ -8,6 +8,7 @@ import { ProjectRowCard } from "@/components/ui/ProjectCard";
 import Contact from "@/components/sections/Contact";
 import JsonLd from "@/components/JsonLd";
 import { projects, getProjectBySlug } from "@/data/projects";
+import { experience } from "@/data/experience";
 import { siteUrl } from "@/configs/metaTags";
 import { author, breadcrumbs, websiteId } from "@/configs/schema";
 
@@ -42,6 +43,9 @@ export default function ProjectPage({
 }) {
   const project = getProjectBySlug(params.slug);
   if (!project) notFound();
+
+  // the role this was built in, from experience.ts
+  const job = experience.find((j) => j.projects?.includes(project.slug));
 
   const index = projects.indexOf(project);
   const next = projects[(index + 1) % projects.length];
@@ -86,6 +90,15 @@ export default function ProjectPage({
             <p className="text-[17px] leading-relaxed text-muted sm:text-[19px]">
               {project.summary}
             </p>
+            {job && (
+              <p className="text-[15px] text-muted">
+                Built as <span className="font-medium text-ink">{job.role}</span> at{" "}
+                <Link href="/experience" className="text-link">
+                  {job.company.replace(/ Pvt\. Ltd\.$/, "")}
+                </Link>{" "}
+                · {job.period}
+              </p>
+            )}
             <ul className="flex flex-wrap gap-2 pt-1">
               {project.tags.map((t) => (
                 <li key={t} className="chip">
@@ -111,12 +124,15 @@ export default function ProjectPage({
             ))}
           </dl>
 
-          <Screenshot
-            src={project.image}
-            alt={`${project.title} screenshot`}
-            className="mt-6 h-[260px] sm:h-[560px]"
-            priority
-          />
+          {/* only real screenshots here; the cards show a stack cover instead */}
+          {project.image && (
+            <Screenshot
+              src={project.image}
+              alt={`${project.title} screenshot`}
+              className="mt-6 h-[260px] sm:h-[560px]"
+              priority
+            />
+          )}
 
           <div className="max-w-[920px] space-y-14 py-20 sm:space-y-16">
             <CaseSection title="The problem">

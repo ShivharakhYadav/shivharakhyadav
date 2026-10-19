@@ -26,7 +26,7 @@ export default function Highlights() {
         </Link>
         <Link
           href="/experience#awards"
-          className="lift group flex min-h-[210px] flex-col justify-between rounded-[32px] border border-line bg-card p-8"
+          className="lift group flex min-h-[210px] flex-col justify-between gap-5 rounded-[32px] border border-line bg-card p-8"
         >
           <span className="eyebrow flex justify-between text-coral-ink">
             Recognition <Arrow />

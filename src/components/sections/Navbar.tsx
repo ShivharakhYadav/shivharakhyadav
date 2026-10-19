@@ -9,8 +9,8 @@ const links = [
   { name: "About", href: "/about" },
   { name: "Experience", href: "/experience" },
   { name: "Writing", href: "/blog" },
-  { name: "Contact", href: "/contact" },
 ];
+// /contact is reached through the "Let's talk" button, not a separate link
 
 export default function Navbar() {
   const pathname = usePathname();
@@ -20,6 +20,7 @@ export default function Navbar() {
   useEffect(() => setOpen(false), [pathname]);
 
   const isActive = (l: (typeof links)[number]) => pathname.startsWith(l.href);
+  const onContact = pathname.startsWith("/contact");
 
   return (
     <header className="sticky top-4 z-50 flex justify-center px-5 pt-6">
@@ -30,7 +31,8 @@ export default function Navbar() {
         <Link
           href="/"
           aria-label="Shivharakh Yadav — home"
-          className="grid h-9 w-9 place-items-center rounded-full bg-teal font-display text-[13px] font-semibold text-white"
+          title="Home"
+          className="grid h-9 w-9 place-items-center rounded-full bg-teal font-display text-[13px] font-semibold text-white ring-coral/50 ring-offset-2 ring-offset-card transition hover:ring-2"
         >
           SY
         </Link>
@@ -66,7 +68,10 @@ export default function Navbar() {
 
         <Link
           href="/contact"
-          className="ml-1 rounded-full bg-ink px-5 py-2.5 text-[15px] font-medium text-bg transition hover:bg-teal sm:ml-2"
+          aria-current={onContact ? "page" : undefined}
+          className={`ml-1 rounded-full px-5 py-2.5 text-[15px] font-medium text-bg transition hover:bg-teal sm:ml-2 ${
+            onContact ? "bg-teal" : "bg-ink"
+          }`}
         >
           Let’s talk
         </Link>
@@ -76,20 +81,25 @@ export default function Navbar() {
             id="mobile-menu"
             className="absolute left-0 right-0 top-[calc(100%+8px)] rounded-3xl border border-line bg-card p-2 shadow-soft sm:hidden"
           >
-            {links.map((l) => (
-              <li key={l.href}>
-                <Link
-                  href={l.href}
-                  onClick={() => setOpen(false)}
-                  className={`flex items-center justify-between rounded-2xl px-4 py-3 text-[15px] font-medium transition hover:bg-linen ${
-                    isActive(l) ? "text-ink" : "text-muted"
-                  }`}
-                >
-                  {l.name}
-                  {isActive(l) && <span className="h-2 w-2 rounded-full bg-coral" aria-hidden="true" />}
-                </Link>
-              </li>
-            ))}
+            {/* phones only show the monogram, so the menu spells out Home */}
+            {[{ name: "Home", href: "/" }, ...links].map((l) => {
+              const active = l.href === "/" ? pathname === "/" : isActive(l);
+              return (
+                <li key={l.href}>
+                  <Link
+                    href={l.href}
+                    onClick={() => setOpen(false)}
+                    aria-current={active ? "page" : undefined}
+                    className={`flex items-center justify-between rounded-2xl px-4 py-3 text-[15px] font-medium transition hover:bg-linen ${
+                      active ? "text-ink" : "text-muted"
+                    }`}
+                  >
+                    {l.name}
+                    {active && <span className="h-2 w-2 rounded-full bg-coral" aria-hidden="true" />}
+                  </Link>
+                </li>
+              );
+            })}
           </ul>
         )}
       </nav>

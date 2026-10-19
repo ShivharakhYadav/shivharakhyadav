@@ -25,6 +25,7 @@ export function ProjectCard({
         <Screenshot
           src={project.image}
           alt={`${project.title} screenshot`}
+          stack={project.tags}
           tint={flip ? "linen" : "seaglass"}
           className={`h-[240px] sm:h-[380px] ${flip ? "lg:order-2" : ""}`}
         />
@@ -61,6 +62,8 @@ export function ProjectRowCard({
         <Screenshot
           src={project.image}
           alt={`${project.title} screenshot`}
+          stack={project.tags}
+          compact
           className="h-[136px] w-full shrink-0 sm:w-[220px]"
         />
         <div className="flex-1 space-y-2">

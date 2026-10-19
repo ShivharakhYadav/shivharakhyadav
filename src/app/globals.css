@@ -114,6 +114,13 @@ body {
   opacity: 1;
   transform: none;
 }
+/* without JavaScript nothing would reveal it, so never hide it */
+@media (scripting: none) {
+  .reveal {
+    opacity: 1;
+    transform: none;
+  }
+}
 
 @media (prefers-reduced-motion: reduce) {
   html {

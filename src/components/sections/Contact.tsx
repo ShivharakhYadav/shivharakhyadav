@@ -19,7 +19,9 @@ export default function Contact({ id = "contact" }: { id?: string }) {
           <span className="coral-underline whitespace-nowrap">love to use</span>.
         </h2>
         <p className="text-lg text-muted">
-          Open to full-time roles and selective freelance work. I reply within a day.
+          {profile.showAvailability
+            ? "Open to full-time roles and selective freelance work. I reply within a day."
+            : "Have a product to build or an idea to talk through? I reply within a day."}
         </p>
         <div className="flex max-w-full flex-wrap justify-center gap-3.5">
           <a

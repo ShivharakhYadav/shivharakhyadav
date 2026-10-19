@@ -24,10 +24,15 @@ export const metadata: Metadata = {
 
 // Answers use only facts stated elsewhere on the site.
 const faqs = [
-  {
-    q: "Are you available for full-time roles or freelance work?",
-    a: "Both. I’m open to full-time full-stack and frontend roles, and to selective freelance projects.",
-  },
+  // only asked while the availability pill is shown (profile.showAvailability)
+  ...(profile.showAvailability
+    ? [
+        {
+          q: "Are you available for full-time roles or freelance work?",
+          a: "Both. I’m open to full-time full-stack and frontend roles, and to selective freelance projects.",
+        },
+      ]
+    : []),
   {
     q: "Do you work with clients outside India?",
     a: "Yes. I’ve worked directly with clients in Australia and the US: joining requirement calls, running demos and turning feedback into shipped features. I’m based in Pune, India (IST, UTC+5:30).",
@@ -85,8 +90,9 @@ export default function ContactPage() {
               <span className="coral-underline whitespace-nowrap">love to use</span>.
             </h1>
             <p className="text-[17px] leading-relaxed text-muted sm:text-[19px]">
-              Hiring for a full-stack or frontend role, or have a product that
-              needs building? Tell me about it. I reply within a day.
+              {profile.showAvailability
+                ? "Hiring for a full-stack or frontend role, or have a product that needs building? Tell me about it. I reply within a day."
+                : "Have a product that needs building, or want to talk through an idea? Tell me about it. I reply within a day."}
             </p>
             {profile.showAvailability && (
               <span className="inline-flex items-center gap-2 rounded-full border border-line bg-card px-4 py-2 text-sm font-medium">
@@ -96,8 +102,8 @@ export default function ContactPage() {
             )}
 
             <dl className="grid gap-4 pt-4 sm:grid-cols-2">
-              <Info label="Email">
-                <a href={`mailto:${profile.email}`} className="text-link break-all">
+              <Info label="Email" wide>
+                <a href={`mailto:${profile.email}`} className="text-link break-words">
                   {profile.email}
                 </a>
               </Info>
@@ -105,7 +111,7 @@ export default function ContactPage() {
                 Pune, India · {profile.timezone}
               </Info>
               <Info label="Worked with">Clients in Australia &amp; the US</Info>
-              <Info label="Elsewhere">
+              <Info label="Elsewhere" wide>
                 <span className="flex gap-5">
                   {socials.map((s) => (
                     <a key={s.label} href={s.href} target="_blank" rel="noopener noreferrer" className="text-link">
@@ -147,9 +153,9 @@ export default function ContactPage() {
   );
 }
 
-function Info({ label, children }: { label: string; children: React.ReactNode }) {
+function Info({ label, wide = false, children }: { label: string; wide?: boolean; children: React.ReactNode }) {
   return (
-    <div className="rounded-2xl bg-linen p-5">
+    <div className={`rounded-2xl bg-linen p-5 ${wide ? "sm:col-span-2" : ""}`}>
       <dt className="eyebrow text-muted">{label}</dt>
       <dd className="mt-2 font-medium">{children}</dd>
     </div>

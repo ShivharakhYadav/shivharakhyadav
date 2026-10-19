@@ -6,7 +6,10 @@ import { profile } from "@/data/profile";
 // Free Formspree form that forwards messages to email. Set in .env.local and in Vercel.
 const formId = process.env.NEXT_PUBLIC_FORMSPREE_ID;
 
-const reasons = ["Full-time role", "Freelance project", "Just saying hi"];
+// job-related options only while the availability pill is shown
+const reasons = profile.showAvailability
+  ? ["Full-time role", "Freelance project", "Just saying hi"]
+  : ["A project", "Collaboration", "Just saying hi"];
 
 type Status = "idle" | "sending" | "sent" | "error";
 
@@ -22,7 +25,7 @@ export default function ContactForm() {
       <div className="card flex flex-col items-start gap-4 self-start rounded-[32px] p-8">
         <h2 className="font-display text-2xl font-semibold tracking-[-0.03em]">Email me directly</h2>
         <p className="leading-relaxed text-muted">
-          Tell me a little about the role or project and I’ll get back to you within a day.
+          Tell me a little about what you have in mind and I’ll get back to you within a day.
         </p>
         <a href={`mailto:${profile.email}`} className="btn-primary max-w-full break-all">
           {profile.email}
@@ -100,7 +103,7 @@ export default function ContactForm() {
           required
           rows={5}
           className={`${field} resize-y`}
-          placeholder="A few lines about the role or project, timeline and anything else useful."
+          placeholder="A few lines about what you have in mind, timeline and anything else useful."
         />
       </label>
 

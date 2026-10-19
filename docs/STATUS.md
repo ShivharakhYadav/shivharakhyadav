@@ -1,7 +1,7 @@
 # Project status (handoff)
 
 Read this first when picking the work up from another machine or a cloud session.
-Last updated: 2026-10-16.
+Last updated: 2026-10-19.
 
 ## Where things are
 - Work branch: `feat/new2`, PR #2 → `main`. **Vercel production deploys from `main`, which is still at PR #1**, so the redesign, new pages and SEO work aren't live until PR #2 is merged.
@@ -18,6 +18,7 @@ Last updated: 2026-10-16.
   - sitemap with real post dates, RSS at `/blog/rss.xml`
   - icons and manifest, custom 404, footer links
 - Semantic HTML: correct heading outline, articles, lists. Lighthouse: SEO 100, accessibility 100, performance 97–99.
+- Portfolio polish (2026-10-19): project cards show a "Built with" stack cover until real screenshots exist (the case-study page shows no frame without one); each case study names the role and company it was built in; contact copy, FAQ and form options follow `profile.showAvailability`; scroll-reveal never hides content when JS is off. Navigation: "Contact" left the navbar (reached via "Let's talk", which highlights on /contact); Home is in the footer and the mobile menu; the SY logo has a hover ring and a "Home" tooltip.
 - Content: iProgrammer Senior Software Engineer since Oct 2026 (Pune). Location is now Pune everywhere. Availability pill hidden via `profile.showAvailability = false` (kept, not deleted).
 
 ## Waiting on the owner
