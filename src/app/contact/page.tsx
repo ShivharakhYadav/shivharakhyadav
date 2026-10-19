@@ -21,6 +21,8 @@ export const metadata: Metadata = {
     type: "website",
     images: ogImages,
   },
+  // set explicitly: otherwise X/Twitter cards inherit the home page text
+  twitter: { title: "Contact Shivharakh Yadav — Full-Stack Developer", description },
 };
 
 // Answers use only facts stated elsewhere on the site.

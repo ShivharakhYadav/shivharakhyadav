@@ -21,6 +21,8 @@ export const metadata: Metadata = {
     type: "website",
     images: ogImages,
   },
+  // set explicitly: otherwise X/Twitter cards inherit the home page text
+  twitter: { title: "Blog — Shivharakh Yadav", description: "Articles on full-stack engineering — multi-tenant SaaS, real-time systems, and micro-frontends." },
 };
 
 export default function BlogIndexPage() {

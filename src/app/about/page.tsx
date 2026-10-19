@@ -25,13 +25,15 @@ export const metadata: Metadata = {
     type: "profile",
     images: ogImages,
   },
+  // set explicitly: otherwise X/Twitter cards inherit the home page text
+  twitter: { title: "About Shivharakh Yadav — Full-Stack Developer", description },
 };
 
 const jsonLd = {
   "@context": "https://schema.org",
   "@type": "ProfilePage",
   url: `${siteUrl}/about`,
-  dateModified: new Date().toISOString().slice(0, 10),
+  dateModified: profile.updated,
   isPartOf: { "@id": websiteId },
   mainEntity: person,
 };

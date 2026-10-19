@@ -1,6 +1,6 @@
 import Link from "next/link";
 import Container from "@/components/ui/Container";
-import RotatingWords from "@/components/home/RotatingWords";
+import RotatingWords, { RotatingWordsStyle } from "@/components/home/RotatingWords";
 import Portrait from "@/components/ui/Portrait";
 import { profile, stats } from "@/data/profile";
 
@@ -8,6 +8,8 @@ export default function Hero() {
   return (
     <Container>
       <section className="grid grid-cols-1 items-center gap-12 pb-16 pt-12 md:grid-cols-[minmax(0,1fr)_auto] md:gap-10 lg:gap-12 lg:pt-20">
+        {/* outside the text column: a <style> sibling would shift space-y margins */}
+        <RotatingWordsStyle count={profile.heroWords.length} />
         <div className="max-w-[640px] space-y-7">
           {profile.showAvailability && (
             <span className="inline-flex items-center gap-2 rounded-full border border-line bg-card px-4 py-2 text-sm font-medium">

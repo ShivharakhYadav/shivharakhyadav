@@ -30,7 +30,7 @@ export default function Navbar() {
       >
         <Link
           href="/"
-          aria-label="Shivharakh Yadav — home"
+          aria-label="SY, Shivharakh Yadav — home"
           title="Home"
           className="grid h-9 w-9 place-items-center rounded-full bg-teal font-display text-[13px] font-semibold text-white ring-coral/50 ring-offset-2 ring-offset-card transition hover:ring-2"
         >
