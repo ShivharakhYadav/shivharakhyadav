@@ -24,6 +24,7 @@ Last updated: 2026-10-19.
 - Home Experience is a timeline: company logos (`public/logos/`) as nodes, teal ring and line for the current role, LinkedIn order (role → company · city → dates), "Pvt. Ltd." dropped on home only. Shared `CompanyLogo` in `ui/JobCard.tsx`.
 - Fixed: Tailwind opacity modifiers (`bg-teal/50` etc.) were never generated because theme colors are CSS variables; `tailwind.config.ts` now wraps them in `color-mix()`.
 - Logos for iProgrammer and iFour are 32×32 icons; sharper (128px+) versions would help.
+- SEO audit fixes (2026-10-19): page-specific `twitter:title/description` on every page; ProfilePage `dateModified` from `profile.updated` (update it by hand when the profile changes); hero `<style>` moved out of the h1; one consistent photo favicon (`favicon.ico`, `icon.png`, `apple-icon.png`; the SY monogram generator was removed); `dynamicParams = false` on `[slug]` routes so unknown slugs get the static 404; no canonical on 404s; code-comment contrast and SY link label fixed; portrait `sizes`; template SVGs removed. Live site (merged PR #2) audited: 15/15 sitemap URLs 200, self-canonical, valid JSON-LD, Lighthouse SEO 100.
 - Content: iProgrammer Senior Software Engineer since Oct 2026 (Pune). Location is now Pune everywhere. Availability pill hidden via `profile.showAvailability = false` (kept, not deleted).
 
 ## Waiting on the owner

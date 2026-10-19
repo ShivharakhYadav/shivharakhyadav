@@ -12,6 +12,9 @@ import { experience } from "@/data/experience";
 import { siteUrl } from "@/configs/metaTags";
 import { author, breadcrumbs, websiteId } from "@/configs/schema";
 
+// only the generated slugs exist; anything else gets the static 404 page
+export const dynamicParams = false;
+
 export function generateStaticParams() {
   return projects.map((project) => ({ slug: project.slug }));
 }
@@ -33,6 +36,8 @@ export function generateMetadata({
       url: `${siteUrl}/projects/${project.slug}`,
       type: "article",
     },
+    // set explicitly: otherwise X/Twitter cards inherit the home page text
+    twitter: { title: `${project.title} — Shivharakh Yadav`, description: project.tagline },
   };
 }
 

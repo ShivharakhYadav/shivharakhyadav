@@ -11,6 +11,9 @@ import { getAllPostSlugs, getPostBySlug, formatDate } from "@/lib/blog";
 import { siteUrl, rssFeed } from "@/configs/metaTags";
 import { author, breadcrumbs, personRef, websiteId } from "@/configs/schema";
 
+// only the generated slugs exist; anything else gets the static 404 page
+export const dynamicParams = false;
+
 export function generateStaticParams() {
   return getAllPostSlugs().map((slug) => ({ slug }));
 }
@@ -37,6 +40,8 @@ export function generateMetadata({
       authors: [`${siteUrl}/about`],
       tags: post.tags,
     },
+    // set explicitly: otherwise X/Twitter cards inherit the home page text
+    twitter: { title: post.title, description: post.excerpt },
   };
 }
 

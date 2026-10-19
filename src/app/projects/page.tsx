@@ -20,6 +20,8 @@ export const metadata: Metadata = {
     type: "website",
     images: ogImages,
   },
+  // set explicitly: otherwise X/Twitter cards inherit the home page text
+  twitter: { title: "Projects — Shivharakh Yadav", description: "Case studies of production web applications — multi-tenant SaaS, commerce, real-time systems and micro-frontends." },
 };
 
 // featured projects first, in their featured order, then the rest

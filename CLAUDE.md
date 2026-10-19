@@ -32,7 +32,7 @@ There is no test setup and no ESLint config (`next lint` would prompt); use `npx
   - Each page sets its own `title` (the root layout adds " — Shivharakh Yadav" via a title template), a `description` of 160 characters or fewer, and `alternates.canonical`.
   - A page that sets its own `openGraph` must include `images: ogImages` (from `src/configs/metaTags.ts`); otherwise the share image is lost. Posts and case studies are the exception: they have their own `opengraph-image.tsx`, built with `ogCard()` in `src/lib/ogCard.tsx`, which uses the bundled Outfit font from `src/assets/fonts`.
   - **JSON-LD:** the full Person and WebSite entities are defined once in `src/configs/schema.ts`. Pages reuse `person`, `author`, `websiteId` and `breadcrumbs()` from there, rendered by `src/components/JsonLd.tsx`, instead of writing their own Person objects.
-  - Also present: an RSS feed at `/blog/rss.xml`, a manifest, generated icons (`icon.tsx` / `apple-icon.tsx`) and a `not-found.tsx` (noindex).
+  - Also present: an RSS feed at `/blog/rss.xml`, a manifest, photo icons (`favicon.ico`, `icon.png`, `apple-icon.png`, all the same crop) and a `not-found.tsx` (noindex).
 - **Contact form** (`src/components/ContactForm.tsx`) posts to Formspree using `NEXT_PUBLIC_FORMSPREE_ID` (see `.env.example`; set it in `.env.local` and in Vercel). Without it, the page shows an "Email me directly" fallback.
 - **Content lives in data files, not JSX:**
   - `src/data/profile.ts`: bio, socials, hero words, stats, `resumeUrl`, `testimonial` and `showAvailability` (the availability pill in the hero and on /contact). Résumé links and the testimonial card stay hidden while those are empty or `null`.

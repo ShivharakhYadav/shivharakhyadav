@@ -5,6 +5,8 @@ import Container from "@/components/ui/Container";
 export const metadata: Metadata = {
   title: "Page not found",
   robots: { index: false },
+  // don't inherit the home canonical from the root layout
+  alternates: { canonical: null },
 };
 
 const links = [
