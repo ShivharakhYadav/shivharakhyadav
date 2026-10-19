@@ -80,10 +80,10 @@ export default function BlogPostPage({
       <Container className="max-w-[760px]">
         <article className="pb-20">
           <header className="space-y-5 pt-12 sm:pt-20">
-            <Link href="/blog" className="text-link text-sm">
+            <Link href="/blog" className="text-link inline-block py-1 text-sm">
               ← All posts
             </Link>
-            <h1 className="font-display text-[36px] font-semibold leading-[1.1] tracking-[-0.04em] sm:text-[52px]">
+            <h1 className="font-display text-[clamp(1.875rem,1.3rem+2.6vw,3.25rem)] font-semibold leading-[1.1] tracking-[-0.04em]">
               {post.title}
             </h1>
             <p className="text-sm text-muted">

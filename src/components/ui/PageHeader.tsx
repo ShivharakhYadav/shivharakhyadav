@@ -13,7 +13,7 @@ export default function PageHeader({
   return (
     <header className="max-w-[720px] space-y-4 pb-12 pt-12 sm:pt-20">
       <p className="eyebrow text-coral-ink">{eyebrow}</p>
-      <h1 className="font-display text-[40px] font-semibold leading-[1.1] tracking-[-0.04em] sm:text-[60px]">
+      <h1 className="font-display fs-page font-semibold leading-[1.1] tracking-[-0.04em]">
         {title}
       </h1>
       {children && (

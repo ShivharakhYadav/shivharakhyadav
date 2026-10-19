@@ -2,6 +2,7 @@
 
 import { useState, type FormEvent } from "react";
 import { profile } from "@/data/profile";
+import EmailText from "@/components/ui/EmailText";
 
 // Free Formspree form that forwards messages to email. Set in .env.local and in Vercel.
 const formId = process.env.NEXT_PUBLIC_FORMSPREE_ID;
@@ -27,8 +28,8 @@ export default function ContactForm() {
         <p className="leading-relaxed text-muted">
           Tell me a little about what you have in mind and I’ll get back to you within a day.
         </p>
-        <a href={`mailto:${profile.email}`} className="btn-primary max-w-full break-all">
-          {profile.email}
+        <a href={`mailto:${profile.email}`} className="btn-primary max-w-full px-6 text-[15px] sm:px-7 sm:text-base">
+          <EmailText email={profile.email} />
         </a>
       </div>
     );

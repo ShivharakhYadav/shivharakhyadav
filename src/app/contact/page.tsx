@@ -5,6 +5,7 @@ import JsonLd from "@/components/JsonLd";
 import { person, websiteId } from "@/configs/schema";
 import { profile } from "@/data/profile";
 import { siteUrl, ogImages } from "@/configs/metaTags";
+import EmailText from "@/components/ui/EmailText";
 
 const description =
   "Contact Shivharakh Yadav, a full-stack developer in Pune, India (React, Next.js, Node.js) who has worked directly with clients in Australia & the US.";
@@ -82,10 +83,10 @@ export default function ContactPage() {
   return (
     <main>
       <Container>
-        <div className="grid gap-12 pb-20 pt-12 lg:grid-cols-[1fr_minmax(0,560px)] lg:gap-16 lg:pt-20">
+        <div className="grid grid-cols-1 gap-12 pb-20 pt-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,560px)] lg:gap-16 lg:pt-20">
           <header className="space-y-6">
             <p className="eyebrow text-coral-ink">Contact</p>
-            <h1 className="font-display text-[40px] font-semibold leading-[1.1] tracking-[-0.04em] sm:text-[60px]">
+            <h1 className="font-display fs-page font-semibold leading-[1.1] tracking-[-0.04em]">
               Let’s build something people{" "}
               <span className="coral-underline whitespace-nowrap">love to use</span>.
             </h1>
@@ -103,8 +104,8 @@ export default function ContactPage() {
 
             <dl className="grid gap-4 pt-4 sm:grid-cols-2">
               <Info label="Email" wide>
-                <a href={`mailto:${profile.email}`} className="text-link break-words">
-                  {profile.email}
+                <a href={`mailto:${profile.email}`} className="text-link inline-block py-0.5">
+                  <EmailText email={profile.email} />
                 </a>
               </Info>
               <Info label="Based in">
@@ -126,7 +127,7 @@ export default function ContactPage() {
           <ContactForm />
         </div>
 
-        <section aria-labelledby="faq" className="grid gap-8 border-t border-line py-20 lg:grid-cols-[260px_1fr] lg:gap-12">
+        <section aria-labelledby="faq" className="grid grid-cols-1 gap-8 border-t border-line py-20 lg:grid-cols-[260px_minmax(0,1fr)] lg:gap-12">
           <h2 id="faq" className="font-display text-[28px] font-semibold tracking-[-0.03em] sm:text-[32px]">
             Questions clients ask
           </h2>

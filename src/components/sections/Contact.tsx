@@ -1,6 +1,7 @@
 import Link from "next/link";
 import Container from "@/components/ui/Container";
 import { profile } from "@/data/profile";
+import EmailText from "@/components/ui/EmailText";
 
 /** Closing call to action; ends the home page and every inner page. */
 export default function Contact({ id = "contact" }: { id?: string }) {
@@ -13,7 +14,7 @@ export default function Contact({ id = "contact" }: { id?: string }) {
       >
         <h2
           id={`${id}-title`}
-          className="max-w-[820px] font-display text-[36px] font-semibold leading-[1.15] tracking-[-0.05em] sm:text-[56px]"
+          className="max-w-[820px] font-display fs-section font-semibold leading-[1.15] tracking-[-0.05em]"
         >
           Let’s build something people{" "}
           <span className="coral-underline whitespace-nowrap">love to use</span>.
@@ -26,9 +27,9 @@ export default function Contact({ id = "contact" }: { id?: string }) {
         <div className="flex max-w-full flex-wrap justify-center gap-3.5">
           <a
             href={`mailto:${profile.email}`}
-            className="max-w-full break-all rounded-full bg-teal px-8 py-4 text-[17px] font-medium text-white transition hover:bg-teal-hover"
+            className="max-w-full rounded-full bg-teal px-6 py-4 text-[15px] font-medium text-white transition hover:bg-teal-hover sm:px-8 sm:text-[17px]"
           >
-            {profile.email}
+            <EmailText email={profile.email} />
           </a>
           <Link href="/contact" className="btn-secondary text-[17px]">
             Send a message →
@@ -43,14 +44,14 @@ export default function Contact({ id = "contact" }: { id?: string }) {
             .filter((s) => s.icon !== "email")
             .map((s) => (
               <li key={s.label}>
-                <a href={s.href} target="_blank" rel="noopener noreferrer" className="transition hover:text-teal">
+                <a href={s.href} target="_blank" rel="noopener noreferrer" className="inline-block py-1.5 transition hover:text-teal">
                   {s.label}
                 </a>
               </li>
             ))}
           {profile.resumeUrl && (
             <li>
-              <a href={profile.resumeUrl} className="transition hover:text-teal">
+              <a href={profile.resumeUrl} className="inline-block py-1.5 transition hover:text-teal">
                 Résumé
               </a>
             </li>

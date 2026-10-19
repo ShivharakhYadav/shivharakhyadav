@@ -71,7 +71,7 @@ export default function ExperiencePage() {
         </dl>
 
         {/* Timeline */}
-        <section aria-labelledby="roles" className="grid gap-8 py-20 lg:grid-cols-[260px_1fr] lg:gap-12">
+        <section aria-labelledby="roles" className="grid grid-cols-1 gap-8 py-20 lg:grid-cols-[260px_minmax(0,1fr)] lg:gap-12">
           <div className="space-y-3">
             <h2 id="roles" className="font-display text-[28px] font-semibold tracking-[-0.03em] sm:text-[32px]">
               Roles
@@ -82,7 +82,7 @@ export default function ExperiencePage() {
               </a>
             )}
           </div>
-          <ol className="relative space-y-6 border-l-2 border-dashed border-coral/40 pl-6 sm:pl-10">
+          <ol className="relative space-y-6 border-l-2 border-dashed border-coral/40 pl-4 sm:pl-10">
             {experience.map((job) => {
               const jobProjects = (job.projects ?? [])
                 .map(getProjectBySlug)
@@ -91,9 +91,9 @@ export default function ExperiencePage() {
                 <li key={`${job.company}-${job.period}`} className="relative">
                   <span
                     aria-hidden="true"
-                    className="absolute -left-[33px] top-7 h-3.5 w-3.5 rounded-full border-[3px] border-bg bg-coral sm:-left-[49px]"
+                    className="absolute -left-[25px] top-7 h-3.5 w-3.5 rounded-full border-[3px] border-bg bg-coral sm:-left-[49px]"
                   />
-                  <div className="card rounded-3xl p-6 sm:p-8">
+                  <div className="card rounded-3xl p-4 sm:p-8">
                     <JobCard job={job}>
                       {job.highlights && job.highlights.length > 0 && (
                         <ul className="space-y-2 pt-1">
@@ -140,7 +140,7 @@ export default function ExperiencePage() {
 
         {/* Awards */}
         {awards.length > 0 && (
-          <section aria-labelledby="awards" className="grid gap-8 border-t border-line py-20 lg:grid-cols-[260px_1fr] lg:gap-12">
+          <section aria-labelledby="awards" className="grid grid-cols-1 gap-8 border-t border-line py-20 lg:grid-cols-[260px_minmax(0,1fr)] lg:gap-12">
             <h2 id="awards" className="font-display text-[28px] font-semibold tracking-[-0.03em] sm:text-[32px]">
               Awards &amp; recognition
             </h2>
@@ -163,7 +163,7 @@ export default function ExperiencePage() {
                     {a.links && (
                       <span className="mt-2 flex flex-wrap gap-x-4 gap-y-1">
                         {a.links.map((l) => (
-                          <a key={l.href} href={l.href} target="_blank" rel="noopener noreferrer" className="text-link text-sm">
+                          <a key={l.href} href={l.href} target="_blank" rel="noopener noreferrer" className="text-link inline-block py-0.5 text-sm">
                             {l.label} ↗
                           </a>
                         ))}
@@ -177,7 +177,7 @@ export default function ExperiencePage() {
         )}
 
         {/* Products delivered */}
-        <section aria-labelledby="delivered" className="grid gap-8 border-t border-line py-20 lg:grid-cols-[260px_1fr] lg:gap-12">
+        <section aria-labelledby="delivered" className="grid grid-cols-1 gap-8 border-t border-line py-20 lg:grid-cols-[260px_minmax(0,1fr)] lg:gap-12">
           <div className="space-y-3">
             <h2 id="delivered" className="font-display text-[28px] font-semibold tracking-[-0.03em] sm:text-[32px]">
               Products delivered

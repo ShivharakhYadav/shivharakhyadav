@@ -44,10 +44,10 @@ export default function AboutPage() {
     <main>
       <Container>
         {/* Intro */}
-        <header className="grid items-center gap-12 pb-16 pt-12 lg:grid-cols-[1fr_auto] lg:pt-20">
+        <header className="grid grid-cols-1 items-center gap-12 pb-16 pt-12 md:grid-cols-[minmax(0,1fr)_auto] md:gap-10 lg:gap-12 lg:pt-20">
           <div className="max-w-[640px] space-y-6">
             <p className="eyebrow text-coral-ink">About</p>
-            <h1 className="font-display text-[40px] font-semibold leading-[1.1] tracking-[-0.04em] sm:text-[64px]">
+            <h1 className="font-display fs-page font-semibold leading-[1.1] tracking-[-0.04em]">
               Hi, I’m <span className="coral-underline whitespace-nowrap">Shivharakh</span>.
             </h1>
             <p className="text-[17px] leading-relaxed text-muted sm:text-[19px]">
@@ -61,10 +61,10 @@ export default function AboutPage() {
                 Currently {currentJob.role} at {currentJob.company.replace(/ Pvt\. Ltd\.$/, "")}
               </p>
             )}
-            <dl className="flex gap-10 pt-2 sm:gap-12">
+            <dl className="grid grid-cols-3 gap-3 pt-2 sm:flex sm:gap-12">
               {stats.map((s) => (
-                <div key={s.label} className="flex flex-col-reverse">
-                  <dt className="text-sm text-muted">{s.label}</dt>
+                <div key={s.label} className="flex flex-col-reverse justify-end">
+                  <dt className="text-[13px] text-muted sm:text-sm">{s.label}</dt>
                   <dd className="font-display text-[28px] font-semibold tracking-[-0.04em] text-teal sm:text-[36px]">
                     {s.value}
                   </dd>
@@ -72,7 +72,7 @@ export default function AboutPage() {
               ))}
             </dl>
           </div>
-          <Portrait className="h-[280px] w-[280px] sm:h-[400px] sm:w-[400px]" priority />
+          <Portrait className="h-[260px] w-[260px] md:h-[240px] md:w-[240px] lg:h-[340px] lg:w-[340px] xl:h-[400px] xl:w-[400px]" priority />
         </header>
 
         <div className="space-y-20 border-t border-line py-20">
@@ -151,7 +151,7 @@ export default function AboutPage() {
 
 function Section({ title, children }: { title: string; children: ReactNode }) {
   return (
-    <section className="grid gap-6 lg:grid-cols-[260px_1fr] lg:gap-12">
+    <section className="grid grid-cols-1 gap-6 lg:grid-cols-[260px_minmax(0,1fr)] lg:gap-12">
       <h2 className="font-display text-[28px] font-semibold tracking-[-0.03em] sm:text-[32px]">{title}</h2>
       <div className="max-w-[820px]">{children}</div>
     </section>

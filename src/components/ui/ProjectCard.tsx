@@ -17,17 +17,17 @@ export function ProjectCard({
   as?: Heading;
 }) {
   return (
-    <article>
+    <article className="h-full">
       <Link
         href={`/projects/${project.slug}`}
-        className="card lift grid items-center gap-8 p-5 sm:p-8 lg:grid-cols-2 lg:gap-14"
+        className="card lift grid h-full grid-cols-1 content-start items-center gap-8 p-5 sm:p-8 lg:grid-cols-2 lg:content-center lg:gap-14"
       >
         <Screenshot
           src={project.image}
           alt={`${project.title} screenshot`}
           stack={project.tags}
           tint={flip ? "linen" : "seaglass"}
-          className={`h-[240px] sm:h-[380px] ${flip ? "lg:order-2" : ""}`}
+          className={`h-[240px] sm:h-[280px] lg:h-[380px] ${flip ? "lg:order-2" : ""}`}
         />
         <div className="space-y-4">
           <p className="eyebrow text-coral-ink">{project.eyebrow}</p>
@@ -45,7 +45,11 @@ export function ProjectCard({
   );
 }
 
-/** Compact one-row card for the third featured project and "next project" links. */
+/**
+ * Compact one-row card for the third featured project and "next project" links.
+ * Stacked on phones; cover + text (result under the tagline) on tablets; the
+ * result gets its own column only from xl, where there's room for all three.
+ */
 export function ProjectRowCard({
   project,
   as: H = "h3",
@@ -64,16 +68,19 @@ export function ProjectRowCard({
           alt={`${project.title} screenshot`}
           stack={project.tags}
           compact
-          className="h-[136px] w-full shrink-0 sm:w-[220px]"
+          className="h-[136px] w-full shrink-0 sm:h-[160px] sm:w-[200px] xl:h-[136px] xl:w-[220px]"
         />
-        <div className="flex-1 space-y-2">
+        <div className="min-w-0 flex-1 space-y-2">
           <p className="eyebrow text-coral-ink">{project.eyebrow}</p>
           <H className="font-display text-[26px] font-semibold tracking-[-0.03em]">
             {project.title}
           </H>
           <p className="leading-relaxed text-muted">{project.tagline}</p>
+          <div className="pt-2 xl:hidden">
+            <Headline {...project.headline} compact />
+          </div>
         </div>
-        <div className="sm:w-[220px] sm:text-right">
+        <div className="hidden w-[220px] shrink-0 text-right xl:block">
           <Headline {...project.headline} compact />
         </div>
         <span

@@ -80,11 +80,11 @@ export default function ProjectPage({
       <Container>
         <article>
           <header className="max-w-[820px] space-y-5 pt-12 sm:pt-20">
-            <Link href="/projects" className="text-link text-sm">
+            <Link href="/projects" className="text-link inline-block py-1 text-sm">
               ← All projects
             </Link>
             <p className="eyebrow text-coral-ink">{project.eyebrow}</p>
-            <h1 className="font-display text-[40px] font-semibold leading-[1.08] tracking-[-0.04em] sm:text-[64px]">
+            <h1 className="font-display fs-page font-semibold leading-[1.08] tracking-[-0.04em]">
               {project.title}
             </h1>
             <p className="text-[17px] leading-relaxed text-muted sm:text-[19px]">

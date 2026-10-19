@@ -11,7 +11,7 @@ export default function Headline({
   return (
     <div
       className={`flex items-baseline gap-3 ${
-        compact ? "sm:flex-col sm:items-end sm:gap-0" : ""
+        compact ? "xl:flex-col xl:items-end xl:gap-0" : ""
       }`}
     >
       <span
@@ -21,7 +21,7 @@ export default function Headline({
       >
         {value}
       </span>
-      <span className="text-[15px] text-muted">{label}</span>
+      <span className="min-w-0 text-[15px] text-muted">{label}</span>
     </div>
   );
 }

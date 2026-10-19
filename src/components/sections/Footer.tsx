@@ -14,28 +14,29 @@ const links = [
 export default function Footer() {
   return (
     <footer>
-      <Container className="flex flex-col gap-4 py-10 text-[13px] text-muted sm:flex-row sm:items-center sm:justify-between">
+      <Container className="flex flex-col gap-4 py-10 text-[13px] text-muted lg:flex-row lg:items-center lg:justify-between">
         <span>
           © {new Date().getFullYear()} {profile.name}
         </span>
-        <nav aria-label="Footer">
-          <ul className="flex flex-wrap gap-x-5 gap-y-2">
+        {/* links first on phones and tablets; one row with © and tagline from lg */}
+        <nav aria-label="Footer" className="order-first lg:order-none">
+          <ul className="flex flex-wrap gap-x-5">
             {links.map((l) => (
               <li key={l.href}>
-                <Link href={l.href} className="transition hover:text-ink">
+                <Link href={l.href} className="inline-block py-1.5 transition hover:text-ink">
                   {l.name}
                 </Link>
               </li>
             ))}
             {profile.resumeUrl && (
               <li>
-                <a href={profile.resumeUrl} className="transition hover:text-ink">
+                <a href={profile.resumeUrl} className="inline-block py-1.5 transition hover:text-ink">
                   Résumé
                 </a>
               </li>
             )}
             <li>
-              <a href="/blog/rss.xml" className="transition hover:text-ink">
+              <a href="/blog/rss.xml" className="inline-block py-1.5 transition hover:text-ink">
                 RSS
               </a>
             </li>

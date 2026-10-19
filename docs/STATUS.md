@@ -19,6 +19,11 @@ Last updated: 2026-10-19.
   - icons and manifest, custom 404, footer links
 - Semantic HTML: correct heading outline, articles, lists. Lighthouse: SEO 100, accessibility 100, performance 97–99.
 - Portfolio polish (2026-10-19): project cards show a "Built with" stack cover until real screenshots exist (the case-study page shows no frame without one); each case study names the role and company it was built in; contact copy, FAQ and form options follow `profile.showAvailability`; scroll-reveal never hides content when JS is off. Navigation: "Contact" left the navbar (reached via "Let's talk", which highlights on /contact); Home is in the footer and the mobile menu; the SY logo has a hover ring and a "Home" tooltip.
+- Responsive pass (2026-10-19): no sideways scrolling from 320px to 1920px on any page; fluid heading sizes (`.fs-display`, `.fs-page`, `.fs-section` in `globals.css`); hero and /about go two-column from tablet; tablet layouts for highlights, /projects (2-column grid), row cards and footer; email addresses wrap only at "@" (`ui/EmailText.tsx`); bigger tap targets on footer and contact links. Lighthouse mobile: accessibility and SEO 100, CLS 0.
+- Mobile polish (2026-10-19): hero buttons side by side on phones (short labels below sm), stats in three equal columns, job cards stack the logo above the text on phones. Tested in Chrome mobile emulation (iPhone SE, iPhone 14, Pixel 7, iPad mini).
+- Home Experience is a timeline: company logos (`public/logos/`) as nodes, teal ring and line for the current role, LinkedIn order (role → company · city → dates), "Pvt. Ltd." dropped on home only. Shared `CompanyLogo` in `ui/JobCard.tsx`.
+- Fixed: Tailwind opacity modifiers (`bg-teal/50` etc.) were never generated because theme colors are CSS variables; `tailwind.config.ts` now wraps them in `color-mix()`.
+- Logos for iProgrammer and iFour are 32×32 icons; sharper (128px+) versions would help.
 - Content: iProgrammer Senior Software Engineer since Oct 2026 (Pune). Location is now Pune everywhere. Availability pill hidden via `profile.showAvailability = false` (kept, not deleted).
 
 ## Waiting on the owner

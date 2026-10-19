@@ -41,10 +41,11 @@ export default function ProjectsIndexPage() {
           the outcome.
         </PageHeader>
 
-        <ul className="space-y-7 pb-24">
+        {/* two columns on tablets; from lg each card is wide enough for its own row */}
+        <ul className="grid grid-cols-1 gap-7 pb-24 md:grid-cols-2 lg:grid-cols-1">
           {ordered.map((p, i) => (
             <li key={p.slug}>
-              <Reveal>
+              <Reveal className="h-full">
                 <ProjectCard project={p} flip={i % 2 === 1} as="h2" />
               </Reveal>
             </li>

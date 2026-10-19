@@ -1,5 +1,8 @@
 import type { Config } from "tailwindcss";
 
+const themeColor = (name: string) =>
+  `color-mix(in srgb, var(--${name}) calc(<alpha-value> * 100%), transparent)`;
+
 const config: Config = {
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
@@ -8,24 +11,26 @@ const config: Config = {
   ],
   theme: {
     extend: {
+      // Theme colors are CSS variables (globals.css). color-mix lets Tailwind's
+      // opacity modifiers (bg-teal/50, border-coral/40, …) work with them.
       colors: {
-        bg: "var(--bg)",
-        card: "var(--card)",
-        line: "var(--line)",
-        ink: "var(--ink)",
-        muted: "var(--muted)",
+        bg: themeColor("bg"),
+        card: themeColor("card"),
+        line: themeColor("line"),
+        ink: themeColor("ink"),
+        muted: themeColor("muted"),
         teal: {
-          DEFAULT: "var(--teal)",
-          hover: "var(--teal-hover)",
+          DEFAULT: themeColor("teal"),
+          hover: themeColor("teal-hover"),
         },
         coral: {
-          DEFAULT: "var(--coral)",
-          ink: "var(--coral-ink)",
+          DEFAULT: themeColor("coral"),
+          ink: themeColor("coral-ink"),
         },
-        seaglass: "var(--seaglass)",
+        seaglass: themeColor("seaglass"),
         linen: {
-          DEFAULT: "var(--linen)",
-          hover: "var(--linen-hover)",
+          DEFAULT: themeColor("linen"),
+          hover: themeColor("linen-hover"),
         },
       },
       fontFamily: {

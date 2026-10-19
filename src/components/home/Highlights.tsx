@@ -7,7 +7,7 @@ import { awards, isPlaceholder } from "@/data/experience";
 export default function Highlights() {
   return (
     <Container>
-      <section aria-label="Highlights" className="grid gap-5 pt-12 md:grid-cols-3">
+      <section aria-label="Highlights" className="grid gap-5 pt-12 md:grid-cols-2 lg:grid-cols-3">
         <Link
           href="/projects/dms-simulation-platform"
           className="lift group flex min-h-[210px] flex-col justify-between rounded-[32px] border border-transparent bg-seaglass p-8 hover:border-teal/40"
@@ -46,7 +46,7 @@ export default function Highlights() {
         </Link>
         <Link
           href="#writing"
-          className="lift group flex min-h-[210px] flex-col justify-between rounded-[32px] bg-linen p-8"
+          className="lift group flex min-h-[210px] flex-col justify-between rounded-[32px] bg-linen p-8 md:col-span-2 lg:col-span-1"
         >
           <span className="eyebrow flex justify-between text-coral-ink">
             Currently <Arrow />

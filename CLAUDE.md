@@ -53,7 +53,7 @@ There is no test setup and no ESLint config (`next lint` would prompt); use `npx
 
 ## Styling conventions
 
-- Colors are CSS variables in `src/app/globals.css` (`--bg`, `--card`, `--line`, `--ink`, `--muted`, `--teal`, `--coral`, `--coral-ink`, `--seaglass`, `--linen`), exposed as Tailwind colors (`bg-bg`, `text-ink`, `bg-seaglass`, `text-coral-ink`, …). The site is light-only, so there is no dark mode and no `dark:` variants. Use the tokens instead of hex values.
+- Colors are CSS variables in `src/app/globals.css` (`--bg`, `--card`, `--line`, `--ink`, `--muted`, `--teal`, `--coral`, `--coral-ink`, `--seaglass`, `--linen`), exposed as Tailwind colors (`bg-bg`, `text-ink`, `bg-seaglass`, `text-coral-ink`, …). The site is light-only, so there is no dark mode and no `dark:` variants. Use the tokens instead of hex values. Opacity modifiers (`bg-teal/50`, `border-coral/40`) work because `tailwind.config.ts` wraps each variable in `color-mix()`; keep that wrapper when adding a color.
 - Coral (`#EE8B6A`) fails text contrast on sand. Use it only for decoration; text that needs the coral look uses `coral-ink`.
 - Shared component classes in `globals.css`: `.card`, `.lift` (hover lift for clickable cards), `.coral-underline`, `.eyebrow`, `.btn-primary`, `.btn-secondary`, `.text-link`, `.chip`.
 - Fonts: `font-display` (Outfit) for headings and numbers, and the default `font-sans` (DM Sans) for body text, both loaded in `layout.tsx`.

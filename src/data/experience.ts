@@ -32,6 +32,7 @@ export const experience: Job[] = [
     period: "Oct 2026 — Present",
     role: "Senior Software Engineer",
     company: "iProgrammer Solutions Pvt. Ltd.",
+    logo: "/logos/iprogrammer.png",
     location: "Pune, Maharashtra, India",
     summary:
       "Senior full-stack engineer, building and shipping production web applications.",
@@ -40,6 +41,7 @@ export const experience: Job[] = [
     period: "Oct 2025 — Jul 2026",
     role: "Software Engineer",
     company: "ViitorCloud Technologies Pvt. Ltd.",
+    logo: "/logos/viitorcloud.png",
     location: "Ahmedabad, Gujarat, India",
     summary:
       "Sole full-stack engineer on client SaaS projects, owning requirements, architecture, delivery and releases.",
@@ -56,6 +58,7 @@ export const experience: Job[] = [
     period: "Feb 2022 — Oct 2025",
     role: "Software Engineer",
     company: "iFour Technolabs Pvt. Ltd.",
+    logo: "/logos/ifour.png",
     location: "Ahmedabad, Gujarat, India",
     summary:
       "Full-stack delivery for clients in Australia and the US, from requirement calls to deployment.",

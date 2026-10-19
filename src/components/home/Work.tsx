@@ -12,7 +12,7 @@ export default function Work() {
       <section id="work" className="py-24">
         <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
           <div>
-            <h2 className="font-display text-[38px] font-semibold tracking-[-0.05em] sm:text-[52px]">
+            <h2 className="font-display fs-section font-semibold tracking-[-0.05em]">
               Case studies
             </h2>
             <p className="mt-2 text-lg text-muted">Products I owned from first call to production.</p>

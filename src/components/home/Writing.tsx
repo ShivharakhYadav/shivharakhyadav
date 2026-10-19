@@ -11,7 +11,7 @@ export default function Writing() {
     <Container>
       <section id="writing" className="pb-24">
         <div className="mb-6 flex flex-wrap items-end justify-between gap-4">
-          <h2 className="font-display text-[34px] font-semibold tracking-[-0.04em] sm:text-[44px]">
+          <h2 className="font-display fs-section font-semibold tracking-[-0.04em]">
             Notes &amp; writing
           </h2>
           <Link href="/blog" className="text-link">

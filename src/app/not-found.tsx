@@ -19,7 +19,7 @@ export default function NotFound() {
       <Container>
         <div className="max-w-[720px] space-y-6 pb-24 pt-16 sm:pt-24">
           <p className="eyebrow text-coral-ink">404</p>
-          <h1 className="font-display text-[40px] font-semibold leading-[1.1] tracking-[-0.04em] sm:text-[60px]">
+          <h1 className="font-display fs-page font-semibold leading-[1.1] tracking-[-0.04em]">
             This page <span className="coral-underline">wandered off</span>.
           </h1>
           <p className="text-[17px] leading-relaxed text-muted sm:text-[19px]">

@@ -11,32 +11,33 @@ const initials = (name: string) =>
     .map((w) => w[0].toUpperCase())
     .join("") || "Co";
 
+/** The company's logo on a sea-glass tile (initials when there's no logo). Size it via `className`. */
+export function CompanyLogo({ job, className = "h-12 w-12 sm:h-14 sm:w-14" }: { job: Job; className?: string }) {
+  return (
+    <span
+      className={`relative grid shrink-0 place-items-center overflow-hidden rounded-2xl bg-seaglass font-display text-lg font-semibold text-teal ${className}`}
+    >
+      {job.logo ? (
+        <Image src={job.logo} alt={`${job.company} logo`} fill sizes="56px" className="object-contain p-2" />
+      ) : (
+        initials(job.company)
+      )}
+    </span>
+  );
+}
+
 /** One role: logo, company, role, period/location, summary and tech chips. `children` adds detail (bullets, projects). */
-export default function JobCard({
-  job,
-  compact = false,
-  children,
-}: {
-  job: Job;
-  /** Overview mode (home page): company, role, dates/location and awards only. */
-  compact?: boolean;
-  children?: ReactNode;
-}) {
+export default function JobCard({ job, children }: { job: Job; children?: ReactNode }) {
   const isCurrent = /present/i.test(job.period);
   return (
-    <div className="flex gap-5 sm:gap-6">
-      <span className="relative grid h-14 w-14 shrink-0 place-items-center overflow-hidden rounded-2xl bg-seaglass font-display text-lg font-semibold text-teal">
-        {job.logo ? (
-          <Image src={job.logo} alt={`${job.company} logo`} fill sizes="56px" className="object-contain p-2" />
-        ) : (
-          initials(job.company)
-        )}
-      </span>
+    // logo above the text on phones so the company name and bullets get the whole width
+    <div className="flex flex-col gap-3 sm:flex-row sm:gap-6">
+      <CompanyLogo job={job} />
       <div className="min-w-0 flex-1 space-y-3">
         {/* company → role → dates/location, each with its own weight so they read apart */}
         <div>
           <div className="flex flex-wrap items-center gap-x-3 gap-y-1">
-            <h3 className="font-display text-[22px] font-semibold leading-tight tracking-[-0.03em] sm:text-[24px]">
+            <h3 className="font-display text-[20px] font-semibold leading-tight tracking-[-0.03em] sm:text-[24px]">
               {job.company}
             </h3>
             {isCurrent && (
@@ -66,7 +67,7 @@ export default function JobCard({
             )}
           </p>
         </div>
-        {!compact && job.summary && <p className="leading-relaxed text-muted">{job.summary}</p>}
+        {job.summary && <p className="leading-relaxed text-muted">{job.summary}</p>}
         {job.awards && job.awards.length > 0 && (
           <ul className="flex flex-wrap gap-2 pt-1" aria-label="Awards">
             {job.awards.map((a) => (
@@ -83,7 +84,7 @@ export default function JobCard({
           </ul>
         )}
         {children}
-        {!compact && job.tags && job.tags.length > 0 && (
+        {job.tags && job.tags.length > 0 && (
           <ul className="flex flex-wrap gap-2 pt-1">
             {job.tags.map((t) => (
               <li key={t} className="chip">
