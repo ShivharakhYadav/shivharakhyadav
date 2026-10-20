@@ -1,7 +1,7 @@
 import Link from "next/link";
 import Container from "@/components/ui/Container";
 import { CompanyLogo } from "@/components/ui/JobCard";
-import { experience } from "@/data/experience";
+import { experience, isPlaceholder } from "@/data/experience";
 import { profile, testimonial } from "@/data/profile";
 
 export default function Experience() {
@@ -21,7 +21,8 @@ export default function Experience() {
             <RowLink href="/about" label="More about me" />
             {profile.resumeUrl && <RowLink href={profile.resumeUrl} label="Resume (PDF)" download />}
           </ul>
-          {testimonial && (
+          {/* hidden until the quote in profile.ts is a real one */}
+          {testimonial && !isPlaceholder(`${testimonial.quote} ${testimonial.name} ${testimonial.company}`) && (
             <figure className="mt-6 space-y-5 rounded-[28px] bg-linen p-7">
               <span className="block font-display text-5xl font-semibold leading-none text-coral-ink" aria-hidden="true">
                 “

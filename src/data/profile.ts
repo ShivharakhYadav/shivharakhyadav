@@ -95,8 +95,16 @@ export const stats: Stat[] = [
   { value: String(domains.length), label: "industries" },
 ];
 
-/** A client quote for the Experience section. The card is hidden while this is null. */
-export const testimonial: Testimonial | null = null;
+/**
+ * A client quote for the home Experience section. Replace the [placeholders]
+ * with a real quote (with the client's permission); the card stays hidden
+ * while any [placeholder] is left or while this is null.
+ */
+export const testimonial: Testimonial | null = {
+  quote: "[One or two sentences from a client about working with you]",
+  name: "[Client name, role]",
+  company: "[Company, country]",
+};
 
 /** How I work: from the GitHub profile README. */
 export const workingStyle = [
