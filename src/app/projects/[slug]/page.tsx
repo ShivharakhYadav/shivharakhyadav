@@ -160,23 +160,6 @@ export default function ProjectPage({
                   </li>
                 ))}
               </ul>
-              {/* tools by role (deployment, project management…) so they don't mix with the tech */}
-              {project.tools && project.tools.length > 0 && (
-                <dl className="mt-6 grid grid-cols-1 gap-x-6 gap-y-2 border-t border-line pt-6 sm:grid-cols-[170px_minmax(0,1fr)] sm:gap-y-3">
-                  {project.tools.map((t) => (
-                    <div key={t.label} className="contents">
-                      <dt className="eyebrow text-muted sm:pt-2">{t.label}</dt>
-                      <dd className="mb-2 flex flex-wrap gap-2 sm:mb-0">
-                        {t.items.map((i) => (
-                          <span key={i} className="chip text-sm">
-                            {i}
-                          </span>
-                        ))}
-                      </dd>
-                    </div>
-                  ))}
-                </dl>
-              )}
             </CaseSection>
 
             <CaseSection title="Outcome">

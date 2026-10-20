@@ -18,8 +18,6 @@ export interface Project {
   problem: string
   role: string[]
   stack: string[]
-  /** labelled tool rows under the stack, e.g. { label: 'Deployment', items: ['Render'] } */
-  tools?: { label: string; items: string[] }[]
   highlights: string[]
   outcome: string
   /** hide the "Built as <role> at <company>" line on the case-study page */
@@ -120,11 +118,9 @@ export const projects: Project[] = [
       'Chakra UI',
       'React Query',
       'Jest',
-    ],
-    tools: [
-      { label: 'Deployment', items: ['Render'] },
-      { label: 'Source code', items: ['GitHub'] },
-      { label: 'CI/CD', items: ['GitHub Actions'] },
+      'Render',
+      'GitHub',
+      'GitHub Actions',
     ],
     highlights: [
       "Interval-overlap availability filtering: no customer is shown a bike that's already booked for their dates",

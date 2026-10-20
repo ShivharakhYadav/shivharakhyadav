@@ -33,7 +33,7 @@ Last updated: 2026-10-20.
 
 - DMS Simulation Platform (2026-10-20): the owner corrected its stack to Next.js, TypeScript, Python, PostgreSQL, Redis and Docker; the résumé still says Node.js/Express/MongoDB, so the résumé PDF should be updated to match. On the owner's request the case study hides its "Built as … at ViitorCloud" line (`hideBuiltAt`), but it's still listed under ViitorCloud on /experience.
 
-- Moto Venice (2026-10-20): the owner corrected its stack to Next.js, TypeScript, NestJS, PostgreSQL, Redis, Redux Toolkit, Auth0, Veriff, Twilio, Docker, Swagger, Mapbox, Chakra UI, React Query and Jest. Tools are shown separately via the new `tools` field (Deployment: Render, Source code: GitHub, CI/CD: GitHub Actions), rendered as labelled rows under the stack on the case-study page. The résumé still says Node.js/MongoDB for Moto Venice.
+- Moto Venice (2026-10-20): the owner corrected its stack to Next.js, TypeScript, NestJS, PostgreSQL, Redis, Redux Toolkit, Auth0, Veriff, Twilio, Docker, Swagger, Mapbox, Chakra UI, React Query and Jest. Render, GitHub and GitHub Actions are in the same stack list (the owner prefers them there over separate labelled rows). The résumé still says Node.js/MongoDB for Moto Venice.
 
 ## Waiting on the owner
 1. **Merge `feat/ifour-case-studies` into `develop`, then `develop` into `main`,** so the SEO-audit fixes and the new case studies go live.
