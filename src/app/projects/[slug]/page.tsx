@@ -7,7 +7,7 @@ import Screenshot from "@/components/ui/Screenshot";
 import { ProjectRowCard } from "@/components/ui/ProjectCard";
 import Contact from "@/components/sections/Contact";
 import JsonLd from "@/components/JsonLd";
-import { projects, getProjectBySlug } from "@/data/projects";
+import { projects, listedProjects, getProjectBySlug } from "@/data/projects";
 import { siteUrl } from "@/configs/metaTags";
 import { author, breadcrumbs, websiteId } from "@/configs/schema";
 
@@ -48,8 +48,9 @@ export default function ProjectPage({
   const project = getProjectBySlug(params.slug);
   if (!project) notFound();
 
-  const index = projects.indexOf(project);
-  const next = projects[(index + 1) % projects.length];
+  // next listed project (an unlisted page links on to the first one)
+  const index = listedProjects.indexOf(project);
+  const next = listedProjects[(index + 1) % listedProjects.length];
 
   const url = `${siteUrl}/projects/${project.slug}`;
   const jsonLd = {
