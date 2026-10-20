@@ -1,3 +1,6 @@
+import { projects } from "@/data/projects";
+import { domains } from "@/data/experience";
+
 export interface SocialLink {
   label: string;
   href: string;
@@ -31,7 +34,7 @@ export const profile = {
   /** last real change to the profile content; update by hand (used as ProfilePage dateModified) */
   updated: "2026-10-19",
   /** Rotating middle line of the hero headline — kinds of products actually shipped. */
-  heroWords: ["booking platforms", "learning portals", "coaching apps", "SaaS products"],
+  heroWords: ["SaaS products", "fintech tools", "Excel add-ins", "booking platforms"],
   intro:
     "Full-stack developer with 4+ years of experience building and shipping production web applications - from clean, type-safe frontends to secure backend APIs.",
   /** Longer bio for /about (facts from the GitHub profile README). */
@@ -85,11 +88,11 @@ export const education: Education[] = [
   },
 ];
 
-/** Proof numbers under the hero. */
+/** Proof numbers under the hero (and on /about); the counts follow the data. */
 export const stats: Stat[] = [
-  { value: "4+", label: "years shipping" },
-  { value: "1,200+", label: "users served" },
-  { value: "10", label: "organizations" },
+  { value: "4+", label: "years of client work" },
+  { value: String(projects.length), label: "products delivered" },
+  { value: String(domains.length), label: "industries" },
 ];
 
 /** A client quote for the Experience section. The card is hidden while this is null. */
