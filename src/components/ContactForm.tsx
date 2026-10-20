@@ -12,6 +12,13 @@ const reasons = profile.showAvailability
   ? ["Full-time role", "Freelance project", "Just saying hi"]
   : ["A project", "Collaboration", "Just saying hi"];
 
+// what makes a first message easy to answer well
+const brief = [
+  "What you’re building and who it’s for",
+  "Where it stands today: an idea, a prototype or a live product",
+  "Your timeline",
+];
+
 type Status = "idle" | "sending" | "sent" | "error";
 
 const field =
@@ -31,6 +38,17 @@ export default function ContactForm() {
         <a href={`mailto:${profile.email}`} className="btn-primary max-w-full px-6 text-[15px] sm:px-7 sm:text-base">
           <EmailText email={profile.email} />
         </a>
+        <div className="mt-2 w-full border-t border-line pt-5">
+          <p className="eyebrow text-muted">Helpful to include</p>
+          <ul className="mt-3 space-y-2">
+            {brief.map((b) => (
+              <li key={b} className="flex gap-3 leading-relaxed">
+                <span aria-hidden="true" className="mt-[10px] h-1.5 w-1.5 shrink-0 rounded-full bg-coral" />
+                <span>{b}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
     );
   }

@@ -5,7 +5,7 @@ import JsonLd from '@/components/JsonLd'
 import { person, websiteId } from '@/configs/schema'
 import { profile } from '@/data/profile'
 import { siteUrl, ogImages } from '@/configs/metaTags'
-import EmailText from '@/components/ui/EmailText'
+import LocalTime from '@/components/ui/LocalTime'
 
 const description =
   'Contact Shivharakh Yadav, a full-stack developer in Pune, India (React, Next.js, Node.js) who has worked directly with clients in Australia & the US.'
@@ -61,6 +61,22 @@ const faqs = [
   },
 ]
 
+// How a new conversation usually starts
+const steps = [
+  {
+    title: 'Share the idea',
+    text: 'Send a few lines about the product, the problem it solves and your timeline.',
+  },
+  {
+    title: 'Talk it through',
+    text: 'We get on a call to go over goals, scope and any open questions.',
+  },
+  {
+    title: 'Agree on a plan',
+    text: 'You get clear next steps before any work starts.',
+  },
+]
+
 const jsonLd = {
   '@context': 'https://schema.org',
   '@graph': [
@@ -88,7 +104,7 @@ export default function ContactPage() {
   return (
     <main>
       <Container>
-        <div className='grid grid-cols-1 gap-12 pb-20 pt-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,560px)] lg:gap-16 lg:pt-20'>
+        <div className='grid grid-cols-1 gap-12 pb-20 pt-12 lg:grid-cols-[minmax(0,1fr)_minmax(0,520px)] lg:gap-16 lg:pt-20'>
           <header className='space-y-6'>
             <p className='eyebrow text-coral-ink'>Contact</p>
             <h1 className='font-display fs-page font-semibold leading-[1.1] tracking-[-0.04em]'>
@@ -113,19 +129,16 @@ export default function ContactPage() {
               </span>
             )}
 
-            <dl className='grid gap-4 pt-4 sm:grid-cols-2'>
-              <Info label='Email' wide>
-                <a
-                  href={`mailto:${profile.email}`}
-                  className='text-link inline-block py-0.5'
-                >
-                  <EmailText email={profile.email} />
-                </a>
-              </Info>
-              <Info label='Based in'>Pune, India · {profile.timezone}</Info>
-              <Info label='Worked with'>Clients in Australia &amp; the US</Info>
-              <Info label='Elsewhere' wide>
-                <span className='flex gap-5'>
+            {/* what a client wants to know before writing */}
+            <dl className='divide-y divide-line border-y border-line'>
+              <Fact label='Reply time'>Usually within a day</Fact>
+              <Fact label='Time zone'>
+                {profile.timezone}
+                <LocalTime />
+              </Fact>
+              <Fact label='Worked with'>Clients in Australia &amp; the US</Fact>
+              <Fact label='Elsewhere'>
+                <span className='flex flex-wrap gap-x-5 gap-y-1'>
                   {socials.map((s) => (
                     <a
                       key={s.label}
@@ -137,13 +150,49 @@ export default function ContactPage() {
                       {s.label}
                     </a>
                   ))}
+                  {profile.resumeUrl && (
+                    <a href={profile.resumeUrl} className='text-link'>
+                      Resume (PDF)
+                    </a>
+                  )}
                 </span>
-              </Info>
+              </Fact>
             </dl>
           </header>
 
           <ContactForm />
         </div>
+
+        <section
+          aria-labelledby='process'
+          className='grid grid-cols-1 gap-8 border-t border-line py-20 lg:grid-cols-[260px_minmax(0,1fr)] lg:gap-12'
+        >
+          <h2
+            id='process'
+            className='font-display text-[28px] font-semibold tracking-[-0.03em] sm:text-[32px]'
+          >
+            How we’d start
+          </h2>
+          <ol className='grid gap-4 md:grid-cols-3'>
+            {steps.map((step, i) => (
+              <li
+                key={step.title}
+                className={`rounded-3xl p-6 ${i === 0 ? 'bg-seaglass' : 'bg-linen'}`}
+              >
+                <span
+                  aria-hidden='true'
+                  className='font-display text-[28px] font-semibold leading-none tracking-[-0.04em] text-teal'
+                >
+                  {String(i + 1).padStart(2, '0')}
+                </span>
+                <h3 className='mt-4 font-display text-xl font-semibold tracking-[-0.02em]'>
+                  {step.title}
+                </h3>
+                <p className='mt-2 leading-relaxed text-muted'>{step.text}</p>
+              </li>
+            ))}
+          </ol>
+        </section>
 
         <section
           aria-labelledby='faq'
@@ -182,19 +231,17 @@ export default function ContactPage() {
   )
 }
 
-function Info({
+function Fact({
   label,
-  wide = false,
   children,
 }: {
   label: string
-  wide?: boolean
   children: React.ReactNode
 }) {
   return (
-    <div className={`rounded-2xl bg-linen p-5 ${wide ? 'sm:col-span-2' : ''}`}>
-      <dt className='eyebrow text-muted'>{label}</dt>
-      <dd className='mt-2 font-medium'>{children}</dd>
+    <div className='grid grid-cols-[110px_minmax(0,1fr)] gap-4 py-4 sm:grid-cols-[140px_minmax(0,1fr)]'>
+      <dt className='eyebrow pt-1 text-muted'>{label}</dt>
+      <dd className='font-medium'>{children}</dd>
     </div>
   )
 }
