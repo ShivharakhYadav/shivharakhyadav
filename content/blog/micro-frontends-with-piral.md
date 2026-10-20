@@ -31,15 +31,15 @@ export function setup(app: PiletApi) {
 }
 ```
 
-The win: a team ships `Reports` without touching — or redeploying — the shell or any other pilet.
+The win: a team ships `Reports` without touching - or redeploying - the shell or any other pilet.
 
 ## Share the hard things, isolate the rest
 
 The failure mode is pilets each shipping their own copy of React, their own auth logic, their own design tokens. Keep these in the shell:
 
-- **Framework runtime** (React) — shared as a peer dependency.
-- **Authentication & session** — one source of truth, exposed to pilets via the shell API.
-- **Design system** — shared components so the app looks like one product, not five.
+- **Framework runtime** (React) - shared as a peer dependency.
+- **Authentication & session** - one source of truth, exposed to pilets via the shell API.
+- **Design system** - shared components so the app looks like one product, not five.
 
 Everything domain-specific stays inside the pilet.
 

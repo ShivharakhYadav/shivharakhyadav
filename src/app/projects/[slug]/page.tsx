@@ -31,13 +31,13 @@ export function generateMetadata({
     description: project.tagline,
     alternates: { canonical: `/projects/${project.slug}` },
     openGraph: {
-      title: `${project.title} — Shivharakh Yadav`,
+      title: `${project.title} - Shivharakh Yadav`,
       description: project.tagline,
       url: `${siteUrl}/projects/${project.slug}`,
       type: "article",
     },
     // set explicitly: otherwise X/Twitter cards inherit the home page text
-    twitter: { title: `${project.title} — Shivharakh Yadav`, description: project.tagline },
+    twitter: { title: `${project.title} - Shivharakh Yadav`, description: project.tagline },
   };
 }
 

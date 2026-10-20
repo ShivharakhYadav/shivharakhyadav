@@ -111,7 +111,7 @@ export const projects: Project[] = [
   },
   {
     slug: "health-coaching-platform",
-    title: "Saluta — Health & Coaching Platform",
+    title: "Saluta - Health & Coaching Platform",
     eyebrow: "Health · Real-time",
     tagline:
       "Coaches and clients in one place: real-time chat, a questionnaire engine, scheduling, habits and content.",
@@ -144,7 +144,7 @@ export const projects: Project[] = [
   },
   {
     slug: "dagger-concept",
-    title: "Dagger Concept — Sports Data Platform",
+    title: "Dagger Concept - Sports Data Platform",
     eyebrow: "Sports · Real-time",
     tagline:
       "A sports data platform built from scratch, with live chat and events over Socket.IO alongside a Python backend.",
@@ -211,7 +211,7 @@ export const projects: Project[] = [
   // but internal details (hostnames, code, weaknesses) stay out.
   {
     slug: "infosel-hub-excel-addin",
-    title: "Infosel Hub — Real-Time Market Data for Excel",
+    title: "Infosel Hub - Real-Time Market Data for Excel",
     eyebrow: "Fintech · Real-time",
     tagline:
       "A market-data terminal inside Excel: live prices stream into cells as they tick, alongside saved tables and bulk historical downloads.",
@@ -260,7 +260,7 @@ export const projects: Project[] = [
   },
   {
     slug: "aumni-excel-addin",
-    title: "Aumni for Excel — VC Portfolio Data Add-in",
+    title: "Aumni for Excel - VC Portfolio Data Add-in",
     eyebrow: "Fintech · Excel add-in",
     tagline:
       "Venture-capital portfolio, cap-table and deal-term data synced straight into Excel through live formulas, one-click tables and a cap-table template.",
@@ -302,7 +302,7 @@ export const projects: Project[] = [
   },
   {
     slug: "diligent-equity-excel-addin",
-    title: "Diligent Equity — Equity Reports in Excel",
+    title: "Diligent Equity - Equity Reports in Excel",
     eyebrow: "Fintech · Excel add-in",
     tagline:
       "Funding rounds, liquidation waterfalls, valuations and Black-Scholes option pricing, generated straight into Excel from Diligent Equity.",
@@ -341,7 +341,7 @@ export const projects: Project[] = [
   },
   {
     slug: "co4-energy-management-portal",
-    title: "Co4 — Energy-Management Portal",
+    title: "Co4 - Energy-Management Portal",
     eyebrow: "Energy · Frontend",
     tagline:
       "React frontend work on an existing energy-management portal built with micro-frontends: bug fixes, new features, and widgets and integrations across its apps.",
@@ -375,7 +375,7 @@ export const projects: Project[] = [
   },
   {
     slug: "calloquy",
-    title: "Calloquy — Meeting Management App",
+    title: "Calloquy - Meeting Management App",
     eyebrow: "Productivity · Integrations",
     tagline:
       "Meetings in a calendar view, Microsoft sign-in through Auth0, and two-way scheduling with Outlook.",
@@ -407,7 +407,7 @@ export const projects: Project[] = [
   },
   {
     slug: "my-ticket-solutions",
-    title: "My Ticket Solutions (MTS) — Multilingual Support Portal",
+    title: "My Ticket Solutions (MTS) - Multilingual Support Portal",
     eyebrow: "Customer support · Web app",
     tagline:
       "A support-ticket web app in 10 languages, with sign-up verified by OTP or an email link.",

@@ -31,7 +31,7 @@ export const profile = {
   /** Rotating middle line of the hero headline — kinds of products actually shipped. */
   heroWords: ["booking platforms", "learning portals", "coaching apps", "SaaS products"],
   intro:
-    "Full-stack developer with 4+ years of experience building and shipping production web applications — from clean, type-safe frontends to secure backend APIs.",
+    "Full-stack developer with 4+ years of experience building and shipping production web applications - from clean, type-safe frontends to secure backend APIs.",
   /** Longer bio for /about (facts from the GitHub profile README). */
   story: [
     "I’m a full-stack engineer with 4+ years of experience designing and shipping production SaaS platforms with React, Next.js, Node.js and MongoDB/PostgreSQL, across fintech, sports, transport and healthcare.",
@@ -72,13 +72,13 @@ export const education: Education[] = [
   {
     degree: "M.Sc. Computer Application & Information Technology",
     school: "Gujarat University",
-    years: "2020 — 2022",
+    years: "2020 - 2022",
     grade: "GPA 3.8/5",
   },
   {
     degree: "B.Sc. Computer Application & Information Technology",
     school: "Gujarat University",
-    years: "2017 — 2020",
+    years: "2017 - 2020",
     grade: "GPA 3.6/5",
   },
 ];

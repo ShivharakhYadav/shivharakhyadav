@@ -13,15 +13,15 @@ export const metadata: Metadata = {
     "Case studies of production apps I built: a multi-tenant simulation SaaS (944+ users), a motorcycle rental marketplace, a health & coaching platform and more.",
   alternates: { canonical: "/projects" },
   openGraph: {
-    title: "Projects — Shivharakh Yadav",
+    title: "Projects - Shivharakh Yadav",
     description:
-      "Case studies of production web applications — multi-tenant SaaS, commerce, real-time systems and micro-frontends.",
+      "Case studies of production web applications - multi-tenant SaaS, commerce, real-time systems and micro-frontends.",
     url: `${siteUrl}/projects`,
     type: "website",
     images: ogImages,
   },
   // set explicitly: otherwise X/Twitter cards inherit the home page text
-  twitter: { title: "Projects — Shivharakh Yadav", description: "Case studies of production web applications — multi-tenant SaaS, commerce, real-time systems and micro-frontends." },
+  twitter: { title: "Projects - Shivharakh Yadav", description: "Case studies of production web applications - multi-tenant SaaS, commerce, real-time systems and micro-frontends." },
 };
 
 // featured projects first, in their featured order, then the rest

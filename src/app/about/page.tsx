@@ -19,14 +19,14 @@ export const metadata: Metadata = {
   description,
   alternates: { canonical: "/about" },
   openGraph: {
-    title: "About Shivharakh Yadav — Full-Stack Developer",
+    title: "About Shivharakh Yadav - Full-Stack Developer",
     description,
     url: `${siteUrl}/about`,
     type: "profile",
     images: ogImages,
   },
   // set explicitly: otherwise X/Twitter cards inherit the home page text
-  twitter: { title: "About Shivharakh Yadav — Full-Stack Developer", description },
+  twitter: { title: "About Shivharakh Yadav - Full-Stack Developer", description },
 };
 
 const jsonLd = {

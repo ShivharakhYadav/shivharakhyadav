@@ -1,5 +1,5 @@
 export interface Job {
-  /** Shown as-is, e.g. "Aug 2022 — Oct 2025" or "Oct 2025 — Present". */
+  /** Shown as-is, e.g. "Aug 2022 - Oct 2025" or "Oct 2025 - Present". */
   period: string;
   role: string;
   company: string;
@@ -29,7 +29,7 @@ export const isPlaceholder = (value: string) => /\[.*\]/.test(value);
  */
 export const experience: Job[] = [
   {
-    period: "Oct 2026 — Present",
+    period: "Oct 2026 - Present",
     role: "Senior Software Engineer",
     company: "iProgrammer Solutions Pvt. Ltd.",
     logo: "/logos/iprogrammer.png",
@@ -38,7 +38,7 @@ export const experience: Job[] = [
       "Senior full-stack engineer, building and shipping production web applications.",
   },
   {
-    period: "Oct 2025 — Jul 2026",
+    period: "Oct 2025 - Jul 2026",
     role: "Software Engineer",
     company: "ViitorCloud Technologies Pvt. Ltd.",
     logo: "/logos/viitorcloud.png",
@@ -55,7 +55,7 @@ export const experience: Job[] = [
     tags: ["Next.js", "TypeScript", "Node.js", "NestJS", "MongoDB", "PostgreSQL", "Socket.IO"],
   },
   {
-    period: "Feb 2022 — Oct 2025",
+    period: "Feb 2022 - Oct 2025",
     role: "Software Engineer",
     company: "iFour Technolabs Pvt. Ltd.",
     logo: "/logos/ifour.png",
@@ -101,7 +101,7 @@ export interface Award {
 export const otherAwards: Award[] = [
   {
     title: "Hackathon winner",
-    issuer: "Port Mortem — Code Resurrection",
+    issuer: "Port Mortem - Code Resurrection",
     year: "2026",
     note: "Track D (Python → Rust): price-parser-rs, a Rust port that passes all 1,059 original tests unmodified, plus 500,000 differential fuzz cases with zero divergences.",
     links: [

@@ -15,14 +15,14 @@ export const metadata: Metadata = {
   description,
   alternates: { canonical: "/contact" },
   openGraph: {
-    title: "Contact Shivharakh Yadav — Full-Stack Developer",
+    title: "Contact Shivharakh Yadav - Full-Stack Developer",
     description,
     url: `${siteUrl}/contact`,
     type: "website",
     images: ogImages,
   },
   // set explicitly: otherwise X/Twitter cards inherit the home page text
-  twitter: { title: "Contact Shivharakh Yadav — Full-Stack Developer", description },
+  twitter: { title: "Contact Shivharakh Yadav - Full-Stack Developer", description },
 };
 
 // Answers use only facts stated elsewhere on the site.
