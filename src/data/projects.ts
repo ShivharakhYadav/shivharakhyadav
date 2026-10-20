@@ -205,10 +205,11 @@ export const projects: Project[] = [
       'Redux Toolkit',
       'React Query',
       'Node.js',
-      'Socket.IO',
       'Python',
+      'Socket.IO',
       'PostgreSQL',
       'AWS',
+      'IIS',
     ],
     highlights: [
       '40% performance improvement, measured with profiling',
