@@ -37,6 +37,9 @@ Last updated: 2026-10-20.
 
 - Saluta (2026-10-20): the owner's stack is Next.js, TypeScript, NestJS, PostgreSQL, Socket.IO, Redis, Docker, AWS, Jenkins, Jest, Vercel and Jira; its key-facts card shows Backend: NestJS + PostgreSQL.
 
+- Client pitch pass (2026-10-20): the owner presents the site to overseas clients. The home hero is client-focused ("Start a project" first, no resume button; stats count products and industries from the data). A "What I can help with" section (`src/data/services.ts`) links each service to case studies. Case studies come before the job timeline. The owner confirmed DMS served **5 organizations** (not 10), and the site, blog and README now agree.
+- Testimonial: `profile.testimonial` holds a `[placeholder]` template that stays hidden until it holds a real quote. Never put an invented quote there.
+
 ## Waiting on the owner
 1. **Merge `feat/ifour-case-studies` into `develop`, then `develop` into `main`,** so the SEO-audit fixes and the new case studies go live.
 2. **Google Search Console:** add the property, use HTML-tag verification, then add the code as `verification: { google: "…" }` in `siteMetadata`. Submit `/sitemap.xml` and request indexing for `/`, `/about`, `/experience` and `/projects`. Then do the same in Bing Webmaster Tools.
@@ -45,7 +48,7 @@ Last updated: 2026-10-20.
 5. **Updated résumé PDF:** it replaces `public/Shivharakh_Yadav_FS.pdf`.
 6. **Formspree ID:** goes in `NEXT_PUBLIC_FORMSPREE_ID`, in `.env.local` and in Vercel. Until then the page shows the email fallback.
 7. **Project screenshots:** none for NDA projects (the owner has decided), so those keep the "Built with" cover. Any screenshots that can be shared go in `public/projects/`; then set `image` in `src/data/projects.ts`.
-8. **Details of the iProgrammer role** and an optional client quote (`profile.testimonial`).
+8. **Details of the iProgrammer role** and a real client quote: replace the `[placeholders]` in `profile.testimonial`, with the client's permission.
 
 ## Ideas not started
 - A price-parser-rs case study (hackathon win; GitHub repo and Medium article are public).
