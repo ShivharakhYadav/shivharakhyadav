@@ -26,6 +26,8 @@ export const profile = {
   availability: "Available for full-stack & frontend roles",
   /** Shows the availability pill in the hero and on /contact. Hidden while employed. */
   showAvailability: false,
+  /** Shows the GPA beside each degree on /about. Hidden for now; the grades stay in `education`. */
+  showGrades: false,
   /** last real change to the profile content; update by hand (used as ProfilePage dateModified) */
   updated: "2026-10-19",
   /** Rotating middle line of the hero headline — kinds of products actually shipped. */

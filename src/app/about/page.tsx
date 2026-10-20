@@ -112,7 +112,7 @@ export default function AboutPage() {
                     <span className="block font-display text-lg font-semibold tracking-[-0.02em]">{e.degree}</span>
                     <span className="block text-muted">
                       {e.school}
-                      {e.grade && <> · {e.grade}</>}
+                      {profile.showGrades && e.grade && <> · {e.grade}</>}
                     </span>
                   </span>
                   <span className="text-sm font-medium text-teal">{e.years}</span>
