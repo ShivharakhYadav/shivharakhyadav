@@ -35,7 +35,7 @@ Last updated: 2026-10-20.
 
 - Moto Venice (2026-10-20): the owner corrected its stack to Next.js, TypeScript, NestJS, PostgreSQL, Redis, Redux Toolkit, Auth0, Veriff, Twilio, Docker, Swagger, Mapbox, Chakra UI, React Query and Jest. Render, GitHub and GitHub Actions are in the same stack list (the owner prefers them there over separate labelled rows). The résumé still says Node.js/MongoDB for Moto Venice.
 
-- Saluta is unlisted (2026-10-20, owner's request): `unlisted: true` keeps it out of the home page, /projects, /experience and next-project links, but its page still builds, is indexable and stays in the sitemap, so searches for "Saluta" can find it. Dagger Concept took its place as the third featured project on the home page.
+- Saluta is unlisted (2026-10-20, owner's request): `unlisted: true` keeps it out of the home page, /projects, /experience and next-project links, but its page still builds, is indexable and stays in the sitemap, so searches for "Saluta" can find it. Dagger Concept took its place as the third featured project on the home page. Saluta's stack (owner, 2026-10-20) is Next.js, TypeScript, NestJS, PostgreSQL, Socket.IO, Redis, Docker, AWS, Jenkins, Jest, Vercel and Jira; its key-facts card shows Backend: NestJS + PostgreSQL.
 
 ## Waiting on the owner
 1. **Merge `feat/ifour-case-studies` into `develop`, then `develop` into `main`,** so the SEO-audit fixes and the new case studies go live.
