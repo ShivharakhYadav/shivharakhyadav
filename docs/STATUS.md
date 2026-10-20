@@ -31,7 +31,7 @@ Last updated: 2026-10-20.
 
 - Co4 Energy-Management Portal (now `/projects/co4-energy-management-portal`; the owner chose no redirect from the old address) scoped down (2026-10-20): the owner was a React frontend developer there for 3 months (bug fixes, features, daily client task calls, API questions with the backend developers). Another team built the portal and its Piral architecture, so don't claim ownership or architecture work. The 3-month duration is context only: never put it on the site. The Piral blog post was reworded to match.
 
-- DMS Simulation Platform (2026-10-20): the owner corrected its stack to Next.js, TypeScript, Python, PostgreSQL, Redis and Docker; the résumé still says Node.js/Express/MongoDB, so the résumé PDF should be updated to match. On the owner's request the case study hides its "Built as … at ViitorCloud" line (`hideBuiltAt`), but it's still listed under ViitorCloud on /experience.
+- DMS Simulation Platform (2026-10-20): the owner corrected its stack to Next.js, TypeScript, Python, PostgreSQL, Redis and Docker; the résumé still says Node.js/Express/MongoDB, so the résumé PDF should be updated to match. The "Built as <role> at <company>" line has been removed from all case-study pages at the owner's request; projects are still listed under their role on /experience.
 
 - Moto Venice (2026-10-20): the owner corrected its stack to Next.js, TypeScript, NestJS, PostgreSQL, Redis, Redux Toolkit, Auth0, Veriff, Twilio, Docker, Swagger, Mapbox, Chakra UI, React Query and Jest. Render, GitHub and GitHub Actions are in the same stack list (the owner prefers them there over separate labelled rows). The résumé still says Node.js/MongoDB for Moto Venice.
 
