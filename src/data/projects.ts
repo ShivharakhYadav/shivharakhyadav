@@ -132,7 +132,7 @@ export const projects: Project[] = [
       'Secure by design: JWT validation against JWKS and HMAC-verified webhooks for user sync and KYC',
     ],
     outcome:
-      'A production rental marketplace where riders browse an exotic fleet filtered to their dates, price their booking and delivery instantly, verify their identity and book, while bike owners list their motorcycles through the consignment program.',
+      'A live rental website where riders pick their dates, see only the bikes that are free, get the full price with delivery straight away, verify their ID and book. Bike owners can also list their own motorcycles for rent.',
   },
   {
     slug: 'health-coaching-platform',
