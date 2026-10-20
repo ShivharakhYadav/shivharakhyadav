@@ -42,7 +42,7 @@ export default function Footer() {
             </li>
           </ul>
         </nav>
-        <span>Designed &amp; built with care in Pune</span>
+        <span>Designed &amp; built with care</span>
       </Container>
     </footer>
   );
