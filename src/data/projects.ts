@@ -494,7 +494,7 @@ export const projects: Project[] = [
   },
   {
     slug: 'my-ticket-solutions',
-    title: 'My Ticket Solutions (MTS) - Multilingual Support Portal',
+    title: 'My Ticket Solutions (MTS)',
     eyebrow: 'Customer support · Web app',
     tagline:
       'A support-ticket web app in 10 languages, with sign-up verified by OTP or an email link.',
