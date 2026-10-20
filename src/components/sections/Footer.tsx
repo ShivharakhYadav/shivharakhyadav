@@ -28,18 +28,6 @@ export default function Footer() {
                 </Link>
               </li>
             ))}
-            {profile.resumeUrl && (
-              <li>
-                <a href={profile.resumeUrl} className="inline-block py-1.5 transition hover:text-ink">
-                  Resume
-                </a>
-              </li>
-            )}
-            <li>
-              <a href="/blog/rss.xml" className="inline-block py-1.5 transition hover:text-ink">
-                RSS
-              </a>
-            </li>
           </ul>
         </nav>
         <span>Designed &amp; built with care</span>
