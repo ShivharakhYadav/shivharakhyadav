@@ -230,7 +230,7 @@ export const projects: Project[] = [
       'BOM creation and a 4-role approval workflow, with an Excel-like costing grid that calculates as you type.',
     headline: { value: '~30%', label: 'more efficient BOM approvals' },
     summary:
-      'An end-to-end Bill of Materials creation and approval system with four approval roles and a spreadsheet-style costing interface. I owned delivery end to end, including daily client communication and sprint planning.',
+      'An end-to-end Bill of Materials creation and approval system with four approval roles and a spreadsheet-style costing interface. I delivered features end to end, including daily client communication and sprint planning.',
     tags: ['React', 'Redux Toolkit', 'Zustand', 'Material UI', 'MySQL'],
     metrics: [
       { label: 'Approval roles', value: '4' },
@@ -243,7 +243,7 @@ export const projects: Project[] = [
       'Designed and developed the end-to-end BOM creation and approval workflow across 4 approval roles, with a modular, maintainable component architecture',
       'Built an Excel-like costing interface for real-time editing and calculation of component costs, totals and margins',
       'Backed the core calculation logic with unit tests',
-      'Owned delivery end to end, including daily client communication, requirement gathering and sprint planning',
+      'Delivered features end to end, including daily client communication, requirement gathering and sprint planning',
     ],
     stack: [
       'React.js',
