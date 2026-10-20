@@ -41,7 +41,9 @@ export default function Experience() {
         <ol>
           {experience.map((job, i) => {
             const current = /present/i.test(job.period);
-            const city = job.location?.split(",")[0];
+            // "Pune, Maharashtra, India" -> "Pune, IN"
+            const parts = job.location?.split(",").map((p) => p.trim()) ?? [];
+            const place = parts.length > 0 ? [parts[0], countryCodes[parts[parts.length - 1]]].filter(Boolean).join(", ") : "";
             return (
               <li key={`${job.company}-${job.period}`} className="relative flex gap-4 pb-9 last:pb-0 sm:gap-5">
                 {i < experience.length - 1 && (
@@ -63,7 +65,7 @@ export default function Experience() {
                   </h3>
                   <p className="mt-0.5 text-[15px]">
                     <span className="font-medium text-teal">{job.company.replace(/ Pvt\. Ltd\.$/, "")}</span>
-                    {city && <span className="text-muted"> · {city}</span>}
+                    {place && <span className="text-muted"> · {place}</span>}
                   </p>
                   <p className="mt-1.5 flex flex-wrap items-center gap-2 text-sm text-muted">
                     {job.period}
@@ -90,6 +92,9 @@ export default function Experience() {
     </Container>
   );
 }
+
+// Short country codes for the timeline's place line
+const countryCodes: Record<string, string> = { India: "IN" };
 
 // Full-width text row with a divider and a trailing arrow
 function RowLink({ href, label, download }: { href: string; label: string; download?: boolean }) {
