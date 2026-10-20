@@ -49,8 +49,8 @@ export default function ProjectPage({
   const project = getProjectBySlug(params.slug);
   if (!project) notFound();
 
-  // the role this was built in, from experience.ts
-  const job = experience.find((j) => j.projects?.includes(project.slug));
+  // the role this was built in, from experience.ts (unless the project hides it)
+  const job = project.hideBuiltAt ? undefined : experience.find((j) => j.projects?.includes(project.slug));
 
   const index = projects.indexOf(project);
   const next = projects[(index + 1) % projects.length];

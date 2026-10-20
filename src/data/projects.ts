@@ -20,6 +20,8 @@ export interface Project {
   stack: string[];
   highlights: string[];
   outcome: string;
+  /** hide the "Built as <role> at <company>" line on the case-study page */
+  hideBuiltAt?: boolean;
 }
 
 // Facts here come from the résumé (public/Shivharakh_Yadav_FS.pdf) and the
@@ -34,7 +36,7 @@ export const projects: Project[] = [
     headline: { value: "944+", label: "users across 10 organizations" },
     summary:
       "A multi-tenant SaaS product delivering interactive simulations to 944+ users across 10 organizations. I was the sole full-stack engineer on the client project, owning everything from requirement gathering to architecture, delivery and releases.",
-    tags: ["Next.js", "TypeScript", "Node.js", "Express", "MongoDB"],
+    tags: ["Next.js", "TypeScript", "Python", "PostgreSQL", "Redis"],
     metrics: [
       { label: "Modules", value: "16 interactive" },
       { label: "My role", value: "Sole full-stack engineer" },
@@ -49,7 +51,8 @@ export const projects: Project[] = [
       "Delivered a full B2B licensing workflow: requests, approvals, seat allocation with concurrency-safe writes, and audit export, validated with Jest",
       "Managed CI/CD pipelines and release deployments, turning client feedback into sprint-level deliverables",
     ],
-    stack: ["Next.js", "TypeScript", "Node.js", "Express (REST API)", "MongoDB", "Context API", "Jest", "Docker"],
+    stack: ["Next.js", "TypeScript", "Redux Tookit", "Python", "PostgreSQL", "Redis", "Docker", "Context API", "Jest"],
+    hideBuiltAt: true,
     highlights: [
       "Safe B2B/B2C data isolation between 10 organizations on one platform",
       "Race-condition-safe seat and licence allocation using transactional writes, so a seat can never be claimed twice",

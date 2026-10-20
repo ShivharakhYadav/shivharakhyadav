@@ -52,7 +52,7 @@ export const experience: Job[] = [
       "Managed CI/CD pipelines and releases, working daily with PMs, backend engineers and client stakeholders",
     ],
     projects: ["dms-simulation-platform", "health-coaching-platform"],
-    tags: ["Next.js", "TypeScript", "Node.js", "NestJS", "MongoDB", "PostgreSQL", "Socket.IO"],
+    tags: ["Next.js", "TypeScript", "Node.js", "NestJS", "Python", "PostgreSQL", "Redis", "Socket.IO"],
   },
   {
     period: "Feb 2022 - Oct 2025",
