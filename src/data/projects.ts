@@ -476,6 +476,10 @@ export const projects: Project[] = [
       'Integrated synchronization with the Outlook calendar',
     ],
     stack: [
+      'Office.js',
+      'Outlook API',
+      'Fluent UI',
+      'REST APIs',
       'Auth0',
       'Microsoft account sign-in',
       'Outlook Calendar integration',
