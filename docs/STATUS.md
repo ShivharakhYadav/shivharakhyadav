@@ -7,10 +7,10 @@ Last updated: 2026-10-20.
 - **Live:** https://shivharakhyadav.vercel.app. Vercel production deploys from `main`. `siteUrl` in `src/configs/metaTags.ts` is the single source of the domain.
 - **Branches:**
   - **`main`:** merge commit `366952d`, PR #2 (redesign, new pages, SEO, responsive work), merged 2026-10-19. This is live.
-  - **`develop`:** created from `main` on 2026-10-19, the integration branch.
-  - **`fix/seo-audit`:** holds the SEO-audit fixes and the photo icons. Its Vercel preview built successfully. A PR into `develop` is ready to open from https://github.com/ShivharakhYadav/shivharakhyadav/compare/develop...fix/seo-audit; the owner opens it, since this machine has no `gh` or token.
+  - **`develop`:** the integration branch, created from `main`. It holds the SEO-audit fixes and photo icons, merged from `fix/seo-audit` as PR #3 (`35aba6a`). These are **not live yet**.
+  - **`fix/seo-audit`:** merged into `develop`. Later commits on it, such as these handoff notes, need another PR into `develop`. PRs are opened by the owner from a compare link, since this machine has no `gh` or token.
   - **`feat/new2`:** merged; kept for history.
-- **To publish:** `fix/seo-audit` → `develop` → `main`. Only `main` deploys to production.
+- **To publish:** open a PR from `develop` → `main`. Only `main` deploys to production.
 - **Verify:** `npx tsc --noEmit` and `npm run build`. A long-running `next dev` shares `.next`; if it's running, build a copy elsewhere instead of deleting `.next`.
 - **Vercel:** previews failed for every commit authored as the office email or as Claude, and succeed for the personal identity. Commit as `Shivharakh Yadav <yadavshivharakhyadav@gmail.com>` (see CLAUDE_MEMORY.md).
 
@@ -52,7 +52,7 @@ Last updated: 2026-10-20.
   - "Pvt. Ltd." is dropped on home only
   - `CompanyLogo` is shared in `ui/JobCard.tsx`; /experience keeps company-first cards with full legal names
 - **Tailwind opacity modifiers** (`bg-teal/50` etc.) now work: `tailwind.config.ts` wraps the CSS-variable colors in `color-mix()`.
-- **SEO audit (2026-10-19, live site), fixes on `fix/seo-audit`:**
+- **SEO audit (2026-10-19, live site), fixes merged into `develop` (PR #3):**
   - page-specific `twitter:title/description`
   - ProfilePage `dateModified` from `profile.updated`; update it by hand when the profile changes
   - hero `<style>` moved out of the h1
@@ -68,7 +68,7 @@ Last updated: 2026-10-20.
   - availability pill hidden via `profile.showAvailability = false` (kept, not deleted)
 
 ## Waiting on the owner
-1. **Open and merge the PRs:** `fix/seo-audit` → `develop`, then `develop` → `main`.
+1. **Publish `develop`:** open and merge a PR from `develop` → `main`.
 2. **Google Search Console:**
    - add the property and use HTML-tag verification
    - add the code as `verification: { google: "…" }` in `siteMetadata`
