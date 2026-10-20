@@ -73,7 +73,7 @@ export default function Navbar() {
             onContact ? "bg-teal" : "bg-ink"
           }`}
         >
-          Let’s talk
+          Let's talk
         </Link>
 
         {open && (

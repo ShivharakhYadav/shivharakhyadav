@@ -17,7 +17,7 @@ export const services: Service[] = [
   },
   {
     title: "Excel & Outlook add-ins",
-    text: "Office.js add-ins that bring your platform’s data into Excel and Outlook: live formulas, real-time updates and one-click reports.",
+    text: "Office.js add-ins that bring your platform's data into Excel and Outlook: live formulas, real-time updates and one-click reports.",
     projects: ["infosel-hub-excel-addin", "aumni-excel-addin", "diligent-equity-excel-addin", "calloquy"],
   },
   {

@@ -49,7 +49,7 @@ There is no test setup and no ESLint config (`next lint` would prompt); use `npx
   - `Reveal` is a subtle IntersectionObserver fade-in.
 - Site metadata and the canonical `siteUrl` live in `src/configs/metaTags.ts`.
 - **Path alias:** `@/*` → `src/*`.
-- **No em dashes (—) in visible text** (the owner finds them AI-looking): use a normal hyphen (-).
+- **No em dashes (—) or curly apostrophes (’) in visible text** (the owner finds them AI-looking): use a normal hyphen (-) and a straight apostrophe ('). Inside single-quoted strings, escape it as `'`.
 - **Content rule:** never invent facts (clients, numbers, dates, rates). Use what's in the data files or the GitHub profile README. Unknown values stay as visible `[bracketed]` placeholders; `isPlaceholder()` in `experience.ts` keeps them out of structured data.
 
 ## Styling conventions

@@ -14,7 +14,7 @@ const reasons = profile.showAvailability
 
 // what makes a first message easy to answer well
 const brief = [
-  "What you’re building and who it’s for",
+  "What you're building and who it's for",
   "Where it stands today: an idea, a prototype or a live product",
   "Your timeline",
 ];
@@ -33,7 +33,7 @@ export default function ContactForm() {
       <div className="card flex flex-col items-start gap-4 self-start rounded-[32px] p-8">
         <h2 className="font-display text-2xl font-semibold tracking-[-0.03em]">Email me directly</h2>
         <p className="leading-relaxed text-muted">
-          Tell me a little about what you have in mind and I’ll get back to you within a day.
+          Tell me a little about what you have in mind and I'll get back to you within a day.
         </p>
         <a href={`mailto:${profile.email}`} className="btn-primary max-w-full px-6 text-[15px] sm:px-7 sm:text-base">
           <EmailText email={profile.email} />
@@ -78,7 +78,7 @@ export default function ContactForm() {
           ✓
         </span>
         <h2 className="font-display text-2xl font-semibold tracking-[-0.03em]">Thanks, message sent!</h2>
-        <p className="leading-relaxed text-muted">I’ll reply to your email within a day.</p>
+        <p className="leading-relaxed text-muted">I'll reply to your email within a day.</p>
         <button type="button" onClick={() => setStatus("idle")} className="text-link mt-2">
           Send another message
         </button>

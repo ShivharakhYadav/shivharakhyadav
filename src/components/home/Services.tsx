@@ -12,7 +12,7 @@ export default function Services() {
           <h2 id="services-title" className="font-display fs-section font-semibold tracking-[-0.05em]">
             What I can help with
           </h2>
-          <p className="mt-2 text-lg text-muted">The kind of work I’ve delivered for clients, with examples.</p>
+          <p className="mt-2 text-lg text-muted">The kind of work I've delivered for clients, with examples.</p>
         </div>
 
         <ul className="grid gap-4 md:grid-cols-2">

@@ -16,7 +16,7 @@ export default function Contact({ id = 'contact' }: { id?: string }) {
           id={`${id}-title`}
           className='max-w-[820px] font-display fs-section font-semibold leading-[1.15] tracking-[-0.05em]'
         >
-          Let’s build something people{' '}
+          Let's build something people{' '}
           <span className='coral-underline whitespace-nowrap'>love to use</span>
           .
         </h2>

@@ -13,7 +13,7 @@ export default function Work() {
             <h2 className="font-display fs-section font-semibold tracking-[-0.05em]">
               Case studies
             </h2>
-            <p className="mt-2 text-lg text-muted">Products I’ve built, from the first call to production.</p>
+            <p className="mt-2 text-lg text-muted">Products I've built, from the first call to production.</p>
           </div>
           <Link href="/projects" className="text-link shrink-0">
             All projects →

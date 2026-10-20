@@ -26,7 +26,7 @@ export default function Hero() {
           </h1>
 
           <p className="max-w-[560px] text-[17px] leading-relaxed text-muted sm:text-[19px]">
-            I’m Shivharakh, a full-stack developer who helps product teams in
+            I'm Shivharakh, a full-stack developer who helps product teams in
             Australia and the US turn ideas into{" "}
             <span className="font-medium text-ink">reliable web apps</span>, with
             clear communication at every step.
@@ -35,7 +35,7 @@ export default function Hero() {
           {/* always side by side: a 2-column grid (short labels on phones) until lg */}
           <div className="grid grid-cols-2 gap-3 lg:flex lg:flex-wrap lg:gap-3.5">
             <Link href="/contact" className={heroBtn("btn-primary")}>
-              <span className="sm:hidden">Let’s talk →</span>
+              <span className="sm:hidden">Let's talk →</span>
               <span className="hidden sm:inline">Start a project →</span>
             </Link>
             <Link href="#work" className={heroBtn("btn-secondary")}>

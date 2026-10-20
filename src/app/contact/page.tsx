@@ -35,13 +35,13 @@ const faqs = [
     ? [
         {
           q: 'Are you available for full-time roles or freelance work?',
-          a: 'Both. I’m open to full-time full-stack and frontend roles, and to selective freelance projects.',
+          a: 'Both. I\'m open to full-time full-stack and frontend roles, and to selective freelance projects.',
         },
       ]
     : []),
   {
     q: 'Do you work with international clients?',
-    a: 'Yes. I’ve worked directly with clients in Australia and the US: joining requirement calls, running demos and turning feedback into shipped features. I work in IST (UTC+5:30).',
+    a: 'Yes. I\'ve worked directly with clients in Australia and the US: joining requirement calls, running demos and turning feedback into shipped features. I work in IST (UTC+5:30).',
   },
   {
     q: 'What technologies do you work with?',
@@ -49,7 +49,7 @@ const faqs = [
   },
   {
     q: 'Can you take a product from idea to production?',
-    a: 'Yes, that’s the work I enjoy most. I’ve worked across the whole cycle: requirement discussions, frontend and backend development, CI/CD and production releases.',
+    a: 'Yes, that\'s the work I enjoy most. I\'ve worked across the whole cycle: requirement discussions, frontend and backend development, CI/CD and production releases.',
   },
   {
     q: 'What kind of products have you built?',
@@ -104,7 +104,7 @@ export default function ContactPage() {
           <header className='space-y-6'>
             <p className='eyebrow text-coral-ink'>Contact</p>
             <h1 className='font-display fs-page font-semibold leading-[1.1] tracking-[-0.04em]'>
-              Let’s build something people{' '}
+              Let's build something people{' '}
               <span className='coral-underline whitespace-nowrap'>
                 love to use
               </span>
@@ -167,7 +167,7 @@ export default function ContactPage() {
             id='process'
             className='font-display text-[28px] font-semibold tracking-[-0.03em] sm:text-[32px]'
           >
-            How we’d start
+            How we'd start
           </h2>
           <ol className='grid gap-4 md:grid-cols-3'>
             {steps.map((step, i) => (

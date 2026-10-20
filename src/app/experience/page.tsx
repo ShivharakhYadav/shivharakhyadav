@@ -99,7 +99,7 @@ export default function ExperiencePage() {
             >
               Industries
             </h2>
-            <p className='text-muted'>Domains I’ve built products for.</p>
+            <p className='text-muted'>Domains I've built products for.</p>
           </div>
           <ul className='grid gap-3 sm:grid-cols-2'>
             {domains.map((d) => {

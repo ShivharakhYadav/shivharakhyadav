@@ -130,9 +130,9 @@ export const allAwards = awards
 /** Career-wide facts for /experience (from the profile and project data). */
 export const careerHighlights = [
   { value: "4+", label: "years shipping production web apps" },
-  { value: "1,200+", label: "users across the platforms I’ve built" },
+  { value: "1,200+", label: "users across the platforms I've built" },
   { value: "944+", label: "users on one multi-tenant SaaS" },
-  { value: "AU & US", label: "clients I’ve worked with directly, from requirements to demos" },
+  { value: "AU & US", label: "clients I've worked with directly, from requirements to demos" },
 ];
 
 /** Industries I've built for, each with its case-study slugs; shown on /experience. */

@@ -46,7 +46,7 @@ export default function AboutPage() {
           <div className="max-w-[640px] space-y-6">
             <p className="eyebrow text-coral-ink">About</p>
             <h1 className="font-display fs-page font-semibold leading-[1.1] tracking-[-0.04em]">
-              Hi, I’m <span className="coral-underline whitespace-nowrap">Shivharakh</span>.
+              Hi, I'm <span className="coral-underline whitespace-nowrap">Shivharakh</span>.
             </h1>
             <p className="text-[17px] leading-relaxed text-muted sm:text-[19px]">
               A {profile.role.toLowerCase()} building SaaS and web products
@@ -129,7 +129,7 @@ export default function AboutPage() {
 
           <Section title="Keep reading">
             <div className="grid gap-4 sm:grid-cols-2">
-              <NextLink href="/experience" label="Experience" text="Roles, career highlights and the products I’ve delivered." />
+              <NextLink href="/experience" label="Experience" text="Roles, career highlights and the products I've delivered." />
               <NextLink href="/projects" label="Case studies" text="How I built them: the problem, my role and the outcome." />
             </div>
           </Section>
