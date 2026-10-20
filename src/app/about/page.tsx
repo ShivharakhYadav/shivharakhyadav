@@ -8,7 +8,6 @@ import JsonLd from "@/components/JsonLd";
 import { person, websiteId } from "@/configs/schema";
 import { profile, stats, workingStyle, education } from "@/data/profile";
 import { skillGroups } from "@/data/skills";
-import { experience } from "@/data/experience";
 import { siteUrl, ogImages } from "@/configs/metaTags";
 
 const description =
@@ -38,9 +37,6 @@ const jsonLd = {
   mainEntity: person,
 };
 
-// the role marked "Present" in experience.ts, if any
-const currentJob = experience.find((j) => /present/i.test(j.period));
-
 export default function AboutPage() {
   return (
     <main>
@@ -57,12 +53,6 @@ export default function AboutPage() {
               for clients in Australia and the US, from the first requirement
               call to the production release.
             </p>
-            {currentJob && (
-              <p className="inline-flex items-center gap-2 rounded-full border border-line bg-card px-4 py-2 text-sm font-medium">
-                <span className="h-2 w-2 rounded-full bg-teal" aria-hidden="true" />
-                Currently {currentJob.role} at {currentJob.company.replace(/ Pvt\. Ltd\.$/, "")}
-              </p>
-            )}
             <dl className="grid grid-cols-3 gap-3 pt-2 sm:flex sm:gap-12">
               {stats.map((s) => (
                 <div key={s.label} className="flex flex-col-reverse justify-end">
