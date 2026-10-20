@@ -7,7 +7,7 @@ import type { PostMeta } from "@/lib/blog";
 export const externalPosts: PostMeta[] = [
   {
     slug: "python-library-to-rust-tests-passed-still-broken",
-    title: "I Ported a Python Library to Rust. All 1,059 Original Tests Passed — and It Was Still Broken.",
+    title: "I Ported a Python Library to Rust. All 1,059 Original Tests Passed - and It Was Still Broken.",
     date: "2026-08-09",
     excerpt:
       "500,000 differential fuzz cases, zero divergences, and one bug the original test suite could never have caught. My winning Port Mortem 2026 submission.",

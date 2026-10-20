@@ -26,28 +26,22 @@ export default function Hero() {
           </h1>
 
           <p className="max-w-[560px] text-[17px] leading-relaxed text-muted sm:text-[19px]">
-            I’m Shivharakh, a full-stack developer who owns the whole build:{" "}
-            <span className="font-medium text-ink">UI, APIs, data and deploy.</span>{" "}
-            For 4+ years I’ve shipped multi-tenant platforms for teams in
-            Australia &amp; the US.
+            I'm Shivharakh, a full-stack developer who helps product teams in
+            Australia and the US turn ideas into{" "}
+            <span className="font-medium text-ink">reliable web apps</span>, with
+            clear communication at every step.
           </p>
 
           {/* always side by side: a 2-column grid (short labels on phones) until lg */}
           <div className="grid grid-cols-2 gap-3 lg:flex lg:flex-wrap lg:gap-3.5">
-            <Link href="#work" className={heroBtn("btn-primary")}>
-              <span className="sm:hidden">Case studies →</span>
-              <span className="hidden sm:inline">View case studies →</span>
+            <Link href="/contact" className={heroBtn("btn-primary")}>
+              <span className="sm:hidden">Let's talk →</span>
+              <span className="hidden sm:inline">Start a project →</span>
             </Link>
-            {profile.resumeUrl ? (
-              <a href={profile.resumeUrl} className={heroBtn("btn-secondary")} download>
-                <span className="sm:hidden">↓ Résumé</span>
-                <span className="hidden sm:inline">↓ Download résumé</span>
-              </a>
-            ) : (
-              <Link href="#contact" className={heroBtn("btn-secondary")}>
-                Get in touch
-              </Link>
-            )}
+            <Link href="#work" className={heroBtn("btn-secondary")}>
+              <span className="sm:hidden">Case studies</span>
+              <span className="hidden sm:inline">View case studies</span>
+            </Link>
           </div>
 
           {/* three equal columns on phones; natural widths from sm */}

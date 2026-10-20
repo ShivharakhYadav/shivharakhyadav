@@ -7,26 +7,18 @@ Last synced: 2026-10-20.
 
 ## Project status and decisions
 
-Read `docs/STATUS.md` first. It has the branches (`main` is live, plus `develop` and `fix/seo-audit`), what's done and what's waiting on the owner.
+Read `docs/STATUS.md` first. It has the branches (`main` is live; `develop` collects work before it goes live), what's done and what's waiting on the owner. Keep that file updated rather than duplicating it here.
 
 **User decisions:**
-- **Location:** lives in Pune now, and the site says Pune.
-- **Jobs:**
-  - joined iProgrammer as Senior Software Engineer on 1 Oct 2026
-  - left ViitorCloud on 17 Jul 2026 and was job-hunting until Oct; the Jul end date is fine
-  - role titles have no "(Full Stack)" suffix
-- **Availability pill:** hidden via `profile.showAvailability = false`. Keep the text; don't delete it.
-- **Coming later:** a rewritten RBAC blog post and an updated résumé PDF.
-- **Navigation:**
-  - the logo stays just "SY", with no full name beside it
-  - no "← Home" links above page titles
-  - Home is in the footer and the mobile menu
-- **Home Experience:**
-  - a logo timeline in LinkedIn order: role → company · city → dates
-  - "Pvt. Ltd." is dropped on home only
-  - the current role is marked by the teal ring and a "Now" tag, not a "Current" pill
-- **Favicon:** the owner's **photo** (`favicon.ico`, `icon.png`, `apple-icon.png`), not the SY monogram.
-- **Phones:** hero buttons side by side, stats in equal columns.
+- Joined iProgrammer as Senior Software Engineer on 1 Oct 2026. Left ViitorCloud on 17 Jul 2026 and was job-hunting until Oct; the Jul end date is fine.
+- iFour: Feb–Aug 2022 was a six-month training period, then Software Engineer from Aug 2022; the site shows Feb 2022 with a note.
+- Lives in Pune. The site is pitched to overseas clients, so the city stays out of intros and the footer; "Pune, India" in the contact band and "Pune, IN" in the home timeline are fine. Never write "Based in".
+- Availability pill hidden via `profile.showAvailability = false`; keep the text, don't delete it.
+- Role titles have no "(Full Stack)" suffix.
+- The logo stays just "SY", with no full name beside it. No "← Home" links above page titles. Home is in the footer and the mobile menu.
+- Home timeline: logos in LinkedIn order (role → company · city → dates), "Pvt. Ltd." dropped on home only, the current role marked by a teal ring and a "Now" tag.
+- Client names (Infosel, Aumni, Diligent Equity, Calloquy, MTS, Co4) may be shown; internal details from NDA work never go on the site.
+- Will send a rewritten RBAC blog post and an updated resume PDF later.
 
 **Why:** the user switches machines and Claude surfaces (local and cloud) and wants to resume without re-explaining.
 **How to apply:** read `docs/STATUS.md` first, and follow the rules below.
@@ -35,19 +27,12 @@ Read `docs/STATUS.md` first. It has the branches (`main` is live, plus `develop`
 
 ## Working rules
 
-- **Never invent facts** such as clients, numbers or dates. Unknown values stay as `[bracketed]` placeholders.
-- **Commit and push only when asked**, on the branch the owner names. Don't merge PRs. This machine has no `gh` CLI or token, so to open a PR, give the owner a prefilled `compare/<base>...<head>?expand=1&title=…&body=…` link.
-- **Commit identity:**
-  - Every commit is authored and committed as `Shivharakh Yadav <yadavshivharakhyadav@gmail.com>`; this is set in the repo's local git config.
-  - The global git identity is the office account (`shivharakhy@iprogrammer.co`) and must not be used here.
-  - **No `Co-Authored-By: Claude` trailer, no `Claude-Session:` line, and no "Generated with Claude Code" line** in commits or PR bodies. The owner wants to be the only contributor.
-  - Vercel previews also failed for other authors.
-- **Never publish HR or company documents.** The user once put a signed relieving letter in `public/`. Read every file before it goes public.
-- **Ask before choosing** between options the owner should decide (e.g. which favicon). Don't pick silently.
-- **Verify visually:**
-  - Run `npm run build`, then `next start -p 3456`, then take headless Chrome screenshots. Stop the server by its port PID, never with `pkill -f`.
-  - For mobile, use Chrome DevTools-protocol emulation (real viewport, DPR, touch, mobile UA).
-  - The user often has `next dev` running, which shares `.next`, so never delete `.next` then. Build a copy in the scratchpad instead: rsync without `node_modules`/`.next`, and symlink `node_modules`.
+- **Never invent facts** such as clients, numbers, dates or quotes. Unknown values stay as `[bracketed]` placeholders.
+- **Commit and push only when asked**, on a new feature branch, never directly on `develop` or `main` (since 2026-10-20). Don't create PRs unasked.
+- **Commit identity:** every commit is authored and committed as `Shivharakh Yadav <yadavshivharakhyadav@gmail.com>`. The office account (`shivharakhy@iprogrammer.co`) must never be used here; Vercel previews fail for other authors.
+- **No co-author or Claude lines in commits or PRs:** no `Co-Authored-By:`, no `Claude-Session:`, no "Generated with Claude Code". The owner wants to be the only contributor.
+- **Never publish HR or company documents, or client notes under NDA** (keep those in gitignored `notes/`). The user once put a signed relieving letter in `public/`. Read every file before it goes public.
+- **Verify visually.** Run `npm run build`, then `next start -p 3456`, then take headless Chrome screenshots; for mobile, use Chrome DevTools-protocol emulation (real viewport, DPR, touch, mobile UA). Stop the server by its port PID, never with `pkill -f`. The user often has `next dev` running, which shares `.next`: never delete `.next` then. Build a copy in the scratchpad instead (copy without node_modules/.next, link node_modules).
 
-**Why:** the site is a hiring tool, and false claims or leaked documents would hurt the user.
+**Why:** the site is a hiring and client-pitch tool, and false claims or leaked documents would hurt the user.
 **How to apply:** for any content, data or git work in the portfolio repo.

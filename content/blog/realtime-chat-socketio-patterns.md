@@ -1,7 +1,7 @@
 ---
 title: "Real-Time Chat with Socket.IO: Patterns That Scale"
 date: "2026-04-09"
-excerpt: "Rooms, acknowledgements, reconnection and delivery guarantees — the Socket.IO patterns I reach for when building production real-time features."
+excerpt: "Rooms, acknowledgements, reconnection and delivery guarantees - the Socket.IO patterns I reach for when building production real-time features."
 tags: ["Socket.IO", "Node.js", "Realtime", "WebSockets"]
 published: true
 ---
@@ -51,7 +51,7 @@ socket.on("connect", () => {
 
 ## Authenticate the handshake, authorize the room
 
-Verify the token during the handshake, and check membership before joining a room — otherwise anyone can subscribe to any conversation:
+Verify the token during the handshake, and check membership before joining a room - otherwise anyone can subscribe to any conversation:
 
 ```ts
 io.use((socket, next) => {
@@ -65,7 +65,7 @@ io.use((socket, next) => {
 ## Takeaways
 
 - Persist before broadcasting; acknowledge every send.
-- The socket is a transport — the **database is truth**.
+- The socket is a transport - the **database is truth**.
 - Design for reconnection and gap-filling up front, not as an afterthought.
 - Authenticate the handshake and authorize room joins.
 

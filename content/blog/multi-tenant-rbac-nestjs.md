@@ -1,20 +1,20 @@
 ---
 title: "Designing Multi-Tenant RBAC in NestJS and PostgreSQL"
 date: "2026-05-18"
-excerpt: "How I structured tenant isolation and role-based access control for a SaaS platform serving 10 organizations — without leaking a single row across tenants."
+excerpt: "How I structured tenant isolation and role-based access control for a SaaS platform serving 5 organizations - without leaking a single row across tenants."
 tags: ["NestJS", "PostgreSQL", "RBAC", "SaaS", "Architecture"]
 published: true
 ---
 
-When you build a multi-tenant SaaS, the hardest problem isn't the features — it's making sure **Organization A can never see Organization B's data**, while still keeping the codebase simple enough to ship features fast. Here's the approach I used on an e-learning platform now serving 944+ users across 10 organizations.
+When you build a multi-tenant SaaS, the hardest problem isn't the features - it's making sure **Organization A can never see Organization B's data**, while still keeping the codebase simple enough to ship features fast. Here's the approach I used on an e-learning platform now serving 944+ users across 5 organizations.
 
 ## Pick a tenancy model first
 
 There are three common models:
 
-- **Database-per-tenant** — strongest isolation, painful to migrate and operate at scale.
-- **Schema-per-tenant** — good isolation, still operationally heavy.
-- **Shared schema with a `tenant_id` column** — simplest to operate, isolation enforced in the application layer.
+- **Database-per-tenant** - strongest isolation, painful to migrate and operate at scale.
+- **Schema-per-tenant** - good isolation, still operationally heavy.
+- **Shared schema with a `tenant_id` column** - simplest to operate, isolation enforced in the application layer.
 
 For a product onboarding organizations frequently, I chose the **shared schema** model. The trade-off: isolation now depends on discipline in code, so it must be enforced in *one* place, not sprinkled everywhere.
 
@@ -35,7 +35,7 @@ export class TenantMiddleware implements NestMiddleware {
 }
 ```
 
-Then every repository reads the tenant from that context — never from the caller.
+Then every repository reads the tenant from that context - never from the caller.
 
 ## Model roles as data, not code
 
@@ -52,7 +52,7 @@ A single `@RequirePermission('course.publish')` decorator then checks the resolv
 
 ## Test the boundary, not just the feature
 
-The test that matters most isn't "can an admin publish a course" — it's "**can a user from Tenant A read Tenant B's course**". Write that negative test for every resource. It's the test that actually protects your customers.
+The test that matters most isn't "can an admin publish a course" - it's "**can a user from Tenant A read Tenant B's course**". Write that negative test for every resource. It's the test that actually protects your customers.
 
 ## Takeaways
 
@@ -60,4 +60,4 @@ The test that matters most isn't "can an admin publish a course" — it's "**can
 - Store roles and permissions as **data** so customers self-configure.
 - Your most important tests are the **cross-tenant denial** tests.
 
-This structure let us onboard new organizations with zero code changes — the whole point of building a multi-tenant platform in the first place.
+This structure let us onboard new organizations with zero code changes - the whole point of building a multi-tenant platform in the first place.
