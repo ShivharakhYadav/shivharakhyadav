@@ -20,11 +20,6 @@ export interface Project {
   stack: string[]
   highlights: string[]
   outcome: string
-  /**
-   * Left out of every listing (home, /projects, /experience, next-project links),
-   * but the page still builds and stays in the sitemap, so search can find it.
-   */
-  unlisted?: boolean
 }
 
 // Facts here come from the résumé (public/Shivharakh_Yadav_FS.pdf) and the
@@ -134,7 +129,6 @@ export const projects: Project[] = [
   },
   {
     slug: 'health-coaching-platform',
-    unlisted: true,
     title: 'Saluta - Health & Coaching Platform',
     eyebrow: 'Health · Real-time',
     tagline:
@@ -527,13 +521,10 @@ export const projects: Project[] = [
 export const featuredProjects: Project[] = [
   'dms-simulation-platform',
   'moto-venice',
-  'dagger-concept',
+  'health-coaching-platform',
 ]
   .map((slug) => projects.find((p) => p.slug === slug))
-  .filter((p): p is Project => Boolean(p) && !p?.unlisted)
-
-/** Projects shown in listings; unlisted ones only have their own page. */
-export const listedProjects: Project[] = projects.filter((p) => !p.unlisted)
+  .filter((p): p is Project => Boolean(p))
 
 export const getProjectBySlug = (slug: string): Project | undefined =>
   projects.find((p) => p.slug === slug)

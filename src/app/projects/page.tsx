@@ -4,7 +4,7 @@ import PageHeader from "@/components/ui/PageHeader";
 import Reveal from "@/components/Reveal";
 import { ProjectCard } from "@/components/ui/ProjectCard";
 import Contact from "@/components/sections/Contact";
-import { listedProjects, featuredProjects } from "@/data/projects";
+import { projects, featuredProjects } from "@/data/projects";
 import { siteUrl, ogImages } from "@/configs/metaTags";
 
 export const metadata: Metadata = {
@@ -25,7 +25,7 @@ export const metadata: Metadata = {
 };
 
 // featured projects first, in their featured order, then the rest
-const ordered = [...featuredProjects, ...listedProjects.filter((p) => !featuredProjects.includes(p))];
+const ordered = [...featuredProjects, ...projects.filter((p) => !featuredProjects.includes(p))];
 
 export default function ProjectsIndexPage() {
   return (

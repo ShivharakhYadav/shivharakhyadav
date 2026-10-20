@@ -8,7 +8,7 @@ import Contact from "@/components/sections/Contact";
 import JsonLd from "@/components/JsonLd";
 import { person, websiteId } from "@/configs/schema";
 import { experience, careerHighlights, awards } from "@/data/experience";
-import { listedProjects, featuredProjects, getProjectBySlug } from "@/data/projects";
+import { projects, featuredProjects, getProjectBySlug } from "@/data/projects";
 import { profile } from "@/data/profile";
 import { siteUrl, ogImages } from "@/configs/metaTags";
 
@@ -40,7 +40,7 @@ const jsonLd = {
 };
 
 // featured projects first, then the rest
-const delivered = [...featuredProjects, ...listedProjects.filter((p) => !featuredProjects.includes(p))];
+const delivered = [...featuredProjects, ...projects.filter((p) => !featuredProjects.includes(p))];
 
 export default function ExperiencePage() {
   return (
@@ -89,7 +89,7 @@ export default function ExperiencePage() {
             {experience.map((job) => {
               const jobProjects = (job.projects ?? [])
                 .map(getProjectBySlug)
-                .filter((p): p is NonNullable<typeof p> => Boolean(p) && !p?.unlisted);
+                .filter((p): p is NonNullable<typeof p> => Boolean(p));
               return (
                 <li key={`${job.company}-${job.period}`} className="relative">
                   <span
