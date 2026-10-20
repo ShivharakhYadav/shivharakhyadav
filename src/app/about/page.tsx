@@ -53,9 +53,9 @@ export default function AboutPage() {
               Hi, I’m <span className="coral-underline whitespace-nowrap">Shivharakh</span>.
             </h1>
             <p className="text-[17px] leading-relaxed text-muted sm:text-[19px]">
-              A {profile.role.toLowerCase()} in Pune, India. I build SaaS
-              products end to end, from the first requirement call to the
-              production deploy.
+              A {profile.role.toLowerCase()} building SaaS and web products
+              for clients in Australia and the US, from the first requirement
+              call to the production release.
             </p>
             {currentJob && (
               <p className="inline-flex items-center gap-2 rounded-full border border-line bg-card px-4 py-2 text-sm font-medium">
