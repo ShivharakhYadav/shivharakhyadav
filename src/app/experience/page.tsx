@@ -96,7 +96,7 @@ export default function ExperiencePage() {
             </h2>
             {profile.resumeUrl && (
               <a href={profile.resumeUrl} className='text-link inline-block'>
-                Download résumé (PDF) →
+                Download resume (PDF) →
               </a>
             )}
           </div>
