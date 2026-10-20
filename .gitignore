@@ -38,3 +38,6 @@ next-env.d.ts
 # unused original photos, kept locally only (public/ is served as-is)
 /public/profile1.jpg
 /public/profile.JPG
+
+# private working notes (client details under NDA), never commit or serve
+/notes/

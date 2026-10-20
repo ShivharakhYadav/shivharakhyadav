@@ -61,15 +61,24 @@ export const experience: Job[] = [
     logo: "/logos/ifour.png",
     location: "Ahmedabad, Gujarat, India",
     summary:
-      "Full-stack delivery for clients in Australia and the US, from requirement calls to deployment.",
+      "Full-stack delivery for clients in Australia and the US, from requirement calls to deployment. Joined for a six-month training period in Feb 2022, then as Software Engineer from Aug 2022.",
     highlights: [
       "Built the API and storefront for Moto Venice, then grew it into a two-sided rental marketplace",
       "Architected a sports data platform from scratch on AWS and made it 40% faster through profiling and optimization",
       "Delivered a 4-role BOM approval workflow that improved approval efficiency by ~30%",
       "Mentored junior engineers and led daily client communication with Australia-based stakeholders",
     ],
-    projects: ["moto-venice", "dagger-concept", "bom-workflow-system"],
-    tags: ["React", "Next.js", "Node.js", "MongoDB", "PostgreSQL", "Socket.IO", "AWS"],
+    projects: [
+      "moto-venice",
+      "dagger-concept",
+      "bom-workflow-system",
+      "infosel-hub-excel-addin",
+      "aumni-excel-addin",
+      "diligent-equity-excel-addin",
+      "calloquy",
+      "my-ticket-solutions",
+    ],
+    tags: ["React", "Next.js", "Node.js", "MongoDB", "PostgreSQL", "Socket.IO", "AWS", "Office.js"],
     awards: ["Client Excellence ×2", "Good Learner Award"],
   },
 ];

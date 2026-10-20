@@ -26,8 +26,8 @@ The full status and pending list is checked into the repo at `docs/STATUS.md`, s
 ## Working rules
 
 - **Never invent facts** such as clients, numbers or dates. Unknown values stay as `[bracketed]` placeholders.
-- **Commit and push only when asked**, and only to `feat/new2`. Don't create PRs unasked.
-- **Never publish HR or company documents.** The user once put a signed relieving letter in `public/`. Read every file before it goes public.
+- **Commit and push only when asked**, on a new feature branch, never directly on `develop` or `main` (since 2026-10-20). Don't create PRs unasked.
+- **Never publish HR or company documents, or client notes under NDA** (keep those in gitignored `notes/`). The user once put a signed relieving letter in `public/`. Read every file before it goes public.
 - **Verify visually.** Run `npm run build`, then `next start -p 3456`, then take headless Chrome screenshots. Stop the server by its port PID, never with `pkill -f`. The user often has `next dev` running, which shares `.next`: never delete `.next` then. Build a copy in the scratchpad instead (rsync without node_modules/.next, symlink node_modules).
 
 **Why:** the site is a hiring tool, and false claims or leaked documents would hurt the user.

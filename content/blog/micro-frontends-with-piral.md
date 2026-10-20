@@ -1,12 +1,13 @@
 ---
 title: "When Micro-Frontends Actually Make Sense (Lessons from Piral)"
 date: "2026-03-02"
-excerpt: "Micro-frontends solve an organizational problem, not a technical one. What I learned shipping an energy-management portal on a Piral-based architecture."
+updated: "2026-10-20"
+excerpt: "Micro-frontends solve an organizational problem, not a technical one. What I learned working as a React developer on Co4, an energy-management portal built on Piral."
 tags: ["Micro-frontend", "Piral", "React", "Architecture"]
 published: true
 ---
 
-Micro-frontends are trendy, and mostly misapplied. Before splitting a frontend into independently deployable pieces, it's worth being honest about *why*. Here's what I took away from building an energy-management portal on [Piral](https://piral.io).
+Micro-frontends are trendy, and mostly misapplied. Before splitting a frontend into independently deployable pieces, it's worth being honest about *why*. Here's what I took away from working as a React developer on Co4, an energy-management portal built on [Piral](https://piral.io).
 
 ## The problem they actually solve
 
@@ -56,4 +57,4 @@ None are dealbreakers, but they're real, and they're the price of independent de
 - Share the framework, auth, and design system in the shell; isolate domain logic in pilets.
 - Budget for the integration and testing costs up front.
 
-Used for the right reason, a Piral architecture let multiple workflows proceed in parallel without stepping on each other. Used for the wrong reason, it's just a distributed monolith with extra steps.
+Used for the right reason, a Piral architecture lets multiple workflows proceed in parallel without stepping on each other. Used for the wrong reason, it's just a distributed monolith with extra steps.

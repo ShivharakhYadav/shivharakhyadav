@@ -7,7 +7,7 @@ export interface SkillGroup {
 export const skillGroups: SkillGroup[] = [
   {
     category: "Frontend",
-    items: ["React.js", "Next.js (App Router)", "TypeScript", "Redux Toolkit", "Zustand", "React Query", "React Hook Form", "Tailwind CSS", "Material UI"],
+    items: ["React.js", "Next.js (App Router)", "TypeScript", "Redux Toolkit", "Zustand", "React Query", "React Hook Form", "Tailwind CSS", "Material UI", "Fluent UI", "Office.js (Excel add-ins)"],
   },
   {
     category: "Backend",
