@@ -275,17 +275,17 @@ export const projects: Project[] = [
       label: 'market types streamed live into Excel cells',
     },
     summary:
-      'Infosel Hub for Excel: two add-ins for the paying customers of Infosel, a Mexican financial-data provider. One is a task pane that inserts live, self-updating price tables; the other is a streaming worksheet formula that keeps a single cell ticking in real time. I worked on it as a frontend engineer.',
+      'Infosel Hub for Excel: an add-in for the paying customers of Infosel, a Mexican financial-data provider. Its task pane inserts live, self-updating price tables, and a streaming worksheet formula keeps a single cell ticking in real time. I worked on it as a frontend engineer.',
     tags: ['React', 'TypeScript', 'Office.js', 'WebSockets', 'Jest'],
     metrics: [
-      { label: 'Add-ins', value: 'Task pane + live formula' },
+      { label: 'Add-in', value: 'Task pane + live formula' },
       { label: 'Streaming fields', value: '~228 mapped' },
       { label: 'Release', value: 'Jenkins → Kubernetes' },
     ],
     problem:
       "Analysts and traders were copying prices out of a web terminal into their spreadsheets, so their numbers were stale the moment they pasted them. They needed live data from Mexican and US exchanges (equities, FX, fixed income, indices, funds and reference rates) directly in Excel, cells that keep updating on their own, and a way to pull history in bulk, all respecting each customer's real-time or delayed data licence.",
     role: [
-      'Frontend engineer on the React and TypeScript add-ins, working across the Excel features listed under Highlights',
+      'Frontend engineer on the React and TypeScript add-in, working across the Excel features listed under Highlights',
       'Took part in team discussions on design and implementation with the wider development team',
     ],
     stack: [
