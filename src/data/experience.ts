@@ -134,3 +134,15 @@ export const careerHighlights = [
   { value: "944+", label: "users on one multi-tenant SaaS, across 10 organizations" },
   { value: "AU & US", label: "clients I’ve worked with directly, from requirements to demos" },
 ];
+
+/** Industries I've built for, each with its case-study slugs; shown on /experience. */
+export const domains: { name: string; projects: string[] }[] = [
+  { name: "Fintech & investment data", projects: ["infosel-hub-excel-addin", "aumni-excel-addin", "diligent-equity-excel-addin"] },
+  { name: "E-learning & simulation", projects: ["dms-simulation-platform"] },
+  { name: "Health & coaching", projects: ["health-coaching-platform"] },
+  { name: "Mobility & rentals", projects: ["moto-venice"] },
+  { name: "Sports data", projects: ["dagger-concept"] },
+  { name: "Energy", projects: ["co4-energy-management-portal"] },
+  { name: "Manufacturing", projects: ["bom-workflow-system"] },
+  { name: "Customer support & productivity", projects: ["my-ticket-solutions", "calloquy"] },
+];

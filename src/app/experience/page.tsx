@@ -7,7 +7,12 @@ import { ProjectRowCard } from '@/components/ui/ProjectCard'
 import Contact from '@/components/sections/Contact'
 import JsonLd from '@/components/JsonLd'
 import { person, websiteId } from '@/configs/schema'
-import { experience, careerHighlights, awards } from '@/data/experience'
+import {
+  experience,
+  careerHighlights,
+  awards,
+  domains,
+} from '@/data/experience'
 import { projects, featuredProjects, getProjectBySlug } from '@/data/projects'
 import { profile } from '@/data/profile'
 import { siteUrl, ogImages } from '@/configs/metaTags'
@@ -81,6 +86,47 @@ export default function ExperiencePage() {
             </div>
           ))}
         </dl>
+
+        {/* Industries: each domain links to its case studies */}
+        <section
+          aria-labelledby='domains'
+          className='grid grid-cols-1 gap-8 pt-20 lg:grid-cols-[260px_minmax(0,1fr)] lg:gap-12'
+        >
+          <div className='space-y-3'>
+            <h2
+              id='domains'
+              className='font-display text-[28px] font-semibold tracking-[-0.03em] sm:text-[32px]'
+            >
+              Industries
+            </h2>
+            <p className='text-muted'>Domains I’ve built products for.</p>
+          </div>
+          <ul className='grid gap-3 sm:grid-cols-2'>
+            {domains.map((d) => {
+              const domainProjects = d.projects
+                .map(getProjectBySlug)
+                .filter((p): p is NonNullable<typeof p> => Boolean(p))
+              return (
+                <li key={d.name} className='card rounded-3xl p-5 sm:p-6'>
+                  <h3 className='font-display text-lg font-semibold tracking-[-0.02em]'>
+                    {d.name}
+                  </h3>
+                  <p className='mt-2 flex flex-wrap gap-x-4 gap-y-1'>
+                    {domainProjects.map((p) => (
+                      <Link
+                        key={p.slug}
+                        href={`/projects/${p.slug}`}
+                        className='text-link inline-block py-0.5 text-sm'
+                      >
+                        {p.title.split(' - ')[0]} →
+                      </Link>
+                    ))}
+                  </p>
+                </li>
+              )
+            })}
+          </ul>
+        </section>
 
         {/* Timeline */}
         <section
