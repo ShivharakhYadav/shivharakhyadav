@@ -9,10 +9,10 @@ import { profile, stats } from '@/data/profile'
 export default function Hero() {
   return (
     <Container>
-      <section className='grid grid-cols-1 items-center gap-12 pb-16 pt-12 md:grid-cols-[minmax(0,1fr)_auto] md:gap-10 lg:gap-12 lg:pt-12'>
+      <section className='grid grid-cols-1 items-center gap-8 pb-12 pt-6 sm:gap-12 sm:pb-16 sm:pt-12 md:grid-cols-[minmax(0,1fr)_auto] md:gap-10 lg:gap-12 lg:pt-12'>
         {/* outside the text column: a <style> sibling would shift space-y margins */}
         <RotatingWordsStyle count={profile.heroWords.length} />
-        <div className='max-w-[640px] space-y-7'>
+        <div className='max-w-[640px] space-y-5 sm:space-y-7'>
           {profile.showAvailability && (
             <span className='inline-flex items-center gap-2 rounded-full border border-line bg-card px-4 py-2 text-sm font-medium'>
               <span
@@ -51,13 +51,13 @@ export default function Hero() {
           </div>
 
           {/* three equal columns on phones; natural widths from sm */}
-          <dl className='grid grid-cols-3 gap-3 pt-4 sm:flex sm:gap-12'>
+          <dl className='grid grid-cols-3 gap-3 pt-3 sm:flex sm:gap-12 sm:pt-4'>
             {stats.map((s) => (
               <div key={s.label} className='flex flex-col-reverse justify-end'>
-                <dt className='text-[13px] text-muted sm:text-sm'>
+                <dt className='mt-1 text-[12px] leading-snug text-muted sm:mt-0 sm:text-sm sm:leading-normal'>
                   {s.label}
                 </dt>
-                <dd className='font-display text-[28px] font-semibold tracking-[-0.04em] text-teal sm:text-[36px]'>
+                <dd className='font-display text-[26px] font-semibold leading-none tracking-[-0.04em] text-teal sm:text-[36px] sm:leading-normal'>
                   {s.value}
                 </dd>
               </div>
