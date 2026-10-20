@@ -40,24 +40,20 @@ const faqs = [
       ]
     : []),
   {
-    q: 'Do you work with clients outside India?',
-    a: 'Yes. I’ve worked directly with clients in Australia and the US: joining requirement calls, running demos and turning feedback into shipped features. I’m based in Pune, India (IST, UTC+5:30).',
+    q: 'Do you work with international clients?',
+    a: 'Yes. I’ve worked directly with clients in Australia and the US: joining requirement calls, running demos and turning feedback into shipped features. I work in IST (UTC+5:30).',
   },
   {
     q: 'What technologies do you work with?',
-    a: 'React, Next.js and TypeScript on the frontend; Node.js, Express and NestJS on the backend; MongoDB, PostgreSQL and Redis for data; Jest and Playwright for testing; plus Docker, GitHub Actions, AWS and Vercel.',
+    a: 'React, Next.js and TypeScript on the frontend; Node.js and NestJS on the backend; PostgreSQL, MongoDB and Redis for data; Office.js for Excel and Outlook add-ins; Jest and Playwright for testing; plus Docker, GitHub Actions, AWS and Vercel.',
   },
   {
     q: 'Can you take a product from idea to production?',
-    a: 'Yes, that’s the work I enjoy most. I take end-to-end ownership: requirement discussions, architecture, frontend and backend development, CI/CD and production deploys.',
+    a: 'Yes, that’s the work I enjoy most. I’ve worked across the whole cycle: requirement discussions, frontend and backend development, CI/CD and production releases.',
   },
   {
     q: 'What kind of products have you built?',
-    a: 'A multi-tenant simulation SaaS used by 944+ people across 10 organizations, a two-sided motorcycle rental marketplace, a health and coaching platform with 329+ users, a real-time sports data platform on AWS, and a BOM approval workflow that made approvals ~30% more efficient.',
-  },
-  {
-    q: 'How quickly do you reply?',
-    a: 'Usually within a day.',
+    a: 'A multi-tenant simulation SaaS used by 944+ people, Excel add-ins for fintech and investment-data companies, a two-sided motorcycle rental marketplace, a health and coaching platform with 329+ users, a real-time sports data platform on AWS, and a BOM approval workflow that made approvals ~30% more efficient.',
   },
 ]
 
