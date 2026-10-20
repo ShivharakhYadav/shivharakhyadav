@@ -13,7 +13,7 @@ export interface Job {
   highlights?: string[];
   /** Slugs from src/data/projects.ts built in this role; shown as linked cards. */
   projects?: string[];
-  /** Main tech used in this role; shown as chips. */
+  /** Main tech used in this role (kept for reference; not shown on the site). */
   tags?: string[];
   /** Awards received in this role; shown as badges and given to Google as structured data. */
   awards?: string[];
