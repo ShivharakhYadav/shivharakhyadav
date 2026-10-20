@@ -38,7 +38,7 @@ export default function Contact({ id = 'contact' }: { id?: string }) {
         </div>
         <p className='inline-flex items-center gap-2 text-[15px] text-muted'>
           <span className='h-2 w-2 rounded-full bg-coral' aria-hidden='true' />
-          Based in Pune, India
+          Pune, India
         </p>
         <ul className='flex gap-7 font-medium'>
           {profile.socials
