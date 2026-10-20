@@ -56,7 +56,7 @@ export const projects: Project[] = [
     stack: [
       'Next.js',
       'TypeScript',
-      'Redux Tookit',
+      'Redux Toolkit',
       'Python',
       'PostgreSQL',
       'Redis',
