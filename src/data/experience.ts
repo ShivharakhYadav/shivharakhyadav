@@ -11,7 +11,7 @@ export interface Job {
   summary?: string;
   /** What you did/achieved in this role; shown as bullets on /experience. */
   highlights?: string[];
-  /** Slugs from src/data/projects.ts built in this role; shown as linked cards. */
+  /** Slugs from src/data/projects.ts built in this role (kept for reference; not shown on the site). */
   projects?: string[];
   /** Main tech used in this role (kept for reference; not shown on the site). */
   tags?: string[];

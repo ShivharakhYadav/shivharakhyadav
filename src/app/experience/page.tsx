@@ -147,69 +147,31 @@ export default function ExperiencePage() {
             )}
           </div>
           <ol className='relative space-y-6 border-l-2 border-dashed border-coral/40 pl-4 sm:pl-10'>
-            {experience.map((job) => {
-              const jobProjects = (job.projects ?? [])
-                .map(getProjectBySlug)
-                .filter((p): p is NonNullable<typeof p> => Boolean(p))
-              return (
-                <li key={`${job.company}-${job.period}`} className='relative'>
-                  <span
-                    aria-hidden='true'
-                    className='absolute -left-[25px] top-7 h-3.5 w-3.5 rounded-full border-[3px] border-bg bg-coral sm:-left-[49px]'
-                  />
-                  <div className='card rounded-3xl p-4 sm:p-8'>
-                    <JobCard job={job}>
-                      {job.highlights && job.highlights.length > 0 && (
-                        <ul className='space-y-2 pt-1'>
-                          {job.highlights.map((h) => (
-                            <li key={h} className='flex gap-3 leading-relaxed'>
-                              <span
-                                aria-hidden='true'
-                                className='mt-[10px] h-1.5 w-1.5 shrink-0 rounded-full bg-coral'
-                              />
-                              <span>{h}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      )}
-                    </JobCard>
-                    {jobProjects.length > 0 && (
-                      <div className='mt-6 border-t border-line pt-6'>
-                        <p className='eyebrow text-muted'>Built in this role</p>
-                        <ul className='mt-3 grid gap-3 sm:grid-cols-2'>
-                          {jobProjects.map((p) => (
-                            <li key={p.slug}>
-                              <Link
-                                href={`/projects/${p.slug}`}
-                                className='group flex h-full items-center justify-between gap-4 rounded-2xl bg-bg p-4 transition hover:bg-seaglass'
-                              >
-                                <span className='min-w-0'>
-                                  <span className='block font-display font-semibold leading-snug tracking-[-0.02em]'>
-                                    {p.title}
-                                  </span>
-                                  <span className='mt-0.5 block text-sm text-muted'>
-                                    <span className='font-semibold text-teal'>
-                                      {p.headline.value}
-                                    </span>{' '}
-                                    {p.headline.label}
-                                  </span>
-                                </span>
-                                <span
-                                  aria-hidden='true'
-                                  className='text-teal transition group-hover:translate-x-1'
-                                >
-                                  →
-                                </span>
-                              </Link>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
+            {experience.map((job) => (
+              <li key={`${job.company}-${job.period}`} className='relative'>
+                <span
+                  aria-hidden='true'
+                  className='absolute -left-[25px] top-7 h-3.5 w-3.5 rounded-full border-[3px] border-bg bg-coral sm:-left-[49px]'
+                />
+                <div className='card rounded-3xl p-4 sm:p-8'>
+                  <JobCard job={job}>
+                    {job.highlights && job.highlights.length > 0 && (
+                      <ul className='space-y-2 pt-1'>
+                        {job.highlights.map((h) => (
+                          <li key={h} className='flex gap-3 leading-relaxed'>
+                            <span
+                              aria-hidden='true'
+                              className='mt-[10px] h-1.5 w-1.5 shrink-0 rounded-full bg-coral'
+                            />
+                            <span>{h}</span>
+                          </li>
+                        ))}
+                      </ul>
                     )}
-                  </div>
-                </li>
-              )
-            })}
+                  </JobCard>
+                </div>
+              </li>
+            ))}
           </ol>
         </section>
 
