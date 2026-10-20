@@ -40,8 +40,8 @@ export default function Hero() {
             </Link>
             {profile.resumeUrl ? (
               <a href={profile.resumeUrl} className={heroBtn("btn-secondary")} download>
-                <span className="sm:hidden">↓ Résumé</span>
-                <span className="hidden sm:inline">↓ Download résumé</span>
+                <span className="sm:hidden">↓ Resume</span>
+                <span className="hidden sm:inline">↓ Download resume</span>
               </a>
             ) : (
               <Link href="#contact" className={heroBtn("btn-secondary")}>

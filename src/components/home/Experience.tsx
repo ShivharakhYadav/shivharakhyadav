@@ -19,7 +19,7 @@ export default function Experience() {
           <ul className="max-w-[340px] pt-2">
             <RowLink href="/experience" label="Full experience" />
             <RowLink href="/about" label="More about me" />
-            {profile.resumeUrl && <RowLink href={profile.resumeUrl} label="Résumé (PDF)" download />}
+            {profile.resumeUrl && <RowLink href={profile.resumeUrl} label="Resume (PDF)" download />}
           </ul>
           {testimonial && (
             <figure className="mt-6 space-y-5 rounded-[28px] bg-linen p-7">

@@ -31,7 +31,7 @@ export default function Footer() {
             {profile.resumeUrl && (
               <li>
                 <a href={profile.resumeUrl} className="inline-block py-1.5 transition hover:text-ink">
-                  Résumé
+                  Resume
                 </a>
               </li>
             )}

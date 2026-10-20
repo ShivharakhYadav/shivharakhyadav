@@ -61,7 +61,7 @@ export default function Contact({ id = 'contact' }: { id?: string }) {
                 href={profile.resumeUrl}
                 className='inline-block py-1.5 transition hover:text-teal'
               >
-                Résumé
+                Resume
               </a>
             </li>
           )}
