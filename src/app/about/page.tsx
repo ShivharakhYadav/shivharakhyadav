@@ -8,7 +8,6 @@ import JsonLd from "@/components/JsonLd";
 import { person, websiteId } from "@/configs/schema";
 import { profile, stats, workingStyle, education } from "@/data/profile";
 import { skillGroups } from "@/data/skills";
-import { experience } from "@/data/experience";
 import { siteUrl, ogImages } from "@/configs/metaTags";
 
 const description =
@@ -19,14 +18,14 @@ export const metadata: Metadata = {
   description,
   alternates: { canonical: "/about" },
   openGraph: {
-    title: "About Shivharakh Yadav — Full-Stack Developer",
+    title: "About Shivharakh Yadav - Full-Stack Developer",
     description,
     url: `${siteUrl}/about`,
     type: "profile",
     images: ogImages,
   },
   // set explicitly: otherwise X/Twitter cards inherit the home page text
-  twitter: { title: "About Shivharakh Yadav — Full-Stack Developer", description },
+  twitter: { title: "About Shivharakh Yadav - Full-Stack Developer", description },
 };
 
 const jsonLd = {
@@ -38,9 +37,6 @@ const jsonLd = {
   mainEntity: person,
 };
 
-// the role marked "Present" in experience.ts, if any
-const currentJob = experience.find((j) => /present/i.test(j.period));
-
 export default function AboutPage() {
   return (
     <main>
@@ -50,19 +46,13 @@ export default function AboutPage() {
           <div className="max-w-[640px] space-y-6">
             <p className="eyebrow text-coral-ink">About</p>
             <h1 className="font-display fs-page font-semibold leading-[1.1] tracking-[-0.04em]">
-              Hi, I’m <span className="coral-underline whitespace-nowrap">Shivharakh</span>.
+              Hi, I'm <span className="coral-underline whitespace-nowrap">Shivharakh</span>.
             </h1>
             <p className="text-[17px] leading-relaxed text-muted sm:text-[19px]">
-              A {profile.role.toLowerCase()} in Pune, India. I build SaaS
-              products end to end, from the first requirement call to the
-              production deploy.
+              A {profile.role.toLowerCase()} building SaaS and web products
+              for clients in Australia and the US, from the first requirement
+              call to the production release.
             </p>
-            {currentJob && (
-              <p className="inline-flex items-center gap-2 rounded-full border border-line bg-card px-4 py-2 text-sm font-medium">
-                <span className="h-2 w-2 rounded-full bg-teal" aria-hidden="true" />
-                Currently {currentJob.role} at {currentJob.company.replace(/ Pvt\. Ltd\.$/, "")}
-              </p>
-            )}
             <dl className="grid grid-cols-3 gap-3 pt-2 sm:flex sm:gap-12">
               {stats.map((s) => (
                 <div key={s.label} className="flex flex-col-reverse justify-end">
@@ -122,7 +112,7 @@ export default function AboutPage() {
                     <span className="block font-display text-lg font-semibold tracking-[-0.02em]">{e.degree}</span>
                     <span className="block text-muted">
                       {e.school}
-                      {e.grade && <> · {e.grade}</>}
+                      {profile.showGrades && e.grade && <> · {e.grade}</>}
                     </span>
                   </span>
                   <span className="text-sm font-medium text-teal">{e.years}</span>
@@ -139,7 +129,7 @@ export default function AboutPage() {
 
           <Section title="Keep reading">
             <div className="grid gap-4 sm:grid-cols-2">
-              <NextLink href="/experience" label="Experience" text="Roles, career highlights and the products I’ve delivered." />
+              <NextLink href="/experience" label="Experience" text="Roles, career highlights and the products I've delivered." />
               <NextLink href="/projects" label="Case studies" text="How I built them: the problem, my role and the outcome." />
             </div>
           </Section>

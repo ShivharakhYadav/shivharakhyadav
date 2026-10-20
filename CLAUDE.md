@@ -29,7 +29,7 @@ There is no test setup and no ESLint config (`next lint` would prompt); use `npx
 
   All are statically generated. The navbar links to the pages, not to home-page anchors.
 - **SEO:**
-  - Each page sets its own `title` (the root layout adds " — Shivharakh Yadav" via a title template), a `description` of 160 characters or fewer, and `alternates.canonical`.
+  - Each page sets its own `title` (the root layout adds " - Shivharakh Yadav" via a title template), a `description` of 160 characters or fewer, and `alternates.canonical`.
   - A page that sets its own `openGraph` must include `images: ogImages` (from `src/configs/metaTags.ts`); otherwise the share image is lost. Posts and case studies are the exception: they have their own `opengraph-image.tsx`, built with `ogCard()` in `src/lib/ogCard.tsx`, which uses the bundled Outfit font from `src/assets/fonts`.
   - **JSON-LD:** the full Person and WebSite entities are defined once in `src/configs/schema.ts`. Pages reuse `person`, `author`, `websiteId` and `breadcrumbs()` from there, rendered by `src/components/JsonLd.tsx`, instead of writing their own Person objects.
   - Also present: an RSS feed at `/blog/rss.xml`, a manifest, photo icons (`favicon.ico`, `icon.png`, `apple-icon.png`, all the same crop) and a `not-found.tsx` (noindex).
@@ -49,6 +49,7 @@ There is no test setup and no ESLint config (`next lint` would prompt); use `npx
   - `Reveal` is a subtle IntersectionObserver fade-in.
 - Site metadata and the canonical `siteUrl` live in `src/configs/metaTags.ts`.
 - **Path alias:** `@/*` → `src/*`.
+- **No em dashes (—) or curly apostrophes (’) in visible text** (the owner finds them AI-looking): use a normal hyphen (-) and a straight apostrophe ('). Inside single-quoted strings, escape it as `'`.
 - **Content rule:** never invent facts (clients, numbers, dates, rates). Use what's in the data files or the GitHub profile README. Unknown values stay as visible `[bracketed]` placeholders; `isPlaceholder()` in `experience.ts` keeps them out of structured data.
 
 ## Styling conventions

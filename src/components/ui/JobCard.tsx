@@ -84,15 +84,6 @@ export default function JobCard({ job, children }: { job: Job; children?: ReactN
           </ul>
         )}
         {children}
-        {job.tags && job.tags.length > 0 && (
-          <ul className="flex flex-wrap gap-2 pt-1">
-            {job.tags.map((t) => (
-              <li key={t} className="chip">
-                {t}
-              </li>
-            ))}
-          </ul>
-        )}
       </div>
     </div>
   );

@@ -20,7 +20,7 @@ export default function Highlights() {
               944+
             </span>
             <span className="mt-2 block text-sm text-muted">
-              users across 10 organizations on one multi-tenant SaaS · see case study
+              users on one multi-tenant SaaS · see case study
             </span>
           </span>
         </Link>

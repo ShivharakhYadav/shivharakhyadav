@@ -1,5 +1,5 @@
 export interface Job {
-  /** Shown as-is, e.g. "Aug 2022 — Oct 2025" or "Oct 2025 — Present". */
+  /** Shown as-is, e.g. "Aug 2022 - Oct 2025" or "Oct 2025 - Present". */
   period: string;
   role: string;
   company: string;
@@ -11,9 +11,9 @@ export interface Job {
   summary?: string;
   /** What you did/achieved in this role; shown as bullets on /experience. */
   highlights?: string[];
-  /** Slugs from src/data/projects.ts built in this role; shown as linked cards. */
+  /** Slugs from src/data/projects.ts built in this role (kept for reference; not shown on the site). */
   projects?: string[];
-  /** Main tech used in this role; shown as chips. */
+  /** Main tech used in this role (kept for reference; not shown on the site). */
   tags?: string[];
   /** Awards received in this role; shown as badges and given to Google as structured data. */
   awards?: string[];
@@ -29,7 +29,7 @@ export const isPlaceholder = (value: string) => /\[.*\]/.test(value);
  */
 export const experience: Job[] = [
   {
-    period: "Oct 2026 — Present",
+    period: "Oct 2026 - Present",
     role: "Senior Software Engineer",
     company: "iProgrammer Solutions Pvt. Ltd.",
     logo: "/logos/iprogrammer.png",
@@ -38,7 +38,7 @@ export const experience: Job[] = [
       "Senior full-stack engineer, building and shipping production web applications.",
   },
   {
-    period: "Oct 2025 — Jul 2026",
+    period: "Oct 2025 - Jul 2026",
     role: "Software Engineer",
     company: "ViitorCloud Technologies Pvt. Ltd.",
     logo: "/logos/viitorcloud.png",
@@ -46,30 +46,39 @@ export const experience: Job[] = [
     summary:
       "Sole full-stack engineer on client SaaS projects, owning requirements, architecture, delivery and releases.",
     highlights: [
-      "Designed the tenant data-isolation approach for a multi-tenant SaaS used by 944+ users across 10 organizations",
+      "Designed the tenant data-isolation approach for a multi-tenant SaaS used by 944+ users",
       "Built 16 interactive simulation modules and a B2B licensing workflow with concurrency-safe seat allocation",
       "Delivered the frontend and the questionnaire API for a coaching platform serving 329+ users, including 15 coaches",
       "Managed CI/CD pipelines and releases, working daily with PMs, backend engineers and client stakeholders",
     ],
     projects: ["dms-simulation-platform", "health-coaching-platform"],
-    tags: ["Next.js", "TypeScript", "Node.js", "NestJS", "MongoDB", "PostgreSQL", "Socket.IO"],
+    tags: ["Next.js", "TypeScript", "Node.js", "NestJS", "Python", "PostgreSQL", "Redis", "Socket.IO"],
   },
   {
-    period: "Feb 2022 — Oct 2025",
+    period: "Feb 2022 - Oct 2025",
     role: "Software Engineer",
     company: "iFour Technolabs Pvt. Ltd.",
     logo: "/logos/ifour.png",
     location: "Ahmedabad, Gujarat, India",
     summary:
-      "Full-stack delivery for clients in Australia and the US, from requirement calls to deployment.",
+      "Full-stack delivery for clients in Australia and the US, from requirement calls to deployment. Joined for a six-month training period in Feb 2022, then as Software Engineer from Aug 2022.",
     highlights: [
       "Built the API and storefront for Moto Venice, then grew it into a two-sided rental marketplace",
       "Architected a sports data platform from scratch on AWS and made it 40% faster through profiling and optimization",
       "Delivered a 4-role BOM approval workflow that improved approval efficiency by ~30%",
       "Mentored junior engineers and led daily client communication with Australia-based stakeholders",
     ],
-    projects: ["moto-venice", "dagger-concept", "bom-workflow-system"],
-    tags: ["React", "Next.js", "Node.js", "MongoDB", "PostgreSQL", "Socket.IO", "AWS"],
+    projects: [
+      "moto-venice",
+      "dagger-concept",
+      "bom-workflow-system",
+      "infosel-hub-excel-addin",
+      "aumni-excel-addin",
+      "diligent-equity-excel-addin",
+      "calloquy",
+      "my-ticket-solutions",
+    ],
+    tags: ["React", "Next.js", "Node.js", "NestJS", "PostgreSQL", "Socket.IO", "AWS", "Office.js"],
     awards: ["Client Excellence ×2", "Good Learner Award"],
   },
 ];
@@ -92,7 +101,7 @@ export interface Award {
 export const otherAwards: Award[] = [
   {
     title: "Hackathon winner",
-    issuer: "Port Mortem — Code Resurrection",
+    issuer: "Port Mortem - Code Resurrection",
     year: "2026",
     note: "Track D (Python → Rust): price-parser-rs, a Rust port that passes all 1,059 original tests unmodified, plus 500,000 differential fuzz cases with zero divergences.",
     links: [
@@ -121,7 +130,19 @@ export const allAwards = awards
 /** Career-wide facts for /experience (from the profile and project data). */
 export const careerHighlights = [
   { value: "4+", label: "years shipping production web apps" },
-  { value: "1,200+", label: "users across the platforms I’ve built" },
-  { value: "944+", label: "users on one multi-tenant SaaS, across 10 organizations" },
-  { value: "AU & US", label: "clients I’ve worked with directly, from requirements to demos" },
+  { value: "1,200+", label: "users across the platforms I've built" },
+  { value: "944+", label: "users on one multi-tenant SaaS" },
+  { value: "AU & US", label: "clients I've worked with directly, from requirements to demos" },
+];
+
+/** Industries I've built for, each with its case-study slugs; shown on /experience. */
+export const domains: { name: string; projects: string[] }[] = [
+  { name: "Fintech & investment data", projects: ["infosel-hub-excel-addin", "aumni-excel-addin", "diligent-equity-excel-addin"] },
+  { name: "E-learning & simulation", projects: ["dms-simulation-platform"] },
+  { name: "Health & coaching", projects: ["health-coaching-platform"] },
+  { name: "Mobility & rentals", projects: ["moto-venice"] },
+  { name: "Sports data", projects: ["dagger-concept"] },
+  { name: "Energy", projects: ["co4-energy-management-portal"] },
+  { name: "Manufacturing", projects: ["bom-workflow-system"] },
+  { name: "Customer support & productivity", projects: ["my-ticket-solutions", "calloquy"] },
 ];

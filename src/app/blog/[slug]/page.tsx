@@ -26,7 +26,7 @@ export function generateMetadata({
   const post = getPostBySlug(params.slug);
   if (!post) return { title: "Post not found" };
   return {
-    // long titles drop the " — Shivharakh Yadav" suffix so results don't truncate them
+    // long titles drop the " - Shivharakh Yadav" suffix so results don't truncate them
     title: post.title.length > 45 ? { absolute: post.title } : post.title,
     description: post.excerpt,
     alternates: { canonical: `/blog/${post.slug}`, types: { "application/rss+xml": rssFeed } },

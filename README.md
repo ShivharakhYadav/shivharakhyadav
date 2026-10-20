@@ -46,7 +46,7 @@ I enjoy taking **end-to-end ownership** — from requirement discussions and arc
 
 ### 🔭 A few things I've built
 
-- ⚡ A **multi-tenant e-learning SaaS** serving 944+ users across 10 organizations
+- ⚡ A **multi-tenant e-learning SaaS** serving 944+ users across 5 organizations
 - 🏥 A **health & coaching platform** with real-time chat and a full-stack questionnaire module
 - 🔋 An **energy-management portal** built on a micro-frontend architecture
 

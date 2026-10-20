@@ -8,7 +8,6 @@ import { ProjectRowCard } from "@/components/ui/ProjectCard";
 import Contact from "@/components/sections/Contact";
 import JsonLd from "@/components/JsonLd";
 import { projects, getProjectBySlug } from "@/data/projects";
-import { experience } from "@/data/experience";
 import { siteUrl } from "@/configs/metaTags";
 import { author, breadcrumbs, websiteId } from "@/configs/schema";
 
@@ -31,13 +30,13 @@ export function generateMetadata({
     description: project.tagline,
     alternates: { canonical: `/projects/${project.slug}` },
     openGraph: {
-      title: `${project.title} — Shivharakh Yadav`,
+      title: `${project.title} - Shivharakh Yadav`,
       description: project.tagline,
       url: `${siteUrl}/projects/${project.slug}`,
       type: "article",
     },
     // set explicitly: otherwise X/Twitter cards inherit the home page text
-    twitter: { title: `${project.title} — Shivharakh Yadav`, description: project.tagline },
+    twitter: { title: `${project.title} - Shivharakh Yadav`, description: project.tagline },
   };
 }
 
@@ -48,9 +47,6 @@ export default function ProjectPage({
 }) {
   const project = getProjectBySlug(params.slug);
   if (!project) notFound();
-
-  // the role this was built in, from experience.ts
-  const job = experience.find((j) => j.projects?.includes(project.slug));
 
   const index = projects.indexOf(project);
   const next = projects[(index + 1) % projects.length];
@@ -95,15 +91,6 @@ export default function ProjectPage({
             <p className="text-[17px] leading-relaxed text-muted sm:text-[19px]">
               {project.summary}
             </p>
-            {job && (
-              <p className="text-[15px] text-muted">
-                Built as <span className="font-medium text-ink">{job.role}</span> at{" "}
-                <Link href="/experience" className="text-link">
-                  {job.company.replace(/ Pvt\. Ltd\.$/, "")}
-                </Link>{" "}
-                · {job.period}
-              </p>
-            )}
             <ul className="flex flex-wrap gap-2 pt-1">
               {project.tags.map((t) => (
                 <li key={t} className="chip">
