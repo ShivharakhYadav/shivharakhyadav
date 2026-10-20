@@ -78,7 +78,7 @@ export const experience: Job[] = [
       "calloquy",
       "my-ticket-solutions",
     ],
-    tags: ["React", "Next.js", "Node.js", "MongoDB", "PostgreSQL", "Socket.IO", "AWS", "Office.js"],
+    tags: ["React", "Next.js", "Node.js", "NestJS", "PostgreSQL", "Socket.IO", "AWS", "Office.js"],
     awards: ["Client Excellence ×2", "Good Learner Award"],
   },
 ];

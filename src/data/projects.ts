@@ -18,6 +18,8 @@ export interface Project {
   problem: string
   role: string[]
   stack: string[]
+  /** labelled tool rows under the stack, e.g. { label: 'Deployment', items: ['Render'] } */
+  tools?: { label: string; items: string[] }[]
   highlights: string[]
   outcome: string
   /** hide the "Built as <role> at <company>" line on the case-study page */
@@ -84,7 +86,7 @@ export const projects: Project[] = [
     },
     summary:
       'The platform behind a Venice Beach luxury and exotic motorcycle rental business. I built the Swagger-documented REST API and the production Next.js storefront, then extended it with new rental modules and a consignment program that turned it into a two-sided marketplace.',
-    tags: ['Next.js', 'TypeScript', 'Node.js', 'MongoDB', 'Auth0'],
+    tags: ['Next.js', 'TypeScript', 'NestJS', 'PostgreSQL', 'Auth0'],
     metrics: [
       { label: 'Built', value: 'API + storefront' },
       { label: 'Auth & KYC', value: 'Auth0 + Veriff' },
@@ -104,17 +106,24 @@ export const projects: Project[] = [
     stack: [
       'Next.js',
       'TypeScript',
-      'Node.js',
-      'MongoDB',
-      'Swagger / OpenAPI',
+      'NestJS',
+      'PostgreSQL',
+      'Redis',
+      'Redux Toolkit',
       'Auth0',
       'Veriff (KYC)',
-      'Mapbox Directions API',
+      'Twilio',
+      'Docker',
+      'Swagger',
+      'Mapbox',
       'Chakra UI',
-      'TanStack React Query',
+      'React Query',
       'Jest',
-      'GitHub Actions',
-      'Render',
+    ],
+    tools: [
+      { label: 'Deployment', items: ['Render'] },
+      { label: 'Source code', items: ['GitHub'] },
+      { label: 'CI/CD', items: ['GitHub Actions'] },
     ],
     highlights: [
       "Interval-overlap availability filtering: no customer is shown a bike that's already booked for their dates",
