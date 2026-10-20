@@ -43,7 +43,7 @@ export const projects: Project[] = [
       { label: "Tested with", value: "Jest" },
     ],
     problem:
-      "Ten organizations needed to share one SaaS product without their data ever mixing, while each of them bought and managed seats for their own people. The product had to run timed, interactive simulation sessions reliably, and hand out licences without two people ever claiming the same seat.",
+      "Five organizations needed to share one SaaS product without their data ever mixing, while each of them bought and managed seats for their own people. The product had to run timed, interactive simulation sessions reliably, and hand out licences without two people ever claiming the same seat.",
     role: [
       "Engaged as the sole full-stack engineer on the client project, owning requirement gathering and day-to-day communication with a project manager, a backend engineer and client-side stakeholders",
       "Led the frontend architecture and designed the tenant data-isolation approach: a schema-per-tenant data model with tenant-scoped indexing, plus shared session and auth state via Context API",
