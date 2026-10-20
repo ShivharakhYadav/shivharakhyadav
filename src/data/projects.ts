@@ -76,6 +76,7 @@ export const projects: Project[] = [
   },
   {
     slug: 'moto-venice',
+    hideBuiltAt: true,
     title: 'Moto Venice',
     eyebrow: 'Commerce · Rentals',
     tagline:
@@ -181,6 +182,7 @@ export const projects: Project[] = [
   },
   {
     slug: 'dagger-concept',
+    hideBuiltAt: true,
     title: 'Dagger Concept - Sports Data Platform',
     eyebrow: 'Sports · Real-time',
     tagline:
@@ -226,6 +228,7 @@ export const projects: Project[] = [
   },
   {
     slug: 'bom-workflow-system',
+    hideBuiltAt: true,
     title: 'Bill of Materials (BOM) Workflow System',
     eyebrow: 'Enterprise · Workflow',
     tagline:
@@ -268,6 +271,7 @@ export const projects: Project[] = [
   // but internal details (hostnames, code, weaknesses) stay out.
   {
     slug: 'infosel-hub-excel-addin',
+    hideBuiltAt: true,
     title: 'Infosel Hub - Real-Time Market Data for Excel',
     eyebrow: 'Fintech · Real-time',
     tagline:
@@ -320,6 +324,7 @@ export const projects: Project[] = [
   },
   {
     slug: 'aumni-excel-addin',
+    hideBuiltAt: true,
     title: 'Aumni for Excel - VC Portfolio Data Add-in',
     eyebrow: 'Fintech · Excel add-in',
     tagline:
@@ -365,6 +370,7 @@ export const projects: Project[] = [
   },
   {
     slug: 'diligent-equity-excel-addin',
+    hideBuiltAt: true,
     title: 'Diligent Equity - Equity Reports in Excel',
     eyebrow: 'Fintech · Excel add-in',
     tagline:
@@ -453,6 +459,7 @@ export const projects: Project[] = [
   },
   {
     slug: 'calloquy',
+    hideBuiltAt: true,
     title: 'Calloquy - Meeting Management App',
     eyebrow: 'Productivity · Integrations',
     tagline:
@@ -492,6 +499,7 @@ export const projects: Project[] = [
   },
   {
     slug: 'my-ticket-solutions',
+    hideBuiltAt: true,
     title: 'My Ticket Solutions (MTS) - Multilingual Support Portal',
     eyebrow: 'Customer support · Web app',
     tagline:
