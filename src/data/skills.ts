@@ -15,7 +15,7 @@ export const skillGroups: SkillGroup[] = [
   },
   {
     category: "Databases",
-    items: ["MongoDB", "PostgreSQL", "MySQL", "Redis"],
+    items: ["MongoDB", "PostgreSQL", "Redis"],
   },
   {
     category: "System design",
