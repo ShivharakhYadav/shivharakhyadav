@@ -30,10 +30,10 @@ export const projects: Project[] = [
     title: 'DMS Simulation Platform',
     eyebrow: 'SaaS · Multi-tenant',
     tagline:
-      'A multi-tenant SaaS for 10 organizations: 16 interactive simulation modules and a full B2B licensing workflow.',
-    headline: { value: '944+', label: 'users across 10 organizations' },
+      'A multi-tenant SaaS for 5 organizations: 16 interactive simulation modules and a full B2B licensing workflow.',
+    headline: { value: '944+', label: 'users across 5 organizations' },
     summary:
-      'A multi-tenant SaaS product delivering interactive simulations to 944+ users across 10 organizations. I was the sole full-stack engineer on the client project, owning everything from requirement gathering to architecture, delivery and releases.',
+      'A multi-tenant SaaS product delivering interactive simulations to 944+ users across 5 organizations. I was the sole full-stack engineer on the client project, owning everything from requirement gathering to architecture, delivery and releases.',
     tags: ['Next.js', 'TypeScript', 'Python', 'PostgreSQL', 'Redis'],
     metrics: [
       { label: 'Modules', value: '16 interactive' },
@@ -62,13 +62,13 @@ export const projects: Project[] = [
       'Docker',
     ],
     highlights: [
-      'Safe B2B/B2C data isolation between 10 organizations on one platform',
+      'Safe B2B/B2C data isolation between 5 organizations on one platform',
       'Race-condition-safe seat and licence allocation using transactional writes, so a seat can never be claimed twice',
       '16 interactive simulation modules with real-time session timers',
       'End-to-end ownership as the only full-stack engineer on the project',
     ],
     outcome:
-      'A production multi-tenant platform serving 944+ users across 10 organizations, with isolated tenant data, reliable timed simulations and a licensing workflow that hands out seats safely under concurrent requests.',
+      'A production multi-tenant platform serving 944+ users across 5 organizations, with isolated tenant data, reliable timed simulations and a licensing workflow that hands out seats safely under concurrent requests.',
   },
   {
     slug: 'moto-venice',

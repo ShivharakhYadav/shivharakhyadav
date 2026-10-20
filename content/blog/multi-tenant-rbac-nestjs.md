@@ -1,12 +1,12 @@
 ---
 title: "Designing Multi-Tenant RBAC in NestJS and PostgreSQL"
 date: "2026-05-18"
-excerpt: "How I structured tenant isolation and role-based access control for a SaaS platform serving 10 organizations - without leaking a single row across tenants."
+excerpt: "How I structured tenant isolation and role-based access control for a SaaS platform serving 5 organizations - without leaking a single row across tenants."
 tags: ["NestJS", "PostgreSQL", "RBAC", "SaaS", "Architecture"]
 published: true
 ---
 
-When you build a multi-tenant SaaS, the hardest problem isn't the features - it's making sure **Organization A can never see Organization B's data**, while still keeping the codebase simple enough to ship features fast. Here's the approach I used on an e-learning platform now serving 944+ users across 10 organizations.
+When you build a multi-tenant SaaS, the hardest problem isn't the features - it's making sure **Organization A can never see Organization B's data**, while still keeping the codebase simple enough to ship features fast. Here's the approach I used on an e-learning platform now serving 944+ users across 5 organizations.
 
 ## Pick a tenancy model first
 

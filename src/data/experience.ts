@@ -46,7 +46,7 @@ export const experience: Job[] = [
     summary:
       "Sole full-stack engineer on client SaaS projects, owning requirements, architecture, delivery and releases.",
     highlights: [
-      "Designed the tenant data-isolation approach for a multi-tenant SaaS used by 944+ users across 10 organizations",
+      "Designed the tenant data-isolation approach for a multi-tenant SaaS used by 944+ users",
       "Built 16 interactive simulation modules and a B2B licensing workflow with concurrency-safe seat allocation",
       "Delivered the frontend and the questionnaire API for a coaching platform serving 329+ users, including 15 coaches",
       "Managed CI/CD pipelines and releases, working daily with PMs, backend engineers and client stakeholders",
@@ -131,7 +131,7 @@ export const allAwards = awards
 export const careerHighlights = [
   { value: "4+", label: "years shipping production web apps" },
   { value: "1,200+", label: "users across the platforms I’ve built" },
-  { value: "944+", label: "users on one multi-tenant SaaS, across 10 organizations" },
+  { value: "944+", label: "users on one multi-tenant SaaS" },
   { value: "AU & US", label: "clients I’ve worked with directly, from requirements to demos" },
 ];
 
