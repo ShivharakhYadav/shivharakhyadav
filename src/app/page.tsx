@@ -21,8 +21,8 @@ export default function Home() {
       <TechMarquee />
       <Highlights />
       <Services />
-      <Experience />
       <Work />
+      <Experience />
       <Writing />
       <Contact />
       <JsonLd data={jsonLd} />

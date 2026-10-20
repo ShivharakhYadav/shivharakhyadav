@@ -7,7 +7,7 @@ import { featuredProjects } from "@/data/projects";
 export default function Work() {
   return (
     <Container>
-      <section id="work" className="py-24">
+      <section id="work" className="pt-24">
         <div className="mb-8 flex flex-wrap items-end justify-between gap-4">
           <div>
             <h2 className="font-display fs-section font-semibold tracking-[-0.05em]">

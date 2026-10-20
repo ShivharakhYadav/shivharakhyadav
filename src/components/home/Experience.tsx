@@ -7,7 +7,7 @@ import { profile, testimonial } from "@/data/profile";
 export default function Experience() {
   return (
     <Container>
-      <section id="experience" className="grid gap-10 pt-24 lg:grid-cols-[360px_1fr] lg:gap-24">
+      <section id="experience" className="grid gap-10 py-24 lg:grid-cols-[360px_1fr] lg:gap-24">
         <div className="space-y-4">
           <h2 className="font-display fs-section font-semibold tracking-[-0.04em]">
             Experience
