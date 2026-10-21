@@ -14,7 +14,7 @@ Last updated: 2026-10-20.
 
 ## Done
 - Sand & Tide redesign.
-- Pages: `/about`, `/experience`, `/contact` (Formspree form).
+- Pages: `/about`, `/experience`, `/contact` (form sent through our own `/api/contact` route from the owner's Gmail).
 - SEO:
   - title template, generated share images (site-wide, per post, per case study)
   - one shared schema.org Person/WebSite (`src/configs/schema.ts`) referenced by every page
@@ -49,7 +49,11 @@ Last updated: 2026-10-20.
 3. **Backlinks:** put the site URL in the GitHub profile website field and README, in LinkedIn (contact info and Featured), and in the Medium bio and article footer.
 4. **Rewritten RBAC post:** `content/blog/multi-tenant-rbac-nestjs.md` says NestJS/PostgreSQL with a shared schema; the résumé says Express/MongoDB with schema-per-tenant. The owner will send a corrected version.
 5. **Updated résumé PDF:** it replaces `public/Shivharakh_Yadav_FS.pdf`.
-6. **Formspree ID:** goes in `NEXT_PUBLIC_FORMSPREE_ID`, in `.env.local` and in Vercel. Until then the page shows the email fallback.
+6. **Gmail App Password (contact form):**
+   - turn on 2-Step Verification, then create an App Password at https://myaccount.google.com/apppasswords
+   - set `SMTP_USER` (the Gmail address) and `SMTP_PASS` in `.env.local` and in Vercel, then redeploy
+   - until then /contact shows the email fallback
+   - the form is on branch `feat/contact-form` and sends with Nodemailer; Resend and Formspree were dropped. Delete the old Resend API key, which was exposed in a chat log.
 7. **Project screenshots:** none for NDA projects (the owner has decided), so those keep the "Built with" cover. Any screenshots that can be shared go in `public/projects/`; then set `image` in `src/data/projects.ts`.
 8. **Details of the iProgrammer role** and a real client quote: replace the `[placeholders]` in `profile.testimonial`, with the client's permission.
 9. **Sharper logos:** iProgrammer and iFour are 32×32 icons; 128px+ versions would be crisper.
