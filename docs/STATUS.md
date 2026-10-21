@@ -57,6 +57,7 @@ Last updated: 2026-10-20.
 7. **Project screenshots:** none for NDA projects (the owner has decided), so those keep the "Built with" cover. Any screenshots that can be shared go in `public/projects/`; then set `image` in `src/data/projects.ts`.
 8. **Details of the iProgrammer role** and a real client quote: replace the `[placeholders]` in `profile.testimonial`, with the client's permission.
 9. **Sharper logos:** iProgrammer and iFour are 32×32 icons; 128px+ versions would be crisper.
+10. **Show iProgrammer again (around Jan 2027):** the role is hidden on purpose for the first 3 months, and ViitorCloud shows as current. To undo: in `src/data/experience.ts` delete `hidden: true` from iProgrammer and set ViitorCloud's period back to `Oct 2025 - Jul 2026`; restore the `/experience` description kept in a comment in `src/app/experience/page.tsx`.
 
 ## Ideas not started
 - A price-parser-rs case study (hackathon win; GitHub repo and Medium article are public).

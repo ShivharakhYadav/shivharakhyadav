@@ -1,13 +1,11 @@
 "use client";
 
 import { useEffect, useRef, useState, type FormEvent } from "react";
-import { profile } from "@/data/profile";
 import EmailText from "@/components/ui/EmailText";
 
 // job-related options only while the availability pill is shown
-const reasons = profile.showAvailability
-  ? ["Full-time role", "Freelance project", "Just saying hi"]
-  : ["A project", "Collaboration", "Just saying hi"];
+const jobReasons = ["Full-time role", "Freelance project", "Just saying hi"];
+const projectReasons = ["A project", "Collaboration", "Just saying hi"];
 
 // what makes a first message easy to answer well
 const brief = [
@@ -24,8 +22,19 @@ const field =
 /**
  * Posts to our own /api/contact route, which emails the message from the owner's Gmail.
  * `enabled` is false when SMTP_USER/SMTP_PASS aren't set; then it offers email instead.
+ * `email` and `showAvailability` come in as props: importing profile here would
+ * ship all the site data (every job and project) to the browser.
  */
-export default function ContactForm({ enabled }: { enabled: boolean }) {
+export default function ContactForm({
+  enabled,
+  email,
+  showAvailability,
+}: {
+  enabled: boolean;
+  email: string;
+  showAvailability: boolean;
+}) {
+  const reasons = showAvailability ? jobReasons : projectReasons;
   const [status, setStatus] = useState<Status>("idle");
   const [error, setError] = useState("");
   // when the form appeared; the API ignores posts sent faster than a person could type
@@ -41,8 +50,8 @@ export default function ContactForm({ enabled }: { enabled: boolean }) {
         <p className="leading-relaxed text-muted">
           Tell me a little about what you have in mind and I'll get back to you within a day.
         </p>
-        <a href={`mailto:${profile.email}`} className="btn-primary max-w-full px-6 text-[15px] sm:px-7 sm:text-base">
-          <EmailText email={profile.email} />
+        <a href={`mailto:${email}`} className="btn-primary max-w-full px-6 text-[15px] sm:px-7 sm:text-base">
+          <EmailText email={email} />
         </a>
         <div className="mt-2 w-full border-t border-line pt-5">
           <p className="eyebrow text-muted">Helpful to include</p>
@@ -151,8 +160,8 @@ export default function ContactForm({ enabled }: { enabled: boolean }) {
           {status === "error" && !error && (
             <>
               Something went wrong. Please email me at{" "}
-              <a href={`mailto:${profile.email}`} className="underline">
-                {profile.email}
+              <a href={`mailto:${email}`} className="underline">
+                {email}
               </a>
               .
             </>
