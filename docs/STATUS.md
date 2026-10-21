@@ -43,6 +43,8 @@ Last updated: 2026-10-20.
 - Client pitch pass (2026-10-20): the owner presents the site to overseas clients. The home hero is client-focused ("Start a project" first, no resume button; stats count products and industries from the data). A "What I can help with" section (`src/data/services.ts`) links each service to case studies. Case studies come before the job timeline. The owner confirmed DMS served **5 organizations** (not 10), and the site, blog and README now agree.
 - Testimonial: `profile.testimonial` holds a `[placeholder]` template that stays hidden until it holds a real quote. Never put an invented quote there.
 
+- Dark theme "Soft Slate" (2026-10-21), concept 4a from the owner's Claude Design file: a mid-dark slate (#1B2124), off-white text (#D8DCDA, about 12:1) and muted teal and coral, made to be easy on the eyes in a dark room (no large bright surfaces, photos dimmed 10%, no shadows). It follows the system setting, with a sun/moon toggle in the navbar that is remembered; no flash on load. All text passes WCAG AA in both themes (checked on every page at 390px and 1280px); the light theme is unchanged. Branch `feat/dark-theme`.
+
 ## Waiting on the owner
 1. **Publish `develop`:** open and merge a PR from `develop` into `main`, so the SEO-audit fixes, the new case studies and the client-pitch rework go live.
 2. **Google Search Console:** add the property, use HTML-tag verification, then add the code as `verification: { google: "…" }` in `siteMetadata`. Submit `/sitemap.xml` and request indexing for `/`, `/about`, `/experience` and `/projects`. Then do the same in Bing Webmaster Tools.

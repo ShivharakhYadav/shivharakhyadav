@@ -3,6 +3,7 @@
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import ThemeToggle from "@/components/ui/ThemeToggle";
 
 const links = [
   { name: "Work", href: "/projects" },
@@ -32,7 +33,7 @@ export default function Navbar() {
           href="/"
           aria-label="SY, Shivharakh Yadav - home"
           title="Home"
-          className="grid h-9 w-9 place-items-center rounded-full bg-teal font-display text-[13px] font-semibold text-white ring-coral/50 ring-offset-2 ring-offset-card transition hover:ring-2"
+          className="grid h-9 w-9 place-items-center rounded-full bg-teal font-display text-[13px] font-semibold text-on-teal ring-coral/50 ring-offset-2 ring-offset-card transition hover:ring-2"
         >
           SY
         </Link>
@@ -56,6 +57,8 @@ export default function Navbar() {
           })}
         </ul>
 
+        <ThemeToggle />
+
         <button
           type="button"
           onClick={() => setOpen((o) => !o)}
@@ -69,8 +72,9 @@ export default function Navbar() {
         <Link
           href="/contact"
           aria-current={onContact ? "page" : undefined}
-          className={`ml-1 rounded-full px-5 py-2.5 text-[15px] font-medium text-bg transition hover:bg-teal sm:ml-2 ${
-            onContact ? "bg-teal" : "bg-ink"
+          // inset ring, not a border, so the pill keeps its size; it's the outline of the dark-theme pill
+          className={`ml-1 rounded-full px-5 py-2.5 text-[15px] font-medium ring-1 ring-inset transition hover:bg-teal hover:text-on-teal hover:ring-teal sm:ml-2 ${
+            onContact ? "bg-teal text-on-teal ring-teal" : "bg-cta text-cta-ink ring-cta-line"
           }`}
         >
           Let's talk

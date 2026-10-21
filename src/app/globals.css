@@ -3,9 +3,11 @@
 @tailwind utilities;
 
 /*
- * "Sand & Tide" palette — light only.
- * Body text (ink) and links (teal) pass WCAG AAA on the sand background;
- * coral is decorative only, coral-ink is its readable text variant.
+ * "Sand & Tide" palette, with a dark "Tide at Night" variant.
+ * Body text (ink) and links (teal) pass WCAG AAA on the background in both
+ * themes; coral is decorative only, coral-ink is its readable text variant.
+ * Dark applies when the visitor's system prefers it (unless they picked light
+ * with the toggle) or when they picked dark; see ThemeToggle and layout.tsx.
  */
 :root {
   --bg: #fbf6ee;
@@ -15,12 +17,119 @@
   --muted: #5a6b70;
   --teal: #0f5c63;
   --teal-hover: #0b4a50;
+  --on-teal: #ffffff; /* text on teal buttons */
   --coral: #ee8b6a;
   --coral-ink: #a34d2f; /* ≥4.7:1 on sand, linen and seaglass */
   --seaglass: #e1eeec;
   --linen: #f1e8da;
   --linen-hover: #e9ddca;
+  /* company logos are small dark icons, so their tile stays light in both themes */
+  --logo-tile: #e1eeec;
+  --logo-ink: #0f5c63; /* initials on that tile when a company has no logo */
+  /* navbar "Let's talk" pill: ink in light, a dark outlined pill in dark (no bright surface) */
+  --cta-bg: #14303a;
+  --cta-ink: #fbf6ee;
+  --cta-line: #14303a;
+  --photo-brightness: 1; /* photos and logos are dimmed a little in dark */
+  --shadow: 20 48 58; /* rgb channels, used with an alpha in tailwind.config.ts */
+  --shadow-strength: 1;
+  /* code highlighting */
+  --hl-comment: #68757a; /* 4.6:1 on the card background */
+  --hl-number: #8a5a00;
+  --hl-function: #3d5a99;
   color-scheme: light;
+}
+
+/*
+ * Dark theme "Soft Slate" (concept 4a), made for reading in a dark room:
+ * a mid-dark slate (not black, so text doesn't halo), off-white text at about
+ * 12:1 (not white), muted teal and coral, no shadows, no large bright
+ * surfaces and slightly dimmed photos. Every text colour is at least 4.5:1
+ * on every surface. Keep the two blocks below identical.
+ */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --bg: #1b2124;
+    --card: #232b2f;
+    --line: #343e42;
+    --ink: #d8dcda;
+    --muted: #a2acaa;
+    --teal: #6faaa4;
+    --teal-hover: #86bdb7;
+    --on-teal: #1b2124;
+    --coral: #d49883;
+    --coral-ink: #d9a08b;
+    --seaglass: #223135;
+    --linen: #283135;
+    --linen-hover: #2f393d;
+    --logo-tile: #c3cdcb;
+    --cta-bg: #232b2f;
+    --cta-ink: #d8dcda;
+    --cta-line: #343e42;
+    --photo-brightness: 0.9;
+    --shadow: 0 0 0;
+    --shadow-strength: 0;
+    --hl-comment: #929c9a;
+    --hl-number: #cfb07c;
+    --hl-function: #9eb0d2;
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --bg: #1b2124;
+  --card: #232b2f;
+  --line: #343e42;
+  --ink: #d8dcda;
+  --muted: #a2acaa;
+  --teal: #6faaa4;
+  --teal-hover: #86bdb7;
+  --on-teal: #1b2124;
+  --coral: #d49883;
+  --coral-ink: #d9a08b;
+  --seaglass: #223135;
+  --linen: #283135;
+  --linen-hover: #2f393d;
+  --logo-tile: #c3cdcb;
+  --cta-bg: #232b2f;
+  --cta-ink: #d8dcda;
+  --cta-line: #343e42;
+  --photo-brightness: 0.9;
+  --shadow: 0 0 0;
+  --shadow-strength: 0;
+  --hl-comment: #929c9a;
+  --hl-number: #cfb07c;
+  --hl-function: #9eb0d2;
+  color-scheme: dark;
+}
+
+/* photos and logos: slightly dimmed in dark so they don't glare */
+.photo-dim {
+  filter: brightness(var(--photo-brightness));
+}
+
+/* theme-dependent icons (the toggle): shown by CSS so they're right on the first paint */
+.when-dark {
+  display: none;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .when-dark {
+    display: block;
+  }
+  :root:not([data-theme="light"]) .when-light {
+    display: none;
+  }
+}
+:root[data-theme="dark"] .when-dark {
+  display: block;
+}
+:root[data-theme="dark"] .when-light {
+  display: none;
+}
+
+/* set for a moment while switching themes, so everything changes at once */
+.theme-switching,
+.theme-switching * {
+  transition: none !important;
 }
 
 * {
@@ -91,7 +200,7 @@ body {
   }
 
   .btn-primary {
-    @apply inline-flex items-center justify-center rounded-full bg-teal px-7 py-4 font-medium text-white transition hover:bg-teal-hover;
+    @apply inline-flex items-center justify-center rounded-full bg-teal px-7 py-4 font-medium text-on-teal transition hover:bg-teal-hover;
   }
 
   .btn-secondary {
@@ -205,7 +314,7 @@ body {
 }
 .hljs-comment,
 .hljs-quote {
-  color: #68757a; /* 4.6:1 on the card background */
+  color: var(--hl-comment);
   font-style: italic;
 }
 .hljs-keyword,
@@ -232,11 +341,11 @@ body {
 .hljs-attr,
 .hljs-variable,
 .hljs-meta {
-  color: #8a5a00;
+  color: var(--hl-number);
 }
 .hljs-function,
 .hljs-class .hljs-title {
-  color: #3d5a99;
+  color: var(--hl-function);
 }
 .hljs-emphasis {
   font-style: italic;

@@ -28,7 +28,7 @@ export default function Contact({ id = 'contact' }: { id?: string }) {
         <div className='flex max-w-full flex-wrap justify-center gap-3.5'>
           <a
             href={`mailto:${profile.email}`}
-            className='max-w-full rounded-full bg-teal px-6 py-4 text-[15px] font-medium text-white transition hover:bg-teal-hover sm:px-8 sm:text-[17px]'
+            className='max-w-full rounded-full bg-teal px-6 py-4 text-[15px] font-medium text-on-teal transition hover:bg-teal-hover sm:px-8 sm:text-[17px]'
           >
             <EmailText email={profile.email} />
           </a>
