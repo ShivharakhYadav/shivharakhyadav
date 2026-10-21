@@ -17,6 +17,8 @@ export interface Job {
   tags?: string[];
   /** Awards received in this role; shown as badges and given to Google as structured data. */
   awards?: string[];
+  /** Keeps the role in the code but off the site (home, /experience and structured data). */
+  hidden?: boolean;
 }
 
 /** True while a value still holds a [bracketed] placeholder. */
@@ -25,10 +27,15 @@ export const isPlaceholder = (value: string) => /\[.*\]/.test(value);
 /**
  * Work history, newest first. This is the only place to edit: the home page,
  * /experience and the structured data for Google all read from this list.
- * To add a role, copy an entry; to remove one, delete it.
+ * To add a role, copy an entry; to remove one, delete it; to hide one for a
+ * while, set `hidden: true`. The site reads `experience` (visible roles only).
  */
-export const experience: Job[] = [
+export const allExperience: Job[] = [
   {
+    // Hidden until about 3 months in (around Jan 2027). To show it again: delete
+    // `hidden`, set ViitorCloud's period back to "Oct 2025 - Jul 2026" and restore
+    // the /experience description in src/app/experience/page.tsx.
+    hidden: true,
     period: "Oct 2026 - Present",
     role: "Senior Software Engineer",
     company: "iProgrammer Solutions Pvt. Ltd.",
@@ -38,7 +45,8 @@ export const experience: Job[] = [
       "Senior full-stack engineer, building and shipping production web applications.",
   },
   {
-    period: "Oct 2025 - Jul 2026",
+    // shown as current while iProgrammer is hidden; the real end date is Jul 2026
+    period: "Oct 2025 - Present",
     role: "Software Engineer",
     company: "ViitorCloud Technologies Pvt. Ltd.",
     logo: "/logos/viitorcloud.png",
@@ -82,6 +90,9 @@ export const experience: Job[] = [
     awards: ["Client Excellence ×2", "Good Learner Award"],
   },
 ];
+
+/** The roles shown on the site: everything not marked `hidden`. */
+export const experience = allExperience.filter((j) => !j.hidden);
 
 export interface Award {
   title: string;

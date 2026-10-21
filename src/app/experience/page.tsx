@@ -17,8 +17,10 @@ import { projects, featuredProjects, getProjectBySlug } from '@/data/projects'
 import { profile } from '@/data/profile'
 import { siteUrl, ogImages } from '@/configs/metaTags'
 
+// while iProgrammer is hidden; afterwards restore:
+// 'Senior Software Engineer, 4+ years at iProgrammer, ViitorCloud and iFour building multi-tenant SaaS, commerce and real-time platforms with React and Node.js.'
 const description =
-  'Senior Software Engineer, 4+ years at iProgrammer, ViitorCloud and iFour building multi-tenant SaaS, commerce and real-time platforms with React and Node.js.'
+  'Software Engineer, 4+ years at ViitorCloud and iFour building multi-tenant SaaS, commerce and real-time platforms with React and Node.js.'
 
 export const metadata: Metadata = {
   title: 'Experience',
