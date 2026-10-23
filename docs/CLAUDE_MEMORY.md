@@ -11,6 +11,7 @@ Read `docs/STATUS.md` first. It has the branches (`main` is live; `develop` coll
 
 **User decisions:**
 - Joined iProgrammer as Senior Software Engineer on 1 Oct 2026. Left ViitorCloud on 17 Jul 2026 and was job-hunting until Oct; the Jul end date is fine.
+- Until about Jan 2027 the iProgrammer role stays hidden on the site (`hidden: true` in `experience.ts`, kept in the code) and ViitorCloud shows as "Oct 2025 - Present". The owner decides when to show it again.
 - iFour: Feb–Aug 2022 was a six-month training period, then Software Engineer from Aug 2022; the site shows Feb 2022 with a note.
 - Lives in Pune. The site is pitched to overseas clients, so the city stays out of intros and the footer; "Pune, India" in the contact band and "Pune, IN" in the home timeline are fine. Never write "Based in".
 - Availability pill hidden via `profile.showAvailability = false`; keep the text, don't delete it.

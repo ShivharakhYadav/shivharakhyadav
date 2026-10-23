@@ -156,7 +156,12 @@ export default function ContactPage() {
             </dl>
           </header>
 
-          <ContactForm />
+          {/* the form posts to /api/contact; without SMTP credentials it shows an email fallback */}
+          <ContactForm
+            enabled={Boolean(process.env.SMTP_USER && process.env.SMTP_PASS)}
+            email={profile.email}
+            showAvailability={profile.showAvailability}
+          />
         </div>
 
         <section
