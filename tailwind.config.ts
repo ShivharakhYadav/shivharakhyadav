@@ -36,6 +36,7 @@ const config: Config = {
           ink: themeColor("coral-ink"),
         },
         seaglass: themeColor("seaglass"),
+        mint: themeColor("mint"),
         linen: {
           DEFAULT: themeColor("linen"),
           hover: themeColor("linen-hover"),

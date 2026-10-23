@@ -37,6 +37,7 @@
   --hl-comment: #68757a; /* 4.6:1 on the card background */
   --hl-number: #8a5a00;
   --hl-function: #3d5a99;
+  --mint: #5ed3a2; /* decorative only: the dot on "Let's talk" */
   color-scheme: light;
 }
 

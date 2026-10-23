@@ -16,7 +16,7 @@ Read `docs/STATUS.md` first. It has the branches (`main` is live; `develop` coll
 - Lives in Pune. The site is pitched to overseas clients, so the city stays out of intros and the footer; "Pune, India" in the contact band and "Pune, IN" in the home timeline are fine. Never write "Based in".
 - Availability pill hidden via `profile.showAvailability = false`; keep the text, don't delete it.
 - Role titles have no "(Full Stack)" suffix.
-- The logo stays just "SY", with no full name beside it. No "← Home" links above page titles. Home is in the footer and the mobile menu.
+- Navbar (2026-10-21): desktop shows "SY" alone, gets a solid coral ring on the home page, and lists Work, About, Experience and Writing as pills (the active one filled), plus "Let's talk" with a mint dot; no Home link. Phones show "SY" plus the full name, and a menu button that opens numbered rows (Home first, each with a one-line description) and a full-width "Let's talk". No "← Home" links above page titles; Home is also in the footer.
 - Home timeline: logos in LinkedIn order (role → company · city → dates), "Pvt. Ltd." dropped on home only, the current role marked by a teal ring and a "Now" tag.
 - Client names (Infosel, Aumni, Diligent Equity, Calloquy, MTS, Co4) may be shown; internal details from NDA work never go on the site.
 - Will send a rewritten RBAC blog post and an updated resume PDF later.
