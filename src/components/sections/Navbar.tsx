@@ -80,7 +80,7 @@ export default function Navbar() {
                   href={l.href}
                   aria-current={active ? 'page' : undefined}
                   className={`block whitespace-nowrap rounded-full px-3 py-2 transition hover:bg-linen/60 hover:text-ink md:px-4 ${
-                    active ? 'bg-linen text-ink' : ''
+                    active ? 'bg-linen text-ink' : ''`
                   }`}
                 >
                   {l.name}

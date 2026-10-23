@@ -19,7 +19,9 @@ export const runtime = "nodejs";
 
 const MIN_FILL_MS = 3000; // a human takes longer than this to fill the form
 const LIMIT = { max: 5, windowMs: 10 * 60 * 1000 }; // per IP
-const SENDER_NAME = `${profile.name} · Portfolio`;
+// Not the owner's own name: mail from another address using the recipient's
+// name looks like impersonation to Gmail and lands in spam.
+const SENDER_NAME = "Portfolio contact form";
 
 // Best-effort rate limit: serverless instances don't share memory, so this
 // only slows down repeated posts that reach the same instance.
