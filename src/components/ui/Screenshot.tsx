@@ -31,7 +31,7 @@ export default function Screenshot({
 
   return (
     <div
-      className={`relative flex flex-col overflow-hidden rounded-[18px] border border-line bg-white ${className}`}
+      className={`relative flex flex-col overflow-hidden rounded-[18px] border border-line bg-card ${className}`}
     >
       <div className="flex gap-1.5 px-3.5 py-3" aria-hidden="true">
         {dots.map((c) => (

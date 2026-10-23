@@ -23,6 +23,14 @@ const config: Config = {
           DEFAULT: themeColor("teal"),
           hover: themeColor("teal-hover"),
         },
+        "on-teal": themeColor("on-teal"),
+        "logo-tile": themeColor("logo-tile"),
+        "logo-ink": themeColor("logo-ink"),
+        cta: {
+          DEFAULT: themeColor("cta-bg"),
+          ink: themeColor("cta-ink"),
+          line: themeColor("cta-line"),
+        },
         coral: {
           DEFAULT: themeColor("coral"),
           ink: themeColor("coral-ink"),
@@ -38,10 +46,11 @@ const config: Config = {
         sans: ["var(--font-dm-sans)", "system-ui", "sans-serif"],
         display: ["var(--font-outfit)", "system-ui", "sans-serif"],
       },
+      // tinted with ink on light, black and stronger on dark (--shadow, --shadow-strength)
       boxShadow: {
-        lift: "0 20px 40px -12px rgba(20, 48, 58, 0.15)",
-        soft: "0 10px 30px -18px rgba(20, 48, 58, 0.35)",
-        portrait: "0 24px 48px -16px rgba(20, 48, 58, 0.35)",
+        lift: "0 20px 40px -12px rgb(var(--shadow) / calc(0.15 * var(--shadow-strength)))",
+        soft: "0 10px 30px -18px rgb(var(--shadow) / calc(0.35 * var(--shadow-strength)))",
+        portrait: "0 24px 48px -16px rgb(var(--shadow) / calc(0.35 * var(--shadow-strength)))",
       },
     },
   },

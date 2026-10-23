@@ -15,10 +15,10 @@ const initials = (name: string) =>
 export function CompanyLogo({ job, className = "h-12 w-12 sm:h-14 sm:w-14" }: { job: Job; className?: string }) {
   return (
     <span
-      className={`relative grid shrink-0 place-items-center overflow-hidden rounded-2xl bg-seaglass font-display text-lg font-semibold text-teal ${className}`}
+      className={`relative grid shrink-0 place-items-center overflow-hidden rounded-2xl bg-logo-tile font-display text-lg font-semibold text-logo-ink ${className}`}
     >
       {job.logo ? (
-        <Image src={job.logo} alt={`${job.company} logo`} fill sizes="56px" className="object-contain p-2" />
+        <Image src={job.logo} alt={`${job.company} logo`} fill sizes="56px" className="photo-dim object-contain p-2" />
       ) : (
         initials(job.company)
       )}

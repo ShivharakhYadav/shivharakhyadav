@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { usePathname } from 'next/navigation'
 import { profile } from '@/data/profile'
 import { experience } from '@/data/experience'
+import ThemeToggle from '@/components/ui/ThemeToggle'
 
 // year of the earliest role, e.g. "2022", for the mobile menu's Experience line
 const since = experience[experience.length - 1]?.period.match(/\d{4}/)?.[0]
@@ -59,7 +60,7 @@ export default function Navbar() {
         >
           {/* a solid coral ring marks the home page; other pages show a lighter one on hover */}
           <span
-            className={`grid h-9 w-9 place-items-center rounded-full bg-teal font-display text-[13px] font-semibold text-white ring-offset-2 ring-offset-card transition ${
+            className={`grid h-9 w-9 place-items-center rounded-full bg-teal font-display text-[13px] font-semibold text-on-teal ring-offset-2 ring-offset-card transition ${
               onHome ? 'ring-2 ring-coral' : 'ring-coral/50 group-hover:ring-2'
             }`}
           >
@@ -89,47 +90,54 @@ export default function Navbar() {
           })}
         </ul>
 
-        {/* phones: a round menu button; the full menu (with Let's talk) opens below */}
-        <button
-          type='button'
-          onClick={() => setOpen((o) => !o)}
-          aria-expanded={open}
-          aria-controls='mobile-menu'
-          aria-label={open ? 'Close menu' : 'Open menu'}
-          className='grid h-10 w-10 place-items-center rounded-full bg-linen text-ink transition hover:bg-linen-hover sm:hidden'
-        >
-          {open ? (
-            <svg
-              viewBox='0 0 24 24'
-              className='h-[18px] w-[18px]'
-              fill='none'
-              stroke='currentColor'
-              strokeWidth='2'
-              strokeLinecap='round'
-              aria-hidden='true'
-            >
-              <path d='M6 6l12 12M18 6L6 18' />
-            </svg>
-          ) : (
-            <svg
-              viewBox='0 0 24 24'
-              className='h-[18px] w-[18px]'
-              fill='none'
-              stroke='currentColor'
-              strokeWidth='2'
-              strokeLinecap='round'
-              aria-hidden='true'
-            >
-              <path d='M5 9h14M5 15h14' />
-            </svg>
-          )}
-        </button>
+        {/* theme toggle on every size; on phones it sits beside the menu button */}
+        <div className='flex items-center gap-1'>
+          <ThemeToggle />
+
+          {/* phones: a round menu button; the full menu (with Let's talk) opens below */}
+          <button
+            type='button'
+            onClick={() => setOpen((o) => !o)}
+            aria-expanded={open}
+            aria-controls='mobile-menu'
+            aria-label={open ? 'Close menu' : 'Open menu'}
+            className='grid h-10 w-10 place-items-center rounded-full bg-linen text-ink transition hover:bg-linen-hover sm:hidden'
+          >
+            {open ? (
+              <svg
+                viewBox='0 0 24 24'
+                className='h-[18px] w-[18px]'
+                fill='none'
+                stroke='currentColor'
+                strokeWidth='2'
+                strokeLinecap='round'
+                aria-hidden='true'
+              >
+                <path d='M6 6l12 12M18 6L6 18' />
+              </svg>
+            ) : (
+              <svg
+                viewBox='0 0 24 24'
+                className='h-[18px] w-[18px]'
+                fill='none'
+                stroke='currentColor'
+                strokeWidth='2'
+                strokeLinecap='round'
+                aria-hidden='true'
+              >
+                <path d='M5 9h14M5 15h14' />
+              </svg>
+            )}
+          </button>
+        </div>
 
         <Link
           href='/contact'
           aria-current={onContact ? 'page' : undefined}
-          className={`ml-1 hidden items-center gap-2 whitespace-nowrap rounded-full px-5 py-2.5 text-[15px] font-medium text-bg transition hover:bg-teal sm:inline-flex ${
-            onContact ? 'bg-teal' : 'bg-ink'
+          // cta tokens: an ink pill in light, an outlined dark pill in dark (no bright surface);
+          // an inset ring, not a border, so the pill keeps its size
+          className={`ml-1 hidden items-center gap-2 whitespace-nowrap rounded-full px-5 py-2.5 text-[15px] font-medium ring-1 ring-inset transition hover:bg-teal hover:text-on-teal hover:ring-teal sm:inline-flex ${
+            onContact ? 'bg-teal text-on-teal ring-teal' : 'bg-cta text-cta-ink ring-cta-line'
           }`}
         >
           <span
@@ -199,7 +207,7 @@ export default function Navbar() {
                 href='/contact'
                 onClick={() => setOpen(false)}
                 aria-current={onContact ? 'page' : undefined}
-                className='mb-1 flex w-full items-center justify-center rounded-full bg-ink px-6 py-3.5 text-[15px] font-semibold text-bg transition hover:bg-teal'
+                className='mb-1 flex w-full items-center justify-center rounded-full bg-cta px-6 py-3.5 text-[15px] font-semibold text-cta-ink ring-1 ring-inset ring-cta-line transition hover:bg-teal hover:text-on-teal hover:ring-teal'
               >
                 Let's talk →
               </Link>
