@@ -22,8 +22,10 @@ export default function Portrait({
           alt={`${profile.name}, ${profile.role}`}
           width={460}
           height={460}
+          // matches the sizes Hero and /about pass in, so phones don't download the 1080px file
+          sizes="(min-width: 1280px) 460px, (min-width: 1024px) 380px, 280px"
           priority={priority}
-          className="h-full w-full origin-[50%_20%] scale-[1.12] object-cover object-[50%_10%] transition duration-700 group-hover:scale-[1.16]"
+          className="photo-dim h-full w-full origin-[50%_20%] scale-[1.12] object-cover object-[50%_10%] transition duration-700 group-hover:scale-[1.16]"
         />
       </div>
     </div>

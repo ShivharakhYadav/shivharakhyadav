@@ -4,7 +4,7 @@ import { ImageResponse } from "next/og";
 import { ogFonts } from "@/lib/ogFonts";
 
 // Shared by every page's link preview (LinkedIn, WhatsApp, X, Slack…)
-export const alt = "Shivharakh Yadav — Full-Stack Developer in Pune, India";
+export const alt = "Shivharakh Yadav - Full-Stack Developer in Pune, India";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 

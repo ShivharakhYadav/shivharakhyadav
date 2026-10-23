@@ -5,10 +5,12 @@ import Container from "@/components/ui/Container";
 export const metadata: Metadata = {
   title: "Page not found",
   robots: { index: false },
+  // don't inherit the home canonical from the root layout
+  alternates: { canonical: null },
 };
 
 const links = [
-  { href: "/projects", label: "Case studies", text: "Products I’ve built and owned" },
+  { href: "/projects", label: "Case studies", text: "Products I've built and owned" },
   { href: "/about", label: "About", text: "Who I am and how I work" },
   { href: "/blog", label: "Writing", text: "Notes from building production apps" },
 ];
@@ -23,7 +25,7 @@ export default function NotFound() {
             This page <span className="coral-underline">wandered off</span>.
           </h1>
           <p className="text-[17px] leading-relaxed text-muted sm:text-[19px]">
-            The link may be old or mistyped. Here’s where you probably wanted to go:
+            The link may be old or mistyped. Here's where you probably wanted to go:
           </p>
           <ul className="grid gap-4 pt-2 sm:grid-cols-3">
             {links.map((l) => (

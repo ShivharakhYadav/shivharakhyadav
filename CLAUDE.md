@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Overview
 
-Personal portfolio + blog for Shivharakh Yadav, built with Next.js 14 (App Router), TypeScript, and Tailwind CSS. The design ("Sand & Tide") is **warm, light-only and calm**: sand background, ink text, one teal accent, coral used only for decoration (dots, underlines, rings), rounded cards, a floating pill navbar, Outfit for headings and DM Sans for body text. Motion is kept to two places (the rotating hero words and the "Working with" logo carousel), and both respect `prefers-reduced-motion`.
+Personal portfolio + blog for Shivharakh Yadav, built with Next.js 14 (App Router), TypeScript, and Tailwind CSS. The design ("Sand & Tide") is **warm and calm**, with a light theme and a matching dark one ("Soft Slate", made for reading in a dark room): sand background, ink text, one teal accent, coral used only for decoration (dots, underlines, rings), rounded cards, a floating pill navbar, Outfit for headings and DM Sans for body text. Motion is kept to two places (the rotating hero words and the "Working with" logo carousel), and both respect `prefers-reduced-motion`.
 
 **Current status, open items and owner decisions are in `docs/STATUS.md`, and working preferences are in `docs/CLAUDE_MEMORY.md`. Read both first and keep them updated.**
 
@@ -29,11 +29,15 @@ There is no test setup and no ESLint config (`next lint` would prompt); use `npx
 
   All are statically generated. The navbar links to the pages, not to home-page anchors.
 - **SEO:**
-  - Each page sets its own `title` (the root layout adds " — Shivharakh Yadav" via a title template), a `description` of 160 characters or fewer, and `alternates.canonical`.
+  - Each page sets its own `title` (the root layout adds " - Shivharakh Yadav" via a title template), a `description` of 160 characters or fewer, and `alternates.canonical`.
   - A page that sets its own `openGraph` must include `images: ogImages` (from `src/configs/metaTags.ts`); otherwise the share image is lost. Posts and case studies are the exception: they have their own `opengraph-image.tsx`, built with `ogCard()` in `src/lib/ogCard.tsx`, which uses the bundled Outfit font from `src/assets/fonts`.
   - **JSON-LD:** the full Person and WebSite entities are defined once in `src/configs/schema.ts`. Pages reuse `person`, `author`, `websiteId` and `breadcrumbs()` from there, rendered by `src/components/JsonLd.tsx`, instead of writing their own Person objects.
-  - Also present: an RSS feed at `/blog/rss.xml`, a manifest, generated icons (`icon.tsx` / `apple-icon.tsx`) and a `not-found.tsx` (noindex).
-- **Contact form** (`src/components/ContactForm.tsx`) posts to Formspree using `NEXT_PUBLIC_FORMSPREE_ID` (see `.env.example`; set it in `.env.local` and in Vercel). Without it, the page shows an "Email me directly" fallback.
+  - Also present: an RSS feed at `/blog/rss.xml`, a manifest, photo icons (`favicon.ico`, `icon.png`, `apple-icon.png`, all the same crop) and a `not-found.tsx` (noindex).
+- **Contact form:**
+  - `src/components/ContactForm.tsx` posts to our own route `src/app/api/contact/route.ts`.
+  - The route validates input, drops spam (a hidden `website` field, a minimum 3-second fill time, a best-effort per-IP limit, same-origin only) and emails the owner from their own Gmail with Nodemailer over SMTP (`runtime = "nodejs"`), with the visitor as Reply-To.
+  - Env: `SMTP_USER` and `SMTP_PASS` (a Google App Password) are required; `CONTACT_TO`, `SMTP_HOST` and `SMTP_PORT` are optional (see `.env.example`).
+  - Without the key, /contact shows an "Email me directly" fallback.
 - **Content lives in data files, not JSX:**
   - `src/data/profile.ts`: bio, socials, hero words, stats, `resumeUrl`, `testimonial` and `showAvailability` (the availability pill in the hero and on /contact). Résumé links and the testimonial card stay hidden while those are empty or `null`.
   - `src/data/projects.ts`: case studies. Each has an `eyebrow`, one-line `tagline`, lead `headline` result, optional screenshot `image` (cards show a "Built with" cover from `tags` without one, and the case-study page shows no frame) and `metrics` (key facts that shouldn't repeat the headline). `featuredProjects` sets the three shown on the home page, strongest first.
@@ -49,13 +53,15 @@ There is no test setup and no ESLint config (`next lint` would prompt); use `npx
   - `Reveal` is a subtle IntersectionObserver fade-in.
 - Site metadata and the canonical `siteUrl` live in `src/configs/metaTags.ts`.
 - **Path alias:** `@/*` → `src/*`.
+- **No em dashes (—) or curly apostrophes (’) in visible text** (the owner finds them AI-looking): use a normal hyphen (-) and a straight apostrophe ('). Inside single-quoted strings, escape it as `'`.
 - **Content rule:** never invent facts (clients, numbers, dates, rates). Use what's in the data files or the GitHub profile README. Unknown values stay as visible `[bracketed]` placeholders; `isPlaceholder()` in `experience.ts` keeps them out of structured data.
 
 ## Styling conventions
 
-- Colors are CSS variables in `src/app/globals.css` (`--bg`, `--card`, `--line`, `--ink`, `--muted`, `--teal`, `--coral`, `--coral-ink`, `--seaglass`, `--linen`), exposed as Tailwind colors (`bg-bg`, `text-ink`, `bg-seaglass`, `text-coral-ink`, …). The site is light-only, so there is no dark mode and no `dark:` variants. Use the tokens instead of hex values. Opacity modifiers (`bg-teal/50`, `border-coral/40`) work because `tailwind.config.ts` wraps each variable in `color-mix()`; keep that wrapper when adding a color.
+- Colors are CSS variables in `src/app/globals.css` (`--bg`, `--card`, `--line`, `--ink`, `--muted`, `--teal`, `--coral`, `--coral-ink`, `--seaglass`, `--linen`), exposed as Tailwind colors (`bg-bg`, `text-ink`, `bg-seaglass`, `text-coral-ink`, …). Each variable has a light value in `:root` and a dark value (repeated in the `prefers-color-scheme: dark` block and the `[data-theme="dark"]` block; keep the two identical). There are no `dark:` variants: use the tokens instead of hex values or `text-white`, and every color then works in both themes. Text on teal buttons uses `text-on-teal`; company logo tiles use `bg-logo-tile`, which stays light in both themes. Check new UI in both themes. Opacity modifiers (`bg-teal/50`, `border-coral/40`) work because `tailwind.config.ts` wraps each variable in `color-mix()`; keep that wrapper when adding a color.
 - Coral (`#EE8B6A`) fails text contrast on sand. Use it only for decoration; text that needs the coral look uses `coral-ink`.
 - Shared component classes in `globals.css`: `.card`, `.lift` (hover lift for clickable cards), `.coral-underline`, `.eyebrow`, `.btn-primary`, `.btn-secondary`, `.text-link`, `.chip`.
 - Fonts: `font-display` (Outfit) for headings and numbers, and the default `font-sans` (DM Sans) for body text, both loaded in `layout.tsx`.
+- **Theme:** dark follows the visitor's system setting until they use the sun/moon toggle (`src/components/ui/ThemeToggle.tsx`, in the navbar), which saves the choice in `localStorage` (`theme`). A small script in `layout.tsx` applies it before the first paint, so there's no flash. Icons that differ per theme use `.when-light` / `.when-dark`. The share images and the contact email stay light. Dark-theme rules (eye comfort): no large bright surfaces (the navbar "Let's talk" pill uses the `cta` tokens and is an outlined dark pill in dark), photos and logos get `.photo-dim`, no shadows (`--shadow-strength: 0`), and text never brighter than `--ink`.
 - Inline `<style>` tags must use `dangerouslySetInnerHTML`. Otherwise React escapes characters like `>` during server rendering, which breaks the CSS and causes a hydration error.
 - Blog prose uses `@tailwindcss/typography` with `--tw-prose-*` mapped to the theme variables; code highlighting colors live in `globals.css` too.

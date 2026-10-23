@@ -14,11 +14,12 @@ const links = [
 export default function Footer() {
   return (
     <footer>
-      <Container className="flex flex-col gap-4 py-10 text-[13px] text-muted lg:flex-row lg:items-center lg:justify-between">
-        <span>
+      <Container className="flex flex-col gap-4 pb-6 pt-10 text-[13px] lg:pb-10 text-muted lg:flex-row lg:items-center lg:justify-between">
+        {/* centred while the footer is stacked (phones and tablets) */}
+        <span className="text-center lg:text-left">
           © {new Date().getFullYear()} {profile.name}
         </span>
-        {/* links first on phones and tablets; one row with © and tagline from lg */}
+        {/* links first on phones and tablets; one row with © from lg */}
         <nav aria-label="Footer" className="order-first lg:order-none">
           <ul className="flex flex-wrap gap-x-5">
             {links.map((l) => (
@@ -28,21 +29,8 @@ export default function Footer() {
                 </Link>
               </li>
             ))}
-            {profile.resumeUrl && (
-              <li>
-                <a href={profile.resumeUrl} className="inline-block py-1.5 transition hover:text-ink">
-                  Résumé
-                </a>
-              </li>
-            )}
-            <li>
-              <a href="/blog/rss.xml" className="inline-block py-1.5 transition hover:text-ink">
-                RSS
-              </a>
-            </li>
           </ul>
         </nav>
-        <span>Designed &amp; built with care in Pune</span>
       </Container>
     </footer>
   );

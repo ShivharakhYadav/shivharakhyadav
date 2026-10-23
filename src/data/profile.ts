@@ -1,3 +1,6 @@
+import { projects } from "@/data/projects";
+import { domains } from "@/data/experience";
+
 export interface SocialLink {
   label: string;
   href: string;
@@ -26,19 +29,23 @@ export const profile = {
   availability: "Available for full-stack & frontend roles",
   /** Shows the availability pill in the hero and on /contact. Hidden while employed. */
   showAvailability: false,
+  /** Shows the GPA beside each degree on /about. Hidden for now; the grades stay in `education`. */
+  showGrades: false,
+  /** last real change to the profile content; update by hand (used as ProfilePage dateModified) */
+  updated: "2026-10-19",
   /** Rotating middle line of the hero headline — kinds of products actually shipped. */
-  heroWords: ["booking platforms", "learning portals", "coaching apps", "SaaS products"],
+  heroWords: ["SaaS products", "fintech tools", "Excel add-ins", "booking platforms"],
   intro:
-    "Full-stack developer with 4+ years of experience building and shipping production web applications — from clean, type-safe frontends to secure backend APIs.",
+    "Full-stack developer with 4+ years of experience building and shipping production web applications - from clean, type-safe frontends to secure backend APIs.",
   /** Longer bio for /about (facts from the GitHub profile README). */
   story: [
-    "I’m a full-stack engineer with 4+ years of experience designing and shipping production SaaS platforms with React, Next.js, Node.js and MongoDB/PostgreSQL, across fintech, sports, transport and healthcare.",
-    "I’m most at home with the hard parts of a product: multi-tenant data isolation, booking and allocation logic that stays correct under concurrent requests, caching and query performance, and real-time systems on Socket.IO. The platforms I’ve worked on serve 1,200+ users combined, including a multi-tenant SaaS used by 944+ people across 10 organizations.",
-    "I like taking ambiguous requirements and turning them into scalable, production-ready architecture, then owning the work end to end: requirement calls, design, development, CI/CD and releases, in direct contact with clients in Australia and the US. Along the way I’ve mentored junior engineers on code quality and best practices.",
+    "I'm a full-stack engineer with 4+ years of experience designing and shipping production SaaS platforms with React, Next.js, Node.js and MongoDB/PostgreSQL, across fintech, sports, transport and healthcare.",
+    "I'm most at home with the hard parts of a product: multi-tenant data isolation, booking and allocation logic that stays correct under concurrent requests, caching and query performance, and real-time systems on Socket.IO. The platforms I've worked on serve 1,200+ users combined, including a multi-tenant SaaS used by 944+ people across 5 organizations.",
+    "I like taking ambiguous requirements and turning them into scalable, production-ready architecture, then owning the work end to end: requirement calls, design, development, CI/CD and releases, in direct contact with clients in Australia and the US. Along the way I've mentored junior engineers on code quality and best practices.",
   ],
   currentlyExploring: "Exploring AI agents & building AI-integrated apps",
   currentlyExploringLong:
-    "I’m diving into the AI/LLM ecosystem: AI agents, agentic workflows and AI developer tools, and building AI-integrated applications.",
+    "I'm diving into the AI/LLM ecosystem: AI agents, agentic workflows and AI developer tools, and building AI-integrated applications.",
   timezone: "IST (UTC+5:30)",
   socials: [
     {
@@ -70,26 +77,34 @@ export const education: Education[] = [
   {
     degree: "M.Sc. Computer Application & Information Technology",
     school: "Gujarat University",
-    years: "2020 — 2022",
+    years: "2020 - 2022",
     grade: "GPA 3.8/5",
   },
   {
     degree: "B.Sc. Computer Application & Information Technology",
     school: "Gujarat University",
-    years: "2017 — 2020",
+    years: "2017 - 2020",
     grade: "GPA 3.6/5",
   },
 ];
 
-/** Proof numbers under the hero. */
+/** Proof numbers under the hero (and on /about); the counts follow the data. */
 export const stats: Stat[] = [
-  { value: "4+", label: "years shipping" },
-  { value: "1,200+", label: "users served" },
-  { value: "10", label: "organizations" },
+  { value: "4+", label: "years of client work" },
+  { value: String(projects.length), label: "products delivered" },
+  { value: String(domains.length), label: "industries" },
 ];
 
-/** A client quote for the Experience section. The card is hidden while this is null. */
-export const testimonial: Testimonial | null = null;
+/**
+ * A client quote for the home Experience section. Replace the [placeholders]
+ * with a real quote (with the client's permission); the card stays hidden
+ * while any [placeholder] is left or while this is null.
+ */
+export const testimonial: Testimonial | null = {
+  quote: "[One or two sentences from a client about working with you]",
+  name: "[Client name, role]",
+  company: "[Company, country]",
+};
 
 /** How I work: from the GitHub profile README. */
 export const workingStyle = [

@@ -57,7 +57,7 @@ export const website = {
   "@type": "WebSite",
   "@id": websiteId,
   name: profile.name,
-  alternateName: ["Shivharakh Yadav — Portfolio", "SY"],
+  alternateName: ["Shivharakh Yadav - Portfolio", "SY"],
   url: `${siteUrl}/`,
   inLanguage: "en",
   publisher: personRef,

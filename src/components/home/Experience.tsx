@@ -1,13 +1,13 @@
 import Link from "next/link";
 import Container from "@/components/ui/Container";
 import { CompanyLogo } from "@/components/ui/JobCard";
-import { experience } from "@/data/experience";
+import { experience, isPlaceholder } from "@/data/experience";
 import { profile, testimonial } from "@/data/profile";
 
 export default function Experience() {
   return (
     <Container>
-      <section id="experience" className="grid gap-10 pt-24 lg:grid-cols-[360px_1fr] lg:gap-24">
+      <section id="experience" className="grid gap-10 py-24 lg:grid-cols-[360px_1fr] lg:gap-24">
         <div className="space-y-4">
           <h2 className="font-display fs-section font-semibold tracking-[-0.04em]">
             Experience
@@ -19,9 +19,10 @@ export default function Experience() {
           <ul className="max-w-[340px] pt-2">
             <RowLink href="/experience" label="Full experience" />
             <RowLink href="/about" label="More about me" />
-            {profile.resumeUrl && <RowLink href={profile.resumeUrl} label="Résumé (PDF)" download />}
+            {profile.resumeUrl && <RowLink href={profile.resumeUrl} label="Resume (PDF)" download />}
           </ul>
-          {testimonial && (
+          {/* hidden until the quote in profile.ts is a real one */}
+          {testimonial && !isPlaceholder(`${testimonial.quote} ${testimonial.name} ${testimonial.company}`) && (
             <figure className="mt-6 space-y-5 rounded-[28px] bg-linen p-7">
               <span className="block font-display text-5xl font-semibold leading-none text-coral-ink" aria-hidden="true">
                 “
@@ -41,7 +42,9 @@ export default function Experience() {
         <ol>
           {experience.map((job, i) => {
             const current = /present/i.test(job.period);
-            const city = job.location?.split(",")[0];
+            // "Pune, Maharashtra, India" -> "Pune, IN"
+            const parts = job.location?.split(",").map((p) => p.trim()) ?? [];
+            const place = parts.length > 0 ? [parts[0], countryCodes[parts[parts.length - 1]]].filter(Boolean).join(", ") : "";
             return (
               <li key={`${job.company}-${job.period}`} className="relative flex gap-4 pb-9 last:pb-0 sm:gap-5">
                 {i < experience.length - 1 && (
@@ -63,7 +66,7 @@ export default function Experience() {
                   </h3>
                   <p className="mt-0.5 text-[15px]">
                     <span className="font-medium text-teal">{job.company.replace(/ Pvt\. Ltd\.$/, "")}</span>
-                    {city && <span className="text-muted"> · {city}</span>}
+                    {place && <span className="text-muted"> · {place}</span>}
                   </p>
                   <p className="mt-1.5 flex flex-wrap items-center gap-2 text-sm text-muted">
                     {job.period}
@@ -90,6 +93,9 @@ export default function Experience() {
     </Container>
   );
 }
+
+// Short country codes for the timeline's place line
+const countryCodes: Record<string, string> = { India: "IN" };
 
 // Full-width text row with a divider and a trailing arrow
 function RowLink({ href, label, download }: { href: string; label: string; download?: boolean }) {
