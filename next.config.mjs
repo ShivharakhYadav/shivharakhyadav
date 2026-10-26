@@ -1,10 +1,8 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  experimental: {
-    // generated share images and icons read these fonts at request time on Vercel
-    outputFileTracingIncludes: {
-      "/**/*": ["./src/assets/fonts/**"],
-    },
+  // generated share images and icons read these fonts at request time on Vercel
+  outputFileTracingIncludes: {
+    "/**/*": ["./src/assets/fonts/**"],
   },
   async redirects() {
     return [
