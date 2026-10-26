@@ -4,6 +4,9 @@ const nextConfig = {
   outputFileTracingIncludes: {
     "/**/*": ["./src/assets/fonts/**"],
   },
+  experimental: {
+    agentUpgrade: "latest",
+  },
   async redirects() {
     return [
       // renamed case study; keep old links and search results working

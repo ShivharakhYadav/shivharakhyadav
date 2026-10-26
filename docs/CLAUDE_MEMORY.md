@@ -33,7 +33,7 @@ Read `docs/STATUS.md` first. It has the branches (`main` is live; `develop` coll
 - **Commit identity:** every commit is authored and committed as `Shivharakh Yadav <yadavshivharakhyadav@gmail.com>`. The office account (`shivharakhy@iprogrammer.co`) must never be used here; Vercel previews fail for other authors.
 - **No co-author or Claude lines in commits or PRs:** no `Co-Authored-By:`, no `Claude-Session:`, no "Generated with Claude Code". The owner wants to be the only contributor.
 - **Never publish HR or company documents, or client notes under NDA** (keep those in gitignored `notes/`). The user once put a signed relieving letter in `public/`. Read every file before it goes public.
-- **Verify visually.** Run `npm run build`, then `next start -p 3456`, then take headless Chrome screenshots; for mobile, use Chrome DevTools-protocol emulation (real viewport, DPR, touch, mobile UA). Stop the server by its port PID, never with `pkill -f`. The user often has `next dev` running, which shares `.next`: never delete `.next` then. Build a copy in the scratchpad instead (copy without node_modules/.next, link node_modules).
+- **Verify visually.** Run `npm run build`, then `next start -p 3456`, then take headless Chrome screenshots; for mobile, use Chrome DevTools-protocol emulation (real viewport, DPR, touch, mobile UA). Stop the server by its port PID, never with `pkill -f`. The user often has `next dev` running: never delete `.next` then. Since Next 16 dev writes to `.next/dev`, so building alongside it is fine.
 
 **Why:** the site is a hiring and client-pitch tool, and false claims or leaked documents would hurt the user.
 **How to apply:** for any content, data or git work in the portfolio repo.

@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Overview
 
-Personal portfolio + blog for Shivharakh Yadav, built with Next.js 14 (App Router), TypeScript, and Tailwind CSS. The design ("Sand & Tide") is **warm and calm**, with a light theme and a matching dark one ("Soft Slate", made for reading in a dark room): sand background, ink text, one teal accent, coral used only for decoration (dots, underlines, rings), rounded cards, a floating pill navbar, Outfit for headings and DM Sans for body text. Motion is kept to two places (the rotating hero words and the "Working with" logo carousel), and both respect `prefers-reduced-motion`.
+Personal portfolio + blog for Shivharakh Yadav, built with Next.js 16 (App Router, Turbopack) and React 19, TypeScript, and Tailwind CSS. The design ("Sand & Tide") is **warm and calm**, with a light theme and a matching dark one ("Soft Slate", made for reading in a dark room): sand background, ink text, one teal accent, coral used only for decoration (dots, underlines, rings), rounded cards, a floating pill navbar, Outfit for headings and DM Sans for body text. Motion is kept to two places (the rotating hero words and the "Working with" logo carousel), and both respect `prefers-reduced-motion`.
 
 **Current status, open items and owner decisions are in `docs/STATUS.md`, and working preferences are in `docs/CLAUDE_MEMORY.md`. Read both first and keep them updated.**
 
@@ -16,7 +16,7 @@ npm run build   # production build (also the de-facto typecheck)
 npm run start   # serve the production build
 ```
 
-There is no test setup and no ESLint config (`next lint` would prompt); use `npx tsc --noEmit` / `npm run build` to verify. A running `next dev` shares `.next` with `next build`, so don't build while it's running (or build a copy elsewhere).
+There is no test setup and no linter (Next 16 removed `next lint`); use `npx tsc --noEmit` / `npm run build` to verify. `next dev` writes to `.next/dev`, so a build can run while it's up, but never delete `.next` while dev is running.
 
 ## Architecture
 

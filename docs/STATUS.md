@@ -10,7 +10,7 @@ Last updated: 2026-10-20.
   - **`fix/seo-audit`:** merged into `develop` as PR #3; its later handoff-note commits came in through a follow-up PR.
   - New work goes on a new feature branch from `develop`, then a PR into `develop`.
 - Live URL: https://shivharakhyadav.vercel.app. `siteUrl` in `src/configs/metaTags.ts` is the single source.
-- Verify with `npx tsc --noEmit` and `npm run build`. On Windows, `npm run build` fails to prerender `/opengraph-image` and `/twitter-image` (`Invalid URL` inside `@vercel/og`); this is local-only and happens on `main` too, while every other page builds. A long-running `next dev` shares `.next`; if it's running, build a copy elsewhere instead of deleting `.next`.
+- Verify with `npx tsc --noEmit` and `npm run build`. On Windows, `npm run build` fails to prerender `/opengraph-image` and `/twitter-image` (`Invalid URL` inside `@vercel/og`); this is local-only and happens on `main` too, while every other page builds. Since Next 16, `next dev` writes to `.next/dev`, so building while it runs is fine; still don't delete `.next` then.
 
 ## Done
 - Sand & Tide redesign.
