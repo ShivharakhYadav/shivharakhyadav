@@ -1,6 +1,43 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
+@plugin "@tailwindcss/typography";
+
+/*
+ * Tailwind v4 theme: maps the palette variables below to utilities
+ * (bg-teal, text-coral-ink, ...). `inline` keeps the var() references, so the
+ * utilities follow the light/dark values at runtime, and v4 builds opacity
+ * modifiers (bg-teal/50) with color-mix() on its own.
+ */
+@theme inline {
+  --color-bg: var(--bg);
+  --color-card: var(--card);
+  --color-line: var(--line);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-teal: var(--teal);
+  --color-teal-hover: var(--teal-hover);
+  --color-on-teal: var(--on-teal);
+  --color-coral: var(--coral);
+  --color-coral-ink: var(--coral-ink);
+  --color-seaglass: var(--seaglass);
+  --color-linen: var(--linen);
+  --color-linen-hover: var(--linen-hover);
+  --color-logo-tile: var(--logo-tile);
+  --color-logo-ink: var(--logo-ink);
+  --color-cta: var(--cta-bg);
+  --color-cta-ink: var(--cta-ink);
+  --color-cta-line: var(--cta-line);
+  --color-mint: var(--mint);
+  /* next/font variables from layout.tsx */
+  --font-sans: var(--font-dm-sans), system-ui, sans-serif;
+  --font-display: var(--font-outfit), system-ui, sans-serif;
+  /* tinted with ink on light, black and switched off on dark (--shadow, --shadow-strength) */
+  --shadow-lift: 0 20px 40px -12px
+    rgb(var(--shadow) / calc(0.15 * var(--shadow-strength)));
+  --shadow-soft: 0 10px 30px -18px
+    rgb(var(--shadow) / calc(0.35 * var(--shadow-strength)));
+  --shadow-portrait: 0 24px 48px -16px
+    rgb(var(--shadow) / calc(0.35 * var(--shadow-strength)));
+}
 
 /*
  * "Sand & Tide" palette, with a dark "Tide at Night" variant.
@@ -31,7 +68,7 @@
   --cta-ink: #fbf6ee;
   --cta-line: #14303a;
   --photo-brightness: 1; /* photos and logos are dimmed a little in dark */
-  --shadow: 20 48 58; /* rgb channels, used with an alpha in tailwind.config.ts */
+  --shadow: 20 48 58; /* rgb channels, used with an alpha by the --shadow-* theme values */
   --shadow-strength: 1;
   /* code highlighting */
   --hl-comment: #68757a; /* 4.6:1 on the card background */
@@ -49,7 +86,7 @@
  * on every surface. Keep the two blocks below identical.
  */
 @media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) {
+  :root:not([data-theme='light']) {
     --bg: #1b2124;
     --card: #232b2f;
     --line: #343e42;
@@ -76,7 +113,7 @@
     color-scheme: dark;
   }
 }
-:root[data-theme="dark"] {
+:root[data-theme='dark'] {
   --bg: #1b2124;
   --card: #232b2f;
   --line: #343e42;
@@ -113,17 +150,17 @@
   display: none;
 }
 @media (prefers-color-scheme: dark) {
-  :root:not([data-theme="light"]) .when-dark {
+  :root:not([data-theme='light']) .when-dark {
     display: block;
   }
-  :root:not([data-theme="light"]) .when-light {
+  :root:not([data-theme='light']) .when-light {
     display: none;
   }
 }
-:root[data-theme="dark"] .when-dark {
+:root[data-theme='dark'] .when-dark {
   display: block;
 }
-:root[data-theme="dark"] .when-light {
+:root[data-theme='dark'] .when-light {
   display: none;
 }
 
@@ -133,32 +170,48 @@
   transition: none !important;
 }
 
-* {
-  border-color: var(--line);
-}
+/*
+ * Element defaults go in the base layer: in Tailwind v4, unlayered CSS beats
+ * every utility, so outside a layer `*` would override border-ink, border-teal...
+ */
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--line);
+  }
 
-html {
-  scroll-behavior: smooth;
-  /* offset so anchored sections aren't hidden under the floating nav */
-  scroll-padding-top: 6rem;
-}
+  /* v4 preflight dropped the pointer cursor on buttons */
+  button:not(:disabled),
+  [role='button']:not(:disabled) {
+    cursor: pointer;
+  }
 
-body {
-  color: var(--ink);
-  background-color: var(--bg);
-  /* safety net: a stray pixel of overflow must never make phones scroll sideways (clip keeps the sticky nav working) */
-  overflow-x: clip;
-}
+  html {
+    scroll-behavior: smooth;
+    /* offset so anchored sections aren't hidden under the floating nav */
+    scroll-padding-top: 6rem;
+  }
 
-::selection {
-  background: var(--seaglass);
-  color: var(--ink);
-}
+  body {
+    color: var(--ink);
+    background-color: var(--bg);
+    /* safety net: a stray pixel of overflow must never make phones scroll sideways (clip keeps the sticky nav working) */
+    overflow-x: clip;
+  }
 
-:focus-visible {
-  outline: 2px solid var(--teal);
-  outline-offset: 3px;
-  border-radius: 6px;
+  ::selection {
+    background: var(--seaglass);
+    color: var(--ink);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--teal);
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
 }
 
 @layer components {
@@ -189,7 +242,11 @@ body {
     font-size: clamp(2.125rem, 1.2rem + 4.6vw, 4.25rem); /* hero, 34 → 68px */
   }
   .fs-page {
-    font-size: clamp(2.125rem, 1.4rem + 3.6vw, 3.875rem); /* page h1, 34 → 62px */
+    font-size: clamp(
+      2.125rem,
+      1.4rem + 3.6vw,
+      3.875rem
+    ); /* page h1, 34 → 62px */
   }
   .fs-section {
     font-size: clamp(2rem, 1.5rem + 2.4vw, 3.25rem); /* section h2, 32 → 52px */
@@ -234,7 +291,9 @@ body {
 .reveal {
   opacity: 0;
   transform: translateY(12px);
-  transition: opacity 0.6s ease, transform 0.6s ease;
+  transition:
+    opacity 0.6s ease,
+    transform 0.6s ease;
 }
 .reveal.is-visible {
   opacity: 1;
@@ -305,7 +364,7 @@ body {
 }
 .prose :not(pre) > code::before,
 .prose :not(pre) > code::after {
-  content: "";
+  content: '';
 }
 
 /* highlight.js token theme, tuned to the sand palette */

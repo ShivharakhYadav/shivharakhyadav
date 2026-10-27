@@ -1,9 +1,9 @@
-import Image from "next/image";
-import { profile } from "@/data/profile";
+import Image from 'next/image';
+import { profile } from '@/data/profile';
 
 /** Concentric frame: dashed coral ring → sea-glass halo → photo. Size it via `className`. */
 export default function Portrait({
-  className = "h-[320px] w-[320px] sm:h-[460px] sm:w-[460px]",
+  className = 'h-[320px] w-[320px] sm:h-[460px] sm:w-[460px]',
   priority = false,
 }: {
   className?: string;
@@ -15,7 +15,10 @@ export default function Portrait({
         className="absolute inset-0 rounded-full border-[1.5px] border-dashed border-coral/60"
         aria-hidden="true"
       />
-      <div className="absolute inset-[4%] rounded-full bg-seaglass" aria-hidden="true" />
+      <div
+        className="absolute inset-[4%] rounded-full bg-seaglass"
+        aria-hidden="true"
+      />
       <div className="absolute inset-[8%] overflow-hidden rounded-full border-[6px] border-card bg-seaglass shadow-portrait">
         <Image
           src="/profile.png"

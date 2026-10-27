@@ -1,5 +1,5 @@
-import Container from "@/components/ui/Container";
-import { techLogos } from "@/data/techLogos";
+import Container from '@/components/ui/Container';
+import { techLogos } from '@/data/techLogos';
 
 /** "Working with" logo strip that scrolls on its own; pauses on hover. */
 export default function TechMarquee() {
@@ -13,7 +13,12 @@ export default function TechMarquee() {
           key={t.name}
           className="flex items-center gap-2.5 whitespace-nowrap font-display text-[17px] font-medium text-muted transition hover:text-ink"
         >
-          <svg viewBox="0 0 24 24" className="h-[22px] w-[22px]" fill="currentColor" aria-hidden="true">
+          <svg
+            viewBox="0 0 24 24"
+            className="h-[22px] w-[22px]"
+            fill="currentColor"
+            aria-hidden="true"
+          >
             <path d={t.path} />
           </svg>
           {t.name}
@@ -28,7 +33,9 @@ export default function TechMarquee() {
         aria-labelledby="working-with"
         className="flex flex-col gap-4 border-y border-line py-7 sm:flex-row sm:items-center sm:gap-10"
       >
-        <h2 id="working-with" className="eyebrow shrink-0 text-muted">Working with</h2>
+        <h2 id="working-with" className="eyebrow shrink-0 text-muted">
+          Working with
+        </h2>
         <div className="marquee-wrap relative min-w-0 flex-1 overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_8%,black_92%,transparent)]">
           <div className="marquee flex w-max">
             {row(false)}

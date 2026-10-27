@@ -4,15 +4,18 @@ Read this first when picking the work up from another machine or a cloud (telepo
 Last updated: 2026-10-20.
 
 ## Where things are
+
 - **Vercel production deploys from `main`.** Branches as of 2026-10-20:
   - **`main`:** PR #2 merge (`366952d`): redesign, new pages, SEO, responsive work. This is live.
   - **`develop`:** the integration branch. It holds PR #3 (SEO-audit fixes, photo icons) and PR #4 (new case studies and the client-pitch rework from `feat/case-studies`). **Not live** until `develop` is merged into `main`.
   - **`fix/seo-audit`:** merged into `develop` as PR #3; its later handoff-note commits came in through a follow-up PR.
   - New work goes on a new feature branch from `develop`, then a PR into `develop`.
 - Live URL: https://shivharakhyadav.vercel.app. `siteUrl` in `src/configs/metaTags.ts` is the single source.
-- Verify with `npx tsc --noEmit` and `npm run build`. On Windows, `npm run build` fails to prerender `/opengraph-image` and `/twitter-image` (`Invalid URL` inside `@vercel/og`); this is local-only and happens on `main` too, while every other page builds. A long-running `next dev` shares `.next`; if it's running, build a copy elsewhere instead of deleting `.next`.
+- Verify with `npx tsc --noEmit` and `npm run build`. On Windows, `npm run build` fails to prerender `/opengraph-image` and `/twitter-image` (`Invalid URL` inside `@vercel/og`); this is local-only and happens on `main` too, while every other page builds. Also run `npm run lint`. Since Next 16, `next dev` writes to `.next/dev`, so building while it runs is fine; still don't delete `.next` then.
+- Next.js Cache Components and Partial Prefetching are intentionally disabled for now. The site's pages and RSS feed are already statically generated, with no dynamic server-rendered page data that would benefit from PPR or `use cache`; keeping the feature off preserves the existing route configs. Re-evaluate if the site adds dynamic page content that should stream or be cached.
 
 ## Done
+
 - Sand & Tide redesign.
 - Pages: `/about`, `/experience`, `/contact` (form sent through our own `/api/contact` route from the owner's Gmail).
 - SEO:
@@ -26,7 +29,8 @@ Last updated: 2026-10-20.
 - Responsive pass (2026-10-19): no sideways scrolling from 320px to 1920px on any page; fluid heading sizes (`.fs-display`, `.fs-page`, `.fs-section` in `globals.css`); hero and /about go two-column from tablet; tablet layouts for highlights, /projects (2-column grid), row cards and footer; email addresses wrap only at "@" (`ui/EmailText.tsx`); bigger tap targets on footer and contact links. Lighthouse mobile: accessibility and SEO 100, CLS 0.
 - Mobile polish (2026-10-19): hero buttons side by side on phones (short labels below sm), stats in three equal columns, job cards stack the logo above the text on phones. Tested in Chrome mobile emulation (iPhone SE, iPhone 14, Pixel 7, iPad mini).
 - Home Experience is a timeline: company logos (`public/logos/`) as nodes, teal ring and line for the current role, LinkedIn order (role → company · city → dates), "Pvt. Ltd." dropped on home only. Shared `CompanyLogo` in `ui/JobCard.tsx`.
-- Fixed: Tailwind opacity modifiers (`bg-teal/50` etc.) were never generated because theme colors are CSS variables; `tailwind.config.ts` now wraps them in `color-mix()`.
+- Fixed: Tailwind opacity modifiers (`bg-teal/50` etc.) were never generated because theme colors are CSS variables. Since the Tailwind v4 upgrade they work natively through the `@theme inline` block in `globals.css`.
+- Upgraded (2026-10-27) to Next.js 16.4.3, React 19.3, Tailwind CSS 4.3 (CSS-first `@theme` in `globals.css`, `@tailwindcss/turbopack` loader, typography via `@plugin`) and ESLint 9. `tailwind.config.ts` and `postcss.config.mjs` are gone.
 - SEO audit fixes (2026-10-19): page-specific `twitter:title/description` on every page; ProfilePage `dateModified` from `profile.updated` (update it by hand when the profile changes); hero `<style>` moved out of the h1; one consistent photo favicon (`favicon.ico`, `icon.png`, `apple-icon.png`; the SY monogram generator was removed); `dynamicParams = false` on `[slug]` routes so unknown slugs get the static 404; no canonical on 404s; code-comment contrast and SY link label fixed; portrait `sizes`; template SVGs removed. Live site (merged PR #2) audited: 15/15 sitemap URLs 200, self-canonical, valid JSON-LD, Lighthouse SEO 100.
 - Content: iProgrammer Senior Software Engineer since Oct 2026 (Pune). For overseas clients the city stays out of intros and the footer; the contact band says "Pune, India" and the home timeline "Pune, IN". Availability pill hidden via `profile.showAvailability = false` (kept, not deleted).
 
@@ -47,6 +51,7 @@ Last updated: 2026-10-20.
 - Navbar and phone hero (2026-10-21, branch `feat/navbar-pill`): the desktop links are rounded pills with a linen pill on the active page, SY gets a coral ring on the home page, and "Let's talk" has a mint dot (`--mint` in `globals.css`, decorative only). On phones the bar shows SY plus the full name and sits close to the top (clear of the notch); its menu has numbered rows (Home, Work, About, Experience, Writing) with short descriptions, the Experience year computed from the data, a hidden "Available for new projects" line tied to `profile.showAvailability`, and a full-width "Let's talk". The phone hero has tighter spacing so the heading, buttons, stats and portrait fit one screen. Checked at 390px with DevTools mobile emulation, and at 640px and 1280px.
 
 ## Waiting on the owner
+
 1. **Publish `develop`:** open and merge a PR from `develop` into `main`, so the SEO-audit fixes, the new case studies and the client-pitch rework go live.
 2. **Google Search Console:** add the property, use HTML-tag verification, then add the code as `verification: { google: "…" }` in `siteMetadata`. Submit `/sitemap.xml` and request indexing for `/`, `/about`, `/experience` and `/projects`. Then do the same in Bing Webmaster Tools.
 3. **Backlinks:** put the site URL in the GitHub profile website field and README, in LinkedIn (contact info and Featured), and in the Medium bio and article footer.
@@ -63,11 +68,13 @@ Last updated: 2026-10-20.
 10. **Show iProgrammer again (around Jan 2027):** the role is hidden on purpose for the first 3 months, and ViitorCloud shows as current. To undo: in `src/data/experience.ts` delete `hidden: true` from iProgrammer and set ViitorCloud's period back to `Oct 2025 - Jul 2026`; restore the `/experience` description kept in a comment in `src/app/experience/page.tsx`.
 
 ## Ideas not started
+
 - A price-parser-rs case study (hackathon win; GitHub repo and Medium article are public).
 - A custom domain: change `siteUrl` and add the domain in Vercel.
 - More long-tail posts based on real work, e.g. schema-per-tenant MongoDB, or the Mapbox delivery-fee engine.
 
 ## Rules
+
 - Never invent facts; unknown values stay as `[placeholders]`.
 - Never publish HR or company documents (a relieving letter was once put in `public/`), or client notes under NDA (project notes were once put in `public/projects/`; they now live in gitignored `notes/`).
 - Commit and push only when the owner asks, and to a new feature branch, never directly to `develop` or `main` (owner's request, 2026-10-20).

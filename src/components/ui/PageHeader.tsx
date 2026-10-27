@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import { ReactNode } from 'react';
 
 /** Title block at the top of the inner pages (/projects, /blog). */
 export default function PageHeader({
