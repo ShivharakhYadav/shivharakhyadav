@@ -10,8 +10,9 @@ export function generateStaticParams() {
   return getAllPostSlugs().map((slug) => ({ slug }));
 }
 
-export default function Image({ params }: { params: { slug: string } }) {
-  const post = getPostBySlug(params.slug);
+export default async function Image({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const post = getPostBySlug(slug);
   return ogCard({
     eyebrow: post ? `Writing · ${formatDate(post.date)}` : "Writing",
     title: post?.title ?? "Notes & writing",

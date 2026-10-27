@@ -66,7 +66,15 @@ export function getAllPosts(): PostMeta[] {
     .map((slug) => getPostBySlug(slug))
     .filter((p): p is Post => Boolean(p))
     .sort((a, b) => (a.date < b.date ? 1 : -1))
-    .map(({ content, ...meta }) => meta);
+    .map(({ slug, title, date, updated, excerpt, tags, readingTime }) => ({
+      slug,
+      title,
+      date,
+      ...(updated && { updated }),
+      excerpt,
+      tags,
+      readingTime,
+    }));
 }
 
 /** Local posts plus articles published elsewhere, newest first (for listings). */

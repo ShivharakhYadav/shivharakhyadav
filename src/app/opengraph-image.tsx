@@ -77,7 +77,6 @@ export default async function OpengraphImage() {
                 border: "8px solid #FFFCF7",
               }}
             >
-              {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src={photoSrc} alt="" width={334} height={417} style={{ objectFit: "cover", marginTop: -4 }} />
             </div>
           </div>

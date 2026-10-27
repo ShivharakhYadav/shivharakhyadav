@@ -1,6 +1,40 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
+@plugin "@tailwindcss/typography";
+
+/*
+ * Tailwind v4 theme: maps the palette variables below to utilities
+ * (bg-teal, text-coral-ink, ...). `inline` keeps the var() references, so the
+ * utilities follow the light/dark values at runtime, and v4 builds opacity
+ * modifiers (bg-teal/50) with color-mix() on its own.
+ */
+@theme inline {
+  --color-bg: var(--bg);
+  --color-card: var(--card);
+  --color-line: var(--line);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-teal: var(--teal);
+  --color-teal-hover: var(--teal-hover);
+  --color-on-teal: var(--on-teal);
+  --color-coral: var(--coral);
+  --color-coral-ink: var(--coral-ink);
+  --color-seaglass: var(--seaglass);
+  --color-linen: var(--linen);
+  --color-linen-hover: var(--linen-hover);
+  --color-logo-tile: var(--logo-tile);
+  --color-logo-ink: var(--logo-ink);
+  --color-cta: var(--cta-bg);
+  --color-cta-ink: var(--cta-ink);
+  --color-cta-line: var(--cta-line);
+  --color-mint: var(--mint);
+  /* next/font variables from layout.tsx */
+  --font-sans: var(--font-dm-sans), system-ui, sans-serif;
+  --font-display: var(--font-outfit), system-ui, sans-serif;
+  /* tinted with ink on light, black and switched off on dark (--shadow, --shadow-strength) */
+  --shadow-lift: 0 20px 40px -12px rgb(var(--shadow) / calc(0.15 * var(--shadow-strength)));
+  --shadow-soft: 0 10px 30px -18px rgb(var(--shadow) / calc(0.35 * var(--shadow-strength)));
+  --shadow-portrait: 0 24px 48px -16px rgb(var(--shadow) / calc(0.35 * var(--shadow-strength)));
+}
 
 /*
  * "Sand & Tide" palette, with a dark "Tide at Night" variant.
@@ -31,7 +65,7 @@
   --cta-ink: #fbf6ee;
   --cta-line: #14303a;
   --photo-brightness: 1; /* photos and logos are dimmed a little in dark */
-  --shadow: 20 48 58; /* rgb channels, used with an alpha in tailwind.config.ts */
+  --shadow: 20 48 58; /* rgb channels, used with an alpha by the --shadow-* theme values */
   --shadow-strength: 1;
   /* code highlighting */
   --hl-comment: #68757a; /* 4.6:1 on the card background */
@@ -133,32 +167,48 @@
   transition: none !important;
 }
 
-* {
-  border-color: var(--line);
-}
+/*
+ * Element defaults go in the base layer: in Tailwind v4, unlayered CSS beats
+ * every utility, so outside a layer `*` would override border-ink, border-teal...
+ */
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--line);
+  }
 
-html {
-  scroll-behavior: smooth;
-  /* offset so anchored sections aren't hidden under the floating nav */
-  scroll-padding-top: 6rem;
-}
+  /* v4 preflight dropped the pointer cursor on buttons */
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
 
-body {
-  color: var(--ink);
-  background-color: var(--bg);
-  /* safety net: a stray pixel of overflow must never make phones scroll sideways (clip keeps the sticky nav working) */
-  overflow-x: clip;
-}
+  html {
+    scroll-behavior: smooth;
+    /* offset so anchored sections aren't hidden under the floating nav */
+    scroll-padding-top: 6rem;
+  }
 
-::selection {
-  background: var(--seaglass);
-  color: var(--ink);
-}
+  body {
+    color: var(--ink);
+    background-color: var(--bg);
+    /* safety net: a stray pixel of overflow must never make phones scroll sideways (clip keeps the sticky nav working) */
+    overflow-x: clip;
+  }
 
-:focus-visible {
-  outline: 2px solid var(--teal);
-  outline-offset: 3px;
-  border-radius: 6px;
+  ::selection {
+    background: var(--seaglass);
+    color: var(--ink);
+  }
+
+  :focus-visible {
+    outline: 2px solid var(--teal);
+    outline-offset: 3px;
+    border-radius: 6px;
+  }
 }
 
 @layer components {

@@ -10,8 +10,9 @@ export function generateStaticParams() {
   return projects.map((p) => ({ slug: p.slug }));
 }
 
-export default function Image({ params }: { params: { slug: string } }) {
-  const project = getProjectBySlug(params.slug);
+export default async function Image({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const project = getProjectBySlug(slug);
   return ogCard({
     eyebrow: project ? `Case study · ${project.eyebrow}` : "Case study",
     title: project?.title ?? "Case studies",

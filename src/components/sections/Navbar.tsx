@@ -27,16 +27,6 @@ const mobileLinks = [{ name: 'Home', href: '/', desc: 'Overview' }, ...links]
 
 export default function Navbar() {
   const pathname = usePathname()
-  const [open, setOpen] = useState(false)
-
-  // close the mobile menu after navigating, and on Escape
-  useEffect(() => setOpen(false), [pathname])
-  useEffect(() => {
-    if (!open) return
-    const onKey = (e: KeyboardEvent) => e.key === 'Escape' && setOpen(false)
-    window.addEventListener('keydown', onKey)
-    return () => window.removeEventListener('keydown', onKey)
-  }, [open])
 
   const isActive = (l: (typeof links)[number]) =>
     l.href === '/' ? pathname === '/' : pathname.startsWith(l.href)
@@ -93,42 +83,7 @@ export default function Navbar() {
         {/* theme toggle on every size; on phones it sits beside the menu button */}
         <div className='flex items-center gap-1'>
           <ThemeToggle />
-
-          {/* phones: a round menu button; the full menu (with Let's talk) opens below */}
-          <button
-            type='button'
-            onClick={() => setOpen((o) => !o)}
-            aria-expanded={open}
-            aria-controls='mobile-menu'
-            aria-label={open ? 'Close menu' : 'Open menu'}
-            className='grid h-10 w-10 place-items-center rounded-full bg-linen text-ink transition hover:bg-linen-hover sm:hidden'
-          >
-            {open ? (
-              <svg
-                viewBox='0 0 24 24'
-                className='h-[18px] w-[18px]'
-                fill='none'
-                stroke='currentColor'
-                strokeWidth='2'
-                strokeLinecap='round'
-                aria-hidden='true'
-              >
-                <path d='M6 6l12 12M18 6L6 18' />
-              </svg>
-            ) : (
-              <svg
-                viewBox='0 0 24 24'
-                className='h-[18px] w-[18px]'
-                fill='none'
-                stroke='currentColor'
-                strokeWidth='2'
-                strokeLinecap='round'
-                aria-hidden='true'
-              >
-                <path d='M5 9h14M5 15h14' />
-              </svg>
-            )}
-          </button>
+          <MobileMenu key={pathname} pathname={pathname} />
         </div>
 
         <Link
@@ -147,74 +102,129 @@ export default function Navbar() {
           Let's talk
         </Link>
 
-        {open && (
-          <div
-            id='mobile-menu'
-            className='absolute left-0 right-0 top-[calc(100%+10px)] rounded-[28px] border border-line bg-card p-2 shadow-soft sm:hidden'
-          >
-            <ul>
-              {mobileLinks.map((l, i) => {
-                const active = isActive(l)
-                return (
-                  <li key={l.href}>
-                    <Link
-                      href={l.href}
-                      onClick={() => setOpen(false)}
-                      aria-current={active ? 'page' : undefined}
-                      className={`grid grid-cols-[28px_minmax(0,1fr)_auto] items-center gap-3 rounded-2xl px-4 py-3 transition hover:bg-linen/60 ${
-                        active ? 'bg-linen' : ''
-                      }`}
-                    >
-                      <span
-                        className='font-mono text-xs text-muted'
-                        aria-hidden='true'
-                      >
-                        {String(i + 1).padStart(2, '0')}
-                      </span>
-                      <span>
-                        <span className='block font-display text-[20px] font-semibold leading-tight tracking-[-0.02em] text-ink'>
-                          {l.name}
-                        </span>
-                        <span className='block text-[13px] text-muted'>
-                          {l.desc}
-                        </span>
-                      </span>
-                      {active ? (
-                        <span
-                          className='h-2 w-2 rounded-full bg-teal'
-                          aria-hidden='true'
-                        />
-                      ) : (
-                        <span />
-                      )}
-                    </Link>
-                  </li>
-                )
-              })}
-            </ul>
-
-            <div className='mx-2 mt-1 border-t border-line pt-3'>
-              {profile.showAvailability && (
-                <p className='mb-3 flex items-center gap-2 text-[13px] text-muted'>
-                  <span
-                    className='h-2 w-2 rounded-full bg-mint'
-                    aria-hidden='true'
-                  />
-                  Available for new projects
-                </p>
-              )}
-              <Link
-                href='/contact'
-                onClick={() => setOpen(false)}
-                aria-current={onContact ? 'page' : undefined}
-                className='mb-1 flex w-full items-center justify-center rounded-full bg-cta px-6 py-3.5 text-[15px] font-semibold text-cta-ink ring-1 ring-inset ring-cta-line transition hover:bg-teal hover:text-on-teal hover:ring-teal'
-              >
-                Let's talk →
-              </Link>
-            </div>
-          </div>
-        )}
       </nav>
     </header>
+  )
+}
+
+function MobileMenu({ pathname }: { pathname: string }) {
+  const [open, setOpen] = useState(false)
+  const isActive = (l: (typeof links)[number]) =>
+    l.href === '/' ? pathname === '/' : pathname.startsWith(l.href)
+  const onContact = pathname.startsWith('/contact')
+
+  useEffect(() => {
+    if (!open) return
+    const onKey = (e: KeyboardEvent) => e.key === 'Escape' && setOpen(false)
+    window.addEventListener('keydown', onKey)
+    return () => window.removeEventListener('keydown', onKey)
+  }, [open])
+
+  return (
+    <>
+      {/* phones: a round menu button; the full menu (with Let's talk) opens below */}
+      <button
+        type='button'
+        onClick={() => setOpen((o) => !o)}
+        aria-expanded={open}
+        aria-controls='mobile-menu'
+        aria-label={open ? 'Close menu' : 'Open menu'}
+        className='grid h-10 w-10 place-items-center rounded-full bg-linen text-ink transition hover:bg-linen-hover sm:hidden'
+      >
+        {open ? (
+          <svg
+            viewBox='0 0 24 24'
+            className='h-[18px] w-[18px]'
+            fill='none'
+            stroke='currentColor'
+            strokeWidth='2'
+            strokeLinecap='round'
+            aria-hidden='true'
+          >
+            <path d='M6 6l12 12M18 6L6 18' />
+          </svg>
+        ) : (
+          <svg
+            viewBox='0 0 24 24'
+            className='h-[18px] w-[18px]'
+            fill='none'
+            stroke='currentColor'
+            strokeWidth='2'
+            strokeLinecap='round'
+            aria-hidden='true'
+          >
+            <path d='M5 9h14M5 15h14' />
+          </svg>
+        )}
+      </button>
+
+      {open && (
+        <div
+          id='mobile-menu'
+          className='absolute left-0 right-0 top-[calc(100%+10px)] rounded-[28px] border border-line bg-card p-2 shadow-soft sm:hidden'
+        >
+          <ul>
+            {mobileLinks.map((l, i) => {
+              const active = isActive(l)
+              return (
+                <li key={l.href}>
+                  <Link
+                    href={l.href}
+                    onClick={() => setOpen(false)}
+                    aria-current={active ? 'page' : undefined}
+                    className={`grid grid-cols-[28px_minmax(0,1fr)_auto] items-center gap-3 rounded-2xl px-4 py-3 transition hover:bg-linen/60 ${
+                      active ? 'bg-linen' : ''
+                    }`}
+                  >
+                    <span
+                      className='font-mono text-xs text-muted'
+                      aria-hidden='true'
+                    >
+                      {String(i + 1).padStart(2, '0')}
+                    </span>
+                    <span>
+                      <span className='block font-display text-[20px] font-semibold leading-tight tracking-[-0.02em] text-ink'>
+                        {l.name}
+                      </span>
+                      <span className='block text-[13px] text-muted'>
+                        {l.desc}
+                      </span>
+                    </span>
+                    {active ? (
+                      <span
+                        className='h-2 w-2 rounded-full bg-teal'
+                        aria-hidden='true'
+                      />
+                    ) : (
+                      <span />
+                    )}
+                  </Link>
+                </li>
+              )
+            })}
+          </ul>
+
+          <div className='mx-2 mt-1 border-t border-line pt-3'>
+            {profile.showAvailability && (
+              <p className='mb-3 flex items-center gap-2 text-[13px] text-muted'>
+                <span
+                  className='h-2 w-2 rounded-full bg-mint'
+                  aria-hidden='true'
+                />
+                Available for new projects
+              </p>
+            )}
+            <Link
+              href='/contact'
+              onClick={() => setOpen(false)}
+              aria-current={onContact ? 'page' : undefined}
+              className='mb-1 flex w-full items-center justify-center rounded-full bg-cta px-6 py-3.5 text-[15px] font-semibold text-cta-ink ring-1 ring-inset ring-cta-line transition hover:bg-teal hover:text-on-teal hover:ring-teal'
+            >
+              Let's talk →
+            </Link>
+          </div>
+        </div>
+      )}
+    </>
   )
 }
