@@ -11,12 +11,12 @@ export default function Headline({
   return (
     <div
       className={`flex items-baseline gap-3 ${
-        compact ? "xl:flex-col xl:items-end xl:gap-0" : ""
+        compact ? 'xl:flex-col xl:items-end xl:gap-0' : ''
       }`}
     >
       <span
         className={`whitespace-nowrap font-display font-semibold tracking-[-0.04em] text-teal ${
-          compact ? "text-[32px]" : "text-[44px]"
+          compact ? 'text-[32px]' : 'text-[44px]'
         }`}
       >
         {value}

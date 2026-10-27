@@ -1,14 +1,14 @@
-import Link from "next/link";
-import Container from "@/components/ui/Container";
-import { profile } from "@/data/profile";
+import Link from 'next/link';
+import Container from '@/components/ui/Container';
+import { profile } from '@/data/profile';
 
 const links = [
-  { name: "Home", href: "/" },
-  { name: "Work", href: "/projects" },
-  { name: "About", href: "/about" },
-  { name: "Experience", href: "/experience" },
-  { name: "Writing", href: "/blog" },
-  { name: "Contact", href: "/contact" },
+  { name: 'Home', href: '/' },
+  { name: 'Work', href: '/projects' },
+  { name: 'About', href: '/about' },
+  { name: 'Experience', href: '/experience' },
+  { name: 'Writing', href: '/blog' },
+  { name: 'Contact', href: '/contact' },
 ];
 
 export default function Footer() {
@@ -24,7 +24,10 @@ export default function Footer() {
           <ul className="flex flex-wrap gap-x-5">
             {links.map((l) => (
               <li key={l.href}>
-                <Link href={l.href} className="inline-block py-1.5 transition hover:text-ink">
+                <Link
+                  href={l.href}
+                  className="inline-block py-1.5 transition hover:text-ink"
+                >
                   {l.name}
                 </Link>
               </li>

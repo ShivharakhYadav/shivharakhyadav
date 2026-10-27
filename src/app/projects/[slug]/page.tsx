@@ -1,15 +1,15 @@
-import type { Metadata } from "next";
-import Link from "next/link";
-import { notFound } from "next/navigation";
-import type { ReactNode } from "react";
-import Container from "@/components/ui/Container";
-import Screenshot from "@/components/ui/Screenshot";
-import { ProjectRowCard } from "@/components/ui/ProjectCard";
-import Contact from "@/components/sections/Contact";
-import JsonLd from "@/components/JsonLd";
-import { projects, getProjectBySlug } from "@/data/projects";
-import { siteUrl } from "@/configs/metaTags";
-import { author, breadcrumbs, websiteId } from "@/configs/schema";
+import type { Metadata } from 'next';
+import Link from 'next/link';
+import { notFound } from 'next/navigation';
+import type { ReactNode } from 'react';
+import Container from '@/components/ui/Container';
+import Screenshot from '@/components/ui/Screenshot';
+import { ProjectRowCard } from '@/components/ui/ProjectCard';
+import Contact from '@/components/sections/Contact';
+import JsonLd from '@/components/JsonLd';
+import { projects, getProjectBySlug } from '@/data/projects';
+import { siteUrl } from '@/configs/metaTags';
+import { author, breadcrumbs, websiteId } from '@/configs/schema';
 
 // only the generated slugs exist; anything else gets the static 404 page
 export const dynamicParams = false;
@@ -18,13 +18,14 @@ export function generateStaticParams() {
   return projects.map((project) => ({ slug: project.slug }));
 }
 
-export function generateMetadata({
+export async function generateMetadata({
   params,
 }: {
-  params: { slug: string };
-}): Metadata {
-  const project = getProjectBySlug(params.slug);
-  if (!project) return { title: "Project not found" };
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const project = getProjectBySlug(slug);
+  if (!project) return { title: 'Project not found' };
   return {
     title: project.title,
     description: project.tagline,
@@ -33,19 +34,23 @@ export function generateMetadata({
       title: `${project.title} - Shivharakh Yadav`,
       description: project.tagline,
       url: `${siteUrl}/projects/${project.slug}`,
-      type: "article",
+      type: 'article',
     },
     // set explicitly: otherwise X/Twitter cards inherit the home page text
-    twitter: { title: `${project.title} - Shivharakh Yadav`, description: project.tagline },
+    twitter: {
+      title: `${project.title} - Shivharakh Yadav`,
+      description: project.tagline,
+    },
   };
 }
 
-export default function ProjectPage({
+export default async function ProjectPage({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }) {
-  const project = getProjectBySlug(params.slug);
+  const { slug } = await params;
+  const project = getProjectBySlug(slug);
   if (!project) notFound();
 
   const index = projects.indexOf(project);
@@ -53,24 +58,26 @@ export default function ProjectPage({
 
   const url = `${siteUrl}/projects/${project.slug}`;
   const jsonLd = {
-    "@context": "https://schema.org",
-    "@graph": [
+    '@context': 'https://schema.org',
+    '@graph': [
       {
-        "@type": "CreativeWork",
+        '@type': 'CreativeWork',
         name: project.title,
         headline: project.tagline,
         description: project.summary,
-        image: project.image ? `${siteUrl}${project.image}` : `${url}/opengraph-image`,
-        keywords: project.tags.join(", "),
+        image: project.image
+          ? `${siteUrl}${project.image}`
+          : `${url}/opengraph-image`,
+        keywords: project.tags.join(', '),
         author,
-        inLanguage: "en",
+        inLanguage: 'en',
         url,
         mainEntityOfPage: url,
-        isPartOf: { "@id": websiteId },
+        isPartOf: { '@id': websiteId },
       },
       breadcrumbs([
-        ["Home", "/"],
-        ["Work", "/projects"],
+        ['Home', '/'],
+        ['Work', '/projects'],
         [project.title, `/projects/${project.slug}`],
       ]),
     ],
@@ -81,7 +88,10 @@ export default function ProjectPage({
       <Container>
         <article>
           <header className="max-w-[820px] space-y-5 pt-12 sm:pt-20">
-            <Link href="/projects" className="text-link inline-block py-1 text-sm">
+            <Link
+              href="/projects"
+              className="text-link inline-block py-1 text-sm"
+            >
               ← All projects
             </Link>
             <p className="eyebrow text-coral-ink">{project.eyebrow}</p>
@@ -103,15 +113,22 @@ export default function ProjectPage({
           {/* Lead result + key facts */}
           <dl className="mt-12 grid grid-cols-2 gap-3 sm:gap-4 lg:grid-cols-4">
             <div className="col-span-2 flex flex-col-reverse justify-end rounded-3xl bg-seaglass p-5 sm:p-6 lg:col-span-1">
-              <dt className="mt-1 text-sm text-muted">{project.headline.label}</dt>
+              <dt className="mt-1 text-sm text-muted">
+                {project.headline.label}
+              </dt>
               <dd className="font-display text-[36px] font-semibold leading-none tracking-[-0.04em] text-teal">
                 {project.headline.value}
               </dd>
             </div>
             {project.metrics.map((m) => (
-              <div key={m.label} className="card flex flex-col-reverse justify-end rounded-3xl p-5 sm:p-6">
+              <div
+                key={m.label}
+                className="card flex flex-col-reverse justify-end rounded-3xl p-5 sm:p-6"
+              >
                 <dt className="mt-1 text-sm text-muted">{m.label}</dt>
-                <dd className="font-display text-lg font-semibold tracking-[-0.02em] sm:text-[22px]">{m.value}</dd>
+                <dd className="font-display text-lg font-semibold tracking-[-0.02em] sm:text-[22px]">
+                  {m.value}
+                </dd>
               </div>
             ))}
           </dl>
@@ -128,7 +145,9 @@ export default function ProjectPage({
 
           <div className="max-w-[920px] space-y-14 py-20 sm:space-y-16">
             <CaseSection title="The problem">
-              <p className="text-[17px] leading-relaxed sm:text-lg">{project.problem}</p>
+              <p className="text-[17px] leading-relaxed sm:text-lg">
+                {project.problem}
+              </p>
             </CaseSection>
 
             <CaseSection title="My role">
@@ -170,10 +189,18 @@ export default function ProjectPage({
   );
 }
 
-function CaseSection({ title, children }: { title: string; children: ReactNode }) {
+function CaseSection({
+  title,
+  children,
+}: {
+  title: string;
+  children: ReactNode;
+}) {
   return (
     <section className="grid gap-4 md:grid-cols-[200px_1fr] md:gap-10">
-      <h2 className="font-display text-[22px] font-semibold tracking-[-0.03em] md:pt-0.5">{title}</h2>
+      <h2 className="font-display text-[22px] font-semibold tracking-[-0.03em] md:pt-0.5">
+        {title}
+      </h2>
       <div>{children}</div>
     </section>
   );
@@ -184,7 +211,10 @@ function BulletList({ items }: { items: string[] }) {
     <ul className="space-y-3">
       {items.map((item) => (
         <li key={item} className="flex gap-3.5 text-[17px] leading-relaxed">
-          <span aria-hidden="true" className="mt-[11px] h-1.5 w-1.5 shrink-0 rounded-full bg-coral" />
+          <span
+            aria-hidden="true"
+            className="mt-[11px] h-1.5 w-1.5 shrink-0 rounded-full bg-coral"
+          />
           <span>{item}</span>
         </li>
       ))}

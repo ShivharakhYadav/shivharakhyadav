@@ -1,16 +1,16 @@
-import Link from "next/link";
-import Screenshot from "@/components/ui/Screenshot";
-import Headline from "@/components/ui/Headline";
-import type { Project } from "@/data/projects";
+import Link from 'next/link';
+import Screenshot from '@/components/ui/Screenshot';
+import Headline from '@/components/ui/Headline';
+import type { Project } from '@/data/projects';
 
 /** h2 on pages that list projects directly under the h1, h3 inside a titled section. */
-type Heading = "h2" | "h3";
+type Heading = 'h2' | 'h3';
 
 /** Large case-study card: screenshot beside eyebrow, title, one line and the lead result. */
 export function ProjectCard({
   project,
   flip = false,
-  as: H = "h3",
+  as: H = 'h3',
 }: {
   project: Project;
   flip?: boolean;
@@ -26,8 +26,8 @@ export function ProjectCard({
           src={project.image}
           alt={`${project.title} screenshot`}
           stack={project.tags}
-          tint={flip ? "linen" : "seaglass"}
-          className={`h-[240px] sm:h-[280px] lg:h-[380px] ${flip ? "lg:order-2" : ""}`}
+          tint={flip ? 'linen' : 'seaglass'}
+          className={`h-[240px] sm:h-[280px] lg:h-[380px] ${flip ? 'lg:order-2' : ''}`}
         />
         <div className="space-y-4">
           <p className="eyebrow text-coral-ink">{project.eyebrow}</p>
@@ -52,7 +52,7 @@ export function ProjectCard({
  */
 export function ProjectRowCard({
   project,
-  as: H = "h3",
+  as: H = 'h3',
 }: {
   project: Project;
   as?: Heading;
