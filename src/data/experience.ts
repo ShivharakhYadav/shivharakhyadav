@@ -36,58 +36,76 @@ export const allExperience: Job[] = [
     // `hidden`, set ViitorCloud's period back to "Oct 2025 - Jul 2026" and restore
     // the /experience description in src/app/experience/page.tsx.
     hidden: true,
-    period: "Oct 2026 - Present",
-    role: "Senior Software Engineer",
-    company: "iProgrammer Solutions Pvt. Ltd.",
-    logo: "/logos/iprogrammer.png",
-    location: "Pune, Maharashtra, India",
+    period: 'Oct 2026 - Present',
+    role: 'Senior Software Engineer',
+    company: 'iProgrammer Solutions Pvt. Ltd.',
+    logo: '/logos/iprogrammer.png',
+    location: 'Pune, Maharashtra, India',
     summary:
-      "Senior full-stack engineer, building and shipping production web applications.",
+      'Senior full-stack engineer, building and shipping production web applications.',
   },
   {
     // shown as current while iProgrammer is hidden; the real end date is Jul 2026
-    period: "Oct 2025 - Present",
-    role: "Software Engineer",
-    company: "ViitorCloud Technologies Pvt. Ltd.",
-    logo: "/logos/viitorcloud.png",
-    location: "Ahmedabad, Gujarat, India",
+    period: 'Oct 2025 - Present',
+    role: 'Software Engineer',
+    company: 'ViitorCloud Technologies Pvt. Ltd.',
+    logo: '/logos/viitorcloud.png',
+    location: 'Ahmedabad, Gujarat, India',
     summary:
-      "Sole full-stack engineer on client SaaS projects, owning requirements, architecture, delivery and releases.",
+      'Sole full-stack engineer on client SaaS projects, owning requirements, architecture, delivery and releases.',
     highlights: [
-      "Designed the tenant data-isolation approach for a multi-tenant SaaS used by 944+ users",
-      "Built 16 interactive simulation modules and a B2B licensing workflow with concurrency-safe seat allocation",
-      "Delivered the frontend and the questionnaire API for a coaching platform serving 329+ users, including 15 coaches",
-      "Managed CI/CD pipelines and releases, working daily with PMs, backend engineers and client stakeholders",
+      'Designed the tenant data-isolation approach for a multi-tenant SaaS used by 944+ users',
+      'Built 16 interactive simulation modules and a B2B licensing workflow with concurrency-safe seat allocation',
+      'Delivered the frontend and the questionnaire API for a coaching platform serving 329+ users, including 15 coaches',
+      'Managed CI/CD pipelines and releases, working daily with PMs, backend engineers and client stakeholders',
     ],
-    projects: ["dms-simulation-platform", "health-coaching-platform"],
-    tags: ["Next.js", "TypeScript", "Node.js", "NestJS", "Python", "PostgreSQL", "Redis", "Socket.IO"],
+    projects: ['dms-simulation-platform', 'health-coaching-platform'],
+    tags: [
+      'Next.js',
+      'TypeScript',
+      'Node.js',
+      'NestJS',
+      'Python',
+      'PostgreSQL',
+      'Redis',
+      'Socket.IO',
+    ],
   },
   {
-    period: "Feb 2022 - Oct 2025",
-    role: "Software Engineer",
-    company: "iFour Technolabs Pvt. Ltd.",
-    logo: "/logos/ifour.png",
-    location: "Ahmedabad, Gujarat, India",
+    period: 'Feb 2022 - Oct 2025',
+    role: 'Software Engineer',
+    company: 'iFour Technolabs Pvt. Ltd.',
+    logo: '/logos/ifour.png',
+    location: 'Ahmedabad, Gujarat, India',
     summary:
-      "Full-stack delivery for clients in Australia and the US, from requirement calls to deployment. Joined for a six-month training period in Feb 2022, then as Software Engineer from Aug 2022.",
+      'Full-stack delivery for clients in Australia and the US, from requirement calls to deployment. Joined for a six-month training period in Feb 2022, then as Software Engineer from Aug 2022.',
     highlights: [
-      "Built the API and storefront for Moto Venice, then grew it into a two-sided rental marketplace",
-      "Architected a sports data platform from scratch on AWS and made it 40% faster through profiling and optimization",
-      "Delivered a 4-role BOM approval workflow that improved approval efficiency by ~30%",
-      "Mentored junior engineers and led daily client communication with Australia-based stakeholders",
+      'Built the API and storefront for Moto Venice, then grew it into a two-sided rental marketplace',
+      'Architected a sports data platform from scratch on AWS and made it 40% faster through profiling and optimization',
+      'Delivered a 4-role BOM approval workflow that improved approval efficiency by ~30%',
+      'Mentored junior engineers and led daily client communication with Australia-based stakeholders',
     ],
     projects: [
-      "moto-venice",
-      "dagger-concept",
-      "bom-workflow-system",
-      "infosel-hub-excel-addin",
-      "aumni-excel-addin",
-      "diligent-equity-excel-addin",
-      "calloquy",
-      "my-ticket-solutions",
+      'moto-venice',
+      'dagger-concept',
+      'bom-workflow-system',
+      'infosel-hub-excel-addin',
+      'aumni-excel-addin',
+      'diligent-equity-excel-addin',
+      'calloquy',
+      'my-ticket-solutions',
     ],
-    tags: ["React", "Next.js", "Node.js", "NestJS", "PostgreSQL", "Socket.IO", "AWS", "Office.js"],
-    awards: ["Client Excellence ×2", "Good Learner Award"],
+    tags: [
+      'React',
+      'Next.js',
+      'Node.js',
+      'NestJS',
+      'PostgreSQL',
+      'Socket.IO',
+      'AWS',
+      'Office.js',
+    ],
+    awards: ['Client Excellence ×2', 'Good Learner Award'],
   },
 ];
 
@@ -111,16 +129,19 @@ export interface Award {
  */
 export const otherAwards: Award[] = [
   {
-    title: "Hackathon winner",
-    issuer: "Port Mortem - Code Resurrection",
-    year: "2026",
-    note: "Track D (Python → Rust): price-parser-rs, a Rust port that passes all 1,059 original tests unmodified, plus 500,000 differential fuzz cases with zero divergences.",
+    title: 'Hackathon winner',
+    issuer: 'Port Mortem - Code Resurrection',
+    year: '2026',
+    note: 'Track D (Python → Rust): price-parser-rs, a Rust port that passes all 1,059 original tests unmodified, plus 500,000 differential fuzz cases with zero divergences.',
     links: [
       {
-        label: "Read the write-up",
-        href: "https://medium.com/@yadavshivharakhyadav/i-ported-a-python-library-to-rust-all-1-059-original-tests-passed-and-it-was-still-broken-39a0a973d872",
+        label: 'Read the write-up',
+        href: 'https://medium.com/@yadavshivharakhyadav/i-ported-a-python-library-to-rust-all-1-059-original-tests-passed-and-it-was-still-broken-39a0a973d872',
       },
-      { label: "View the code", href: "https://github.com/ShivharakhYadav/price-parser-rs" },
+      {
+        label: 'View the code',
+        href: 'https://github.com/ShivharakhYadav/price-parser-rs',
+      },
     ],
   },
 ];
@@ -129,31 +150,44 @@ export const otherAwards: Award[] = [
 export const awards: Award[] = [
   ...otherAwards,
   ...experience.flatMap((j) =>
-    (j.awards ?? []).map((title) => ({ title, issuer: j.company }))
+    (j.awards ?? []).map((title) => ({ title, issuer: j.company })),
   ),
 ];
 
 /** Award names for structured data, leaving out any still-[placeholder] entries. */
 export const allAwards = awards
-  .filter((a) => !isPlaceholder(`${a.title} ${a.issuer ?? ""} ${a.year ?? ""}`))
+  .filter((a) => !isPlaceholder(`${a.title} ${a.issuer ?? ''} ${a.year ?? ''}`))
   .map((a) => (a.issuer ? `${a.title}, ${a.issuer}` : a.title));
 
 /** Career-wide facts for /experience (from the profile and project data). */
 export const careerHighlights = [
-  { value: "4+", label: "years shipping production web apps" },
-  { value: "1,200+", label: "users across the platforms I've built" },
-  { value: "944+", label: "users on one multi-tenant SaaS" },
-  { value: "AU & US", label: "clients I've worked with directly, from requirements to demos" },
+  { value: '4+', label: 'years shipping production web apps' },
+  { value: '1,200+', label: "users across the platforms I've built" },
+  { value: '944+', label: 'users on one multi-tenant SaaS' },
+  {
+    value: 'AU & US',
+    label: "clients I've worked with directly, from requirements to demos",
+  },
 ];
 
 /** Industries I've built for, each with its case-study slugs; shown on /experience. */
 export const domains: { name: string; projects: string[] }[] = [
-  { name: "Fintech & investment data", projects: ["infosel-hub-excel-addin", "aumni-excel-addin", "diligent-equity-excel-addin"] },
-  { name: "E-learning & simulation", projects: ["dms-simulation-platform"] },
-  { name: "Health & coaching", projects: ["health-coaching-platform"] },
-  { name: "Mobility & rentals", projects: ["moto-venice"] },
-  { name: "Sports data", projects: ["dagger-concept"] },
-  { name: "Energy", projects: ["co4-energy-management-portal"] },
-  { name: "Manufacturing", projects: ["bom-workflow-system"] },
-  { name: "Customer support & productivity", projects: ["my-ticket-solutions", "calloquy"] },
+  {
+    name: 'Fintech & investment data',
+    projects: [
+      'infosel-hub-excel-addin',
+      'aumni-excel-addin',
+      'diligent-equity-excel-addin',
+    ],
+  },
+  { name: 'E-learning & simulation', projects: ['dms-simulation-platform'] },
+  { name: 'Health & coaching', projects: ['health-coaching-platform'] },
+  { name: 'Mobility & rentals', projects: ['moto-venice'] },
+  { name: 'Sports data', projects: ['dagger-concept'] },
+  { name: 'Energy', projects: ['co4-energy-management-portal'] },
+  { name: 'Manufacturing', projects: ['bom-workflow-system'] },
+  {
+    name: 'Customer support & productivity',
+    projects: ['my-ticket-solutions', 'calloquy'],
+  },
 ];

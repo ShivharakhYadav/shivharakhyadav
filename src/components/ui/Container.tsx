@@ -1,9 +1,9 @@
-import { ReactNode } from "react";
+import { ReactNode } from 'react';
 
 /** Page-width wrapper: 1200px max with a 20px (24px on sm+) gutter. */
 export default function Container({
   children,
-  className = "",
+  className = '',
 }: {
   children: ReactNode;
   className?: string;

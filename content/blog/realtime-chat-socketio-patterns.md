@@ -1,8 +1,8 @@
 ---
-title: "Real-Time Chat with Socket.IO: Patterns That Scale"
-date: "2026-04-09"
-excerpt: "Rooms, acknowledgements, reconnection and delivery guarantees - the Socket.IO patterns I reach for when building production real-time features."
-tags: ["Socket.IO", "Node.js", "Realtime", "WebSockets"]
+title: 'Real-Time Chat with Socket.IO: Patterns That Scale'
+date: '2026-04-09'
+excerpt: 'Rooms, acknowledgements, reconnection and delivery guarantees - the Socket.IO patterns I reach for when building production real-time features.'
+tags: ['Socket.IO', 'Node.js', 'Realtime', 'WebSockets']
 published: true
 ---
 
@@ -13,15 +13,15 @@ Adding real-time chat looks trivial in a demo and gets hard in production. On a 
 Don't track "which socket belongs to which conversation" yourself. Let Socket.IO rooms do it:
 
 ```ts
-io.on("connection", (socket) => {
-  socket.on("conversation:join", (conversationId) => {
+io.on('connection', (socket) => {
+  socket.on('conversation:join', (conversationId) => {
     socket.join(`conversation:${conversationId}`);
   });
 
-  socket.on("message:send", async (payload, ack) => {
+  socket.on('message:send', async (payload, ack) => {
     const saved = await messages.create(payload); // persist FIRST
-    io.to(`conversation:${payload.conversationId}`).emit("message:new", saved);
-    ack?.({ status: "ok", id: saved.id }); // acknowledge the sender
+    io.to(`conversation:${payload.conversationId}`).emit('message:new', saved);
+    ack?.({ status: 'ok', id: saved.id }); // acknowledge the sender
   });
 });
 ```
@@ -32,19 +32,17 @@ Two things matter here: **persist before you broadcast** (the database is the so
 
 A common bug: showing a message optimistically and assuming it's delivered. Sockets drop. The database confirms. The flow that survives flaky mobile networks:
 
-1. Client shows the message as *pending*.
+1. Client shows the message as _pending_.
 2. Server persists, then broadcasts + acks.
-3. Client marks *sent* on ack; on reconnect, it refetches recent history to fill gaps.
+3. Client marks _sent_ on ack; on reconnect, it refetches recent history to fill gaps.
 
 ## Plan for reconnection from day one
 
 Mobile clients disconnect constantly. On reconnect, the client should re-join its rooms and reconcile missed messages:
 
 ```ts
-socket.on("connect", () => {
-  activeConversationIds.forEach((id) =>
-    socket.emit("conversation:join", id)
-  );
+socket.on('connect', () => {
+  activeConversationIds.forEach((id) => socket.emit('conversation:join', id));
   refetchRecentMessages(); // fill any gap while disconnected
 });
 ```
@@ -56,7 +54,7 @@ Verify the token during the handshake, and check membership before joining a roo
 ```ts
 io.use((socket, next) => {
   const user = verifyToken(socket.handshake.auth.token);
-  if (!user) return next(new Error("unauthorized"));
+  if (!user) return next(new Error('unauthorized'));
   socket.data.user = user;
   next();
 });

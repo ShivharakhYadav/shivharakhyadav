@@ -4,6 +4,7 @@ Read this first when picking the work up from another machine or a cloud (telepo
 Last updated: 2026-10-20.
 
 ## Where things are
+
 - **Vercel production deploys from `main`.** Branches as of 2026-10-20:
   - **`main`:** PR #2 merge (`366952d`): redesign, new pages, SEO, responsive work. This is live.
   - **`develop`:** the integration branch. It holds PR #3 (SEO-audit fixes, photo icons) and PR #4 (new case studies and the client-pitch rework from `feat/case-studies`). **Not live** until `develop` is merged into `main`.
@@ -14,6 +15,7 @@ Last updated: 2026-10-20.
 - Next.js Cache Components and Partial Prefetching are intentionally disabled for now. The site's pages and RSS feed are already statically generated, with no dynamic server-rendered page data that would benefit from PPR or `use cache`; keeping the feature off preserves the existing route configs. Re-evaluate if the site adds dynamic page content that should stream or be cached.
 
 ## Done
+
 - Sand & Tide redesign.
 - Pages: `/about`, `/experience`, `/contact` (form sent through our own `/api/contact` route from the owner's Gmail).
 - SEO:
@@ -49,6 +51,7 @@ Last updated: 2026-10-20.
 - Navbar and phone hero (2026-10-21, branch `feat/navbar-pill`): the desktop links are rounded pills with a linen pill on the active page, SY gets a coral ring on the home page, and "Let's talk" has a mint dot (`--mint` in `globals.css`, decorative only). On phones the bar shows SY plus the full name and sits close to the top (clear of the notch); its menu has numbered rows (Home, Work, About, Experience, Writing) with short descriptions, the Experience year computed from the data, a hidden "Available for new projects" line tied to `profile.showAvailability`, and a full-width "Let's talk". The phone hero has tighter spacing so the heading, buttons, stats and portrait fit one screen. Checked at 390px with DevTools mobile emulation, and at 640px and 1280px.
 
 ## Waiting on the owner
+
 1. **Publish `develop`:** open and merge a PR from `develop` into `main`, so the SEO-audit fixes, the new case studies and the client-pitch rework go live.
 2. **Google Search Console:** add the property, use HTML-tag verification, then add the code as `verification: { google: "…" }` in `siteMetadata`. Submit `/sitemap.xml` and request indexing for `/`, `/about`, `/experience` and `/projects`. Then do the same in Bing Webmaster Tools.
 3. **Backlinks:** put the site URL in the GitHub profile website field and README, in LinkedIn (contact info and Featured), and in the Medium bio and article footer.
@@ -65,11 +68,13 @@ Last updated: 2026-10-20.
 10. **Show iProgrammer again (around Jan 2027):** the role is hidden on purpose for the first 3 months, and ViitorCloud shows as current. To undo: in `src/data/experience.ts` delete `hidden: true` from iProgrammer and set ViitorCloud's period back to `Oct 2025 - Jul 2026`; restore the `/experience` description kept in a comment in `src/app/experience/page.tsx`.
 
 ## Ideas not started
+
 - A price-parser-rs case study (hackathon win; GitHub repo and Medium article are public).
 - A custom domain: change `siteUrl` and add the domain in Vercel.
 - More long-tail posts based on real work, e.g. schema-per-tenant MongoDB, or the Mapbox delivery-fee engine.
 
 ## Rules
+
 - Never invent facts; unknown values stay as `[placeholders]`.
 - Never publish HR or company documents (a relieving letter was once put in `public/`), or client notes under NDA (project notes were once put in `public/projects/`; they now live in gitignored `notes/`).
 - Commit and push only when the owner asks, and to a new feature branch, never directly to `develop` or `main` (owner's request, 2026-10-20).

@@ -28,6 +28,7 @@ There is no test setup. Verify with `npm run lint` (ESLint 9 flat config in `esl
   - `sitemap.ts`, `robots.ts`, and `opengraph-image.tsx` / `twitter-image.tsx` (the generated 1200×630 share image)
 
   All are statically generated. The navbar links to the pages, not to home-page anchors.
+
 - **SEO:**
   - Each page sets its own `title` (the root layout adds " - Shivharakh Yadav" via a title template), a `description` of 160 characters or fewer, and `alternates.canonical`.
   - A page that sets its own `openGraph` must include `images: ogImages` (from `src/configs/metaTags.ts`); otherwise the share image is lost. Posts and case studies are the exception: they have their own `opengraph-image.tsx`, built with `ogCard()` in `src/lib/ogCard.tsx`, which uses the bundled Outfit font from `src/assets/fonts`.

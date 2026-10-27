@@ -79,4 +79,4 @@ Diving into the **AI/LLM ecosystem** — AI agents, agentic workflows, and AI de
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=flat&logo=linkedin&logoColor=white)](https://linkedin.com/in/shivharakhyadav)
 [![Email](https://img.shields.io/badge/Email-D14836?style=flat&logo=gmail&logoColor=white)](mailto:yadavshivharakhyadav@gmail.com)
 
-💬 *Open to Full-Stack / Frontend Engineer roles — feel free to reach out!*
+💬 _Open to Full-Stack / Frontend Engineer roles — feel free to reach out!_

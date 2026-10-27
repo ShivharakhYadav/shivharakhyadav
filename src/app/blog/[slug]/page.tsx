@@ -1,15 +1,15 @@
-import type { Metadata } from "next";
-import Link from "next/link";
-import { notFound } from "next/navigation";
-import ReactMarkdown from "react-markdown";
-import remarkGfm from "remark-gfm";
-import rehypeHighlight from "rehype-highlight";
-import Container from "@/components/ui/Container";
-import Contact from "@/components/sections/Contact";
-import JsonLd from "@/components/JsonLd";
-import { getAllPostSlugs, getPostBySlug, formatDate } from "@/lib/blog";
-import { siteUrl, rssFeed } from "@/configs/metaTags";
-import { author, breadcrumbs, personRef, websiteId } from "@/configs/schema";
+import type { Metadata } from 'next';
+import Link from 'next/link';
+import { notFound } from 'next/navigation';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
+import rehypeHighlight from 'rehype-highlight';
+import Container from '@/components/ui/Container';
+import Contact from '@/components/sections/Contact';
+import JsonLd from '@/components/JsonLd';
+import { getAllPostSlugs, getPostBySlug, formatDate } from '@/lib/blog';
+import { siteUrl, rssFeed } from '@/configs/metaTags';
+import { author, breadcrumbs, personRef, websiteId } from '@/configs/schema';
 
 // only the generated slugs exist; anything else gets the static 404 page
 export const dynamicParams = false;
@@ -25,17 +25,20 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug } = await params;
   const post = getPostBySlug(slug);
-  if (!post) return { title: "Post not found" };
+  if (!post) return { title: 'Post not found' };
   return {
     // long titles drop the " - Shivharakh Yadav" suffix so results don't truncate them
     title: post.title.length > 45 ? { absolute: post.title } : post.title,
     description: post.excerpt,
-    alternates: { canonical: `/blog/${post.slug}`, types: { "application/rss+xml": rssFeed } },
+    alternates: {
+      canonical: `/blog/${post.slug}`,
+      types: { 'application/rss+xml': rssFeed },
+    },
     openGraph: {
       title: post.title,
       description: post.excerpt,
       url: `${siteUrl}/blog/${post.slug}`,
-      type: "article",
+      type: 'article',
       publishedTime: post.date,
       modifiedTime: post.updated ?? post.date,
       authors: [`${siteUrl}/about`],
@@ -57,10 +60,10 @@ export default async function BlogPostPage({
 
   const url = `${siteUrl}/blog/${post.slug}`;
   const jsonLd = {
-    "@context": "https://schema.org",
-    "@graph": [
+    '@context': 'https://schema.org',
+    '@graph': [
       {
-        "@type": "BlogPosting",
+        '@type': 'BlogPosting',
         headline: post.title,
         description: post.excerpt,
         image: `${url}/opengraph-image`,
@@ -68,15 +71,15 @@ export default async function BlogPostPage({
         dateModified: post.updated ?? post.date,
         author,
         publisher: personRef,
-        inLanguage: "en",
-        keywords: post.tags.join(", "),
+        inLanguage: 'en',
+        keywords: post.tags.join(', '),
         url,
         mainEntityOfPage: url,
-        isPartOf: { "@id": websiteId },
+        isPartOf: { '@id': websiteId },
       },
       breadcrumbs([
-        ["Home", "/"],
-        ["Writing", "/blog"],
+        ['Home', '/'],
+        ['Writing', '/blog'],
         [post.title, `/blog/${post.slug}`],
       ]),
     ],
@@ -95,7 +98,7 @@ export default async function BlogPostPage({
             </h1>
             <p className="text-sm text-muted">
               <time dateTime={post.date}>{formatDate(post.date)}</time>
-              {" · "}
+              {' · '}
               {post.readingTime}
             </p>
             {post.tags.length > 0 && (
