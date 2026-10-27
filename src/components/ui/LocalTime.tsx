@@ -1,6 +1,6 @@
-"use client";
+'use client';
 
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 
 /**
  * The current time in India, e.g. ", currently 3:45 PM". Rendered only after
@@ -10,10 +10,10 @@ export default function LocalTime() {
   const [time, setTime] = useState<string | null>(null);
 
   useEffect(() => {
-    const format = new Intl.DateTimeFormat("en-US", {
-      hour: "numeric",
-      minute: "2-digit",
-      timeZone: "Asia/Kolkata",
+    const format = new Intl.DateTimeFormat('en-US', {
+      hour: 'numeric',
+      minute: '2-digit',
+      timeZone: 'Asia/Kolkata',
     });
     const tick = () => setTime(format.format(new Date()));
     tick();

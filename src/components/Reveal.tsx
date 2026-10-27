@@ -1,6 +1,6 @@
-"use client";
+'use client';
 
-import { ReactNode, useEffect, useRef, useState } from "react";
+import { ReactNode, useEffect, useRef, useState } from 'react';
 
 /**
  * Wraps content and fades/slides it in when it first scrolls into view.
@@ -8,7 +8,7 @@ import { ReactNode, useEffect, useRef, useState } from "react";
  */
 export default function Reveal({
   children,
-  className = "",
+  className = '',
   delay = 0,
 }: {
   children: ReactNode;
@@ -32,7 +32,7 @@ export default function Reveal({
           }
         });
       },
-      { threshold: 0.12, rootMargin: "0px 0px -40px 0px" }
+      { threshold: 0.12, rootMargin: '0px 0px -40px 0px' },
     );
 
     observer.observe(node);
@@ -42,7 +42,7 @@ export default function Reveal({
   return (
     <div
       ref={ref}
-      className={`reveal ${visible ? "is-visible" : ""} ${className}`}
+      className={`reveal ${visible ? 'is-visible' : ''} ${className}`}
       style={{ transitionDelay: `${delay}ms` }}
     >
       {children}

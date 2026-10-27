@@ -1,24 +1,36 @@
-import Image from "next/image";
-import type { ReactNode } from "react";
-import type { Job } from "@/data/experience";
+import Image from 'next/image';
+import type { ReactNode } from 'react';
+import type { Job } from '@/data/experience';
 
 const initials = (name: string) =>
   name
-    .replace(/[^A-Za-z ]/g, "")
-    .split(" ")
+    .replace(/[^A-Za-z ]/g, '')
+    .split(' ')
     .filter(Boolean)
     .slice(0, 2)
     .map((w) => w[0].toUpperCase())
-    .join("") || "Co";
+    .join('') || 'Co';
 
 /** The company's logo on a sea-glass tile (initials when there's no logo). Size it via `className`. */
-export function CompanyLogo({ job, className = "h-12 w-12 sm:h-14 sm:w-14" }: { job: Job; className?: string }) {
+export function CompanyLogo({
+  job,
+  className = 'h-12 w-12 sm:h-14 sm:w-14',
+}: {
+  job: Job;
+  className?: string;
+}) {
   return (
     <span
       className={`relative grid shrink-0 place-items-center overflow-hidden rounded-2xl bg-logo-tile font-display text-lg font-semibold text-logo-ink ${className}`}
     >
       {job.logo ? (
-        <Image src={job.logo} alt={`${job.company} logo`} fill sizes="56px" className="photo-dim object-contain p-2" />
+        <Image
+          src={job.logo}
+          alt={`${job.company} logo`}
+          fill
+          sizes="56px"
+          className="photo-dim object-contain p-2"
+        />
       ) : (
         initials(job.company)
       )}
@@ -27,7 +39,13 @@ export function CompanyLogo({ job, className = "h-12 w-12 sm:h-14 sm:w-14" }: { 
 }
 
 /** One role: logo, company, role, period/location, summary and tech chips. `children` adds detail (bullets, projects). */
-export default function JobCard({ job, children }: { job: Job; children?: ReactNode }) {
+export default function JobCard({
+  job,
+  children,
+}: {
+  job: Job;
+  children?: ReactNode;
+}) {
   const isCurrent = /present/i.test(job.period);
   return (
     // logo above the text on phones so the company name and bullets get the whole width
@@ -42,7 +60,10 @@ export default function JobCard({ job, children }: { job: Job; children?: ReactN
             </h3>
             {isCurrent && (
               <span className="inline-flex items-center gap-1.5 rounded-full bg-seaglass px-2.5 py-1 text-xs font-semibold text-teal">
-                <span className="h-1.5 w-1.5 rounded-full bg-teal" aria-hidden="true" />
+                <span
+                  className="h-1.5 w-1.5 rounded-full bg-teal"
+                  aria-hidden="true"
+                />
                 Current
               </span>
             )}
@@ -50,7 +71,14 @@ export default function JobCard({ job, children }: { job: Job; children?: ReactN
           <p className="mt-1 text-[17px] font-semibold text-teal">{job.role}</p>
           <p className="mt-2 flex flex-wrap items-center gap-x-4 gap-y-1 text-sm text-muted">
             <span className="inline-flex items-center gap-1.5">
-              <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+              <svg
+                viewBox="0 0 24 24"
+                className="h-4 w-4"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                aria-hidden="true"
+              >
                 <rect x="3" y="5" width="18" height="16" rx="2" />
                 <path d="M3 10h18M8 3v4M16 3v4" />
               </svg>
@@ -58,7 +86,14 @@ export default function JobCard({ job, children }: { job: Job; children?: ReactN
             </span>
             {job.location && (
               <span className="inline-flex items-center gap-1.5">
-                <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+                <svg
+                  viewBox="0 0 24 24"
+                  className="h-4 w-4"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                  aria-hidden="true"
+                >
                   <path d="M12 21s-7-6.2-7-11.5a7 7 0 0 1 14 0C19 14.8 12 21 12 21z" />
                   <circle cx="12" cy="9.5" r="2.5" />
                 </svg>
@@ -67,7 +102,9 @@ export default function JobCard({ job, children }: { job: Job; children?: ReactN
             )}
           </p>
         </div>
-        {job.summary && <p className="leading-relaxed text-muted">{job.summary}</p>}
+        {job.summary && (
+          <p className="leading-relaxed text-muted">{job.summary}</p>
+        )}
         {job.awards && job.awards.length > 0 && (
           <ul className="flex flex-wrap gap-2 pt-1" aria-label="Awards">
             {job.awards.map((a) => (
@@ -75,7 +112,12 @@ export default function JobCard({ job, children }: { job: Job; children?: ReactN
                 key={a}
                 className="inline-flex items-center gap-1.5 rounded-full bg-linen px-3.5 py-1.5 text-[13px] font-semibold text-coral-ink"
               >
-                <svg viewBox="0 0 24 24" className="h-3.5 w-3.5" fill="currentColor" aria-hidden="true">
+                <svg
+                  viewBox="0 0 24 24"
+                  className="h-3.5 w-3.5"
+                  fill="currentColor"
+                  aria-hidden="true"
+                >
                   <path d="M12 2l2.9 6.26L22 9.27l-5.2 4.9L18.2 22 12 18.27 5.8 22l1.4-7.83L2 9.27l7.1-1.01L12 2z" />
                 </svg>
                 {a}

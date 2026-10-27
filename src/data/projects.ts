@@ -1,25 +1,25 @@
 export interface Project {
-  slug: string
-  title: string
+  slug: string;
+  title: string;
   /** small label above the title, e.g. "SaaS · E-learning" */
-  eyebrow: string
+  eyebrow: string;
   /** one line for cards */
-  tagline: string
+  tagline: string;
   /** longer intro for the case-study page */
-  summary: string
+  summary: string;
   /** the single result a card leads with */
-  headline: { value: string; label: string }
+  headline: { value: string; label: string };
   /** screenshot in /public (e.g. "/projects/moto-venice.png"); a framed placeholder shows while empty */
-  image?: string
-  tags: string[]
+  image?: string;
+  tags: string[];
   /** key facts shown beside the headline on the case-study page (don't repeat the headline) */
-  metrics: { label: string; value: string }[]
+  metrics: { label: string; value: string }[];
   /** Case-study fields */
-  problem: string
-  role: string[]
-  stack: string[]
-  highlights: string[]
-  outcome: string
+  problem: string;
+  role: string[];
+  stack: string[];
+  highlights: string[];
+  outcome: string;
 }
 
 // Facts here come from the résumé (public/Shivharakh_Yadav_FS.pdf) and the
@@ -523,7 +523,7 @@ export const projects: Project[] = [
     outcome:
       'A multilingual support portal where customers raise and track tickets, helping the support team respond faster and more efficiently.',
   },
-]
+];
 
 /** Featured projects, strongest first. */
 export const featuredProjects: Project[] = [
@@ -532,7 +532,7 @@ export const featuredProjects: Project[] = [
   'health-coaching-platform',
 ]
   .map((slug) => projects.find((p) => p.slug === slug))
-  .filter((p): p is Project => Boolean(p))
+  .filter((p): p is Project => Boolean(p));
 
 export const getProjectBySlug = (slug: string): Project | undefined =>
-  projects.find((p) => p.slug === slug)
+  projects.find((p) => p.slug === slug);

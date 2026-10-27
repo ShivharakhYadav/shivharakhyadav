@@ -1,4 +1,4 @@
-import { Fragment } from "react";
+import { Fragment } from 'react';
 
 const wordCycle = 2.5; // seconds each word stays on screen
 
@@ -31,12 +31,12 @@ export function RotatingWordsStyle({ count }: { count: number }) {
 export default function RotatingWords({ words }: { words: string[] }) {
   return (
     <span className="block">
-      <span className="sr-only"> {words.join(", ")} </span>
+      <span className="sr-only"> {words.join(', ')} </span>
       <span className="inline-grid py-1 text-teal" aria-hidden="true">
         {/* the spaces keep the words apart in the text content; grid layout ignores them */}
         {words.map((w, i) => (
           <Fragment key={w}>
-            {" "}
+            {' '}
             <span
               className="rotate-word whitespace-nowrap [grid-area:1/1]"
               style={{ animationDelay: `${i * wordCycle}s` }}
@@ -45,7 +45,7 @@ export default function RotatingWords({ words }: { words: string[] }) {
             </span>
           </Fragment>
         ))}
-      </span>{" "}
+      </span>{' '}
     </span>
   );
 }

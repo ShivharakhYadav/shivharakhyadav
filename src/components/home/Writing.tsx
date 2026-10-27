@@ -1,7 +1,7 @@
-import Link from "next/link";
-import Container from "@/components/ui/Container";
-import PostCard from "@/components/ui/PostCard";
-import { getPostFeed } from "@/lib/blog";
+import Link from 'next/link';
+import Container from '@/components/ui/Container';
+import PostCard from '@/components/ui/PostCard';
+import { getPostFeed } from '@/lib/blog';
 
 export default function Writing() {
   const posts = getPostFeed().slice(0, 2);
